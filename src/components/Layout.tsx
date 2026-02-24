@@ -33,7 +33,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
   };
 
   return (
-    <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col pt-20`}>
+    <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col`}>
       {/* Floating tubelight header */}
       <header className="fixed top-4 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
         <div className="relative bg-background/80 backdrop-blur-xl border border-gold/30 rounded-2xl shadow-[0_4px_30px_-4px_hsl(var(--gold)/0.25),0_0_80px_-20px_hsl(var(--gold)/0.15)] px-4 md:px-6 h-16 flex items-center justify-between">
@@ -45,8 +45,9 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
           <Link to={`/${lang}`} className="flex items-center gap-2 shrink-0">
             <img src={logoImg} alt="Al Mehfuz Khanqah ae Qadriyaa" className="h-11 w-auto" />
-            <span className="text-base font-bold text-primary hidden sm:inline truncate max-w-[200px] md:max-w-none">
-              {t.hero.title}
+            <span className="text-base font-bold text-primary truncate max-w-[120px] sm:max-w-[200px] md:max-w-none">
+              <span className="sm:hidden">Al Mehfuz</span>
+              <span className="hidden sm:inline">{t.hero.title}</span>
             </span>
           </Link>
 
@@ -96,7 +97,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-bold text-gold mb-2 flex items-center gap-2">
-              <span>☪</span> {t.hero.title}
+              <img src={logoImg} alt="" className="h-8 w-auto" /> {t.hero.title}
             </h3>
             <p className="text-sm text-primary-foreground/70">{t.footer.mission}</p>
           </div>
@@ -121,7 +122,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
           </div>
         </div>
         <div className="border-t border-primary-foreground/10 py-4 text-center text-xs text-primary-foreground/50">
-          {t.footer.copyright}
+          © {new Date().getFullYear()} Al Mehfuz Khanqah ae Qadriyaa. All rights reserved.
         </div>
       </footer>
     </div>
