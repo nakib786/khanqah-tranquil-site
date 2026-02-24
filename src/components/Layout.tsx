@@ -4,6 +4,7 @@ import { Language, languageConfig, translations } from '@/data/translations';
 import { getFontClass } from '@/lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Facebook, Instagram, Youtube, Twitter, Menu, X } from 'lucide-react';
+import logoImg from '@/assets/logo.png';
 
 interface LayoutProps {
   lang: Language;
@@ -32,19 +33,29 @@ const Layout = ({ lang, children }: LayoutProps) => {
   };
 
   return (
-    <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col`}>
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b islamic-border-top" role="banner">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to={`/${lang}`} className="flex items-center gap-2 text-lg font-bold text-primary truncate max-w-[260px] md:max-w-none">
-            <span className="text-gold text-xl">☪</span>
-            {t.hero.title}
+    <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col pt-20`}>
+      {/* Floating tubelight header */}
+      <header className="fixed top-4 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
+        <div className="relative bg-background/80 backdrop-blur-xl border border-gold/30 rounded-2xl shadow-[0_4px_30px_-4px_hsl(var(--gold)/0.25),0_0_80px_-20px_hsl(var(--gold)/0.15)] px-4 md:px-6 h-16 flex items-center justify-between">
+          {/* Tubelight glow effect - top edge */}
+          <div className="absolute -top-px inset-x-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+          <div className="absolute -top-1 inset-x-16 h-1 bg-gradient-to-r from-transparent via-gold/30 to-transparent blur-sm" />
+          {/* Tubelight glow effect - bottom edge */}
+          <div className="absolute -bottom-px inset-x-8 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+
+          <Link to={`/${lang}`} className="flex items-center gap-2 shrink-0">
+            <img src={logoImg} alt="Al Mehfuz Khanqah ae Qadriyaa" className="h-11 w-auto" />
+            <span className="text-base font-bold text-primary hidden sm:inline truncate max-w-[200px] md:max-w-none">
+              {t.hero.title}
+            </span>
           </Link>
-          <nav className="hidden lg:flex items-center gap-6" role="navigation" aria-label="Main navigation">
+
+          <nav className="hidden lg:flex items-center gap-5" role="navigation" aria-label="Main navigation">
             {navLinks.map(link => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`text-sm transition-colors ${isActive(link.to) ? 'text-primary font-medium' : 'text-foreground/60 hover:text-primary'}`}
+                className={`text-sm transition-colors ${isActive(link.to) ? 'text-gold font-medium' : 'text-foreground/60 hover:text-gold'}`}
               >
                 {link.label}
               </Link>
@@ -52,7 +63,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
             <LanguageSwitcher lang={lang} />
           </nav>
           <button
-            className="lg:hidden p-2 text-foreground/70 hover:text-primary"
+            className="lg:hidden p-2 text-foreground/70 hover:text-gold"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
@@ -61,18 +72,18 @@ const Layout = ({ lang, children }: LayoutProps) => {
           </button>
         </div>
         {mobileMenuOpen && (
-          <nav className="lg:hidden border-t bg-background p-4 flex flex-col gap-3" role="navigation" aria-label="Mobile navigation">
+          <nav className="lg:hidden mt-2 bg-background/95 backdrop-blur-xl border border-gold/20 rounded-xl shadow-lg p-4 flex flex-col gap-3" role="navigation" aria-label="Mobile navigation">
             {navLinks.map(link => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm py-1 ${isActive(link.to) ? 'text-primary font-medium' : 'text-foreground/60 hover:text-primary'}`}
+                className={`text-sm py-1 ${isActive(link.to) ? 'text-gold font-medium' : 'text-foreground/60 hover:text-gold'}`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-2 border-t">
+            <div className="pt-2 border-t border-gold/10">
               <LanguageSwitcher lang={lang} />
             </div>
           </nav>
