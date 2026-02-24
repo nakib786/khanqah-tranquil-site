@@ -24,6 +24,9 @@ const Home = () => {
       {/* Purpose */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-5xl">
+          <div className="ornamental-divider">
+            <span className="text-gold text-lg">✦</span>
+          </div>
           <h2 className="text-3xl font-bold text-center mb-12">{t.purpose.title}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {t.purpose.cards.map((card, i) => {
@@ -35,10 +38,11 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15, duration: 0.5 }}
-                  className="bg-card border rounded-lg p-6 text-center"
+                  className="bg-card border rounded-lg p-6 text-center relative overflow-hidden group hover:border-gold/40 transition-colors"
                 >
-                  <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-accent-foreground" />
+                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+                  <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">{card.title}</h3>
                   <p className="text-sm text-muted-foreground">{card.description}</p>
@@ -94,14 +98,15 @@ const Home = () => {
       </section>
 
       {/* Visit Us */}
-      <section className="py-16 px-4 bg-secondary">
+      <section className="py-16 px-4 bg-primary text-primary-foreground islamic-pattern">
         <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold mb-4">{t.visitUs.title}</h2>
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-2">
+          <span className="text-gold text-2xl">☪</span>
+          <h2 className="text-3xl font-bold mb-4 mt-2">{t.visitUs.title}</h2>
+          <div className="flex items-center justify-center gap-2 text-primary-foreground/70 mb-2">
             <MapPin className="w-4 h-4 shrink-0" />
             <span>{t.visitUs.address}</span>
           </div>
-          <p className="text-muted-foreground">{t.visitUs.timings}</p>
+          <p className="text-primary-foreground/70">{t.visitUs.timings}</p>
         </div>
       </section>
     </Layout>

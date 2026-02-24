@@ -33,9 +33,10 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
   return (
     <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col`}>
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b" role="banner">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b islamic-border-top" role="banner">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link to={`/${lang}`} className="text-lg font-bold text-primary truncate max-w-[260px] md:max-w-none">
+          <Link to={`/${lang}`} className="flex items-center gap-2 text-lg font-bold text-primary truncate max-w-[260px] md:max-w-none">
+            <span className="text-gold text-xl">☪</span>
             {t.hero.title}
           </Link>
           <nav className="hidden lg:flex items-center gap-6" role="navigation" aria-label="Main navigation">
@@ -80,33 +81,35 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-secondary border-t mt-16" role="contentinfo">
+      <footer className="bg-primary text-primary-foreground border-t mt-16 islamic-pattern" role="contentinfo">
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-bold text-primary mb-2">{t.hero.title}</h3>
-            <p className="text-sm text-muted-foreground">{t.footer.mission}</p>
+            <h3 className="font-bold text-gold mb-2 flex items-center gap-2">
+              <span>☪</span> {t.hero.title}
+            </h3>
+            <p className="text-sm text-primary-foreground/70">{t.footer.mission}</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">{t.footer.quickLinks}</h4>
+            <h4 className="font-semibold mb-3 text-gold-light">{t.footer.quickLinks}</h4>
             <div className="flex flex-col gap-2">
               {navLinks.slice(0, 5).map(link => (
-                <Link key={link.to} to={link.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link key={link.to} to={link.to} className="text-sm text-primary-foreground/70 hover:text-gold transition-colors">
                   {link.label}
                 </Link>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="font-semibold mb-3">{t.footer.social}</h4>
+            <h4 className="font-semibold mb-3 text-gold-light">{t.footer.social}</h4>
             <div className="flex gap-3">
-              <a href="#" aria-label="Facebook" className="text-muted-foreground hover:text-primary transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" aria-label="Instagram" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="w-5 h-5" /></a>
-              <a href="#" aria-label="Youtube" className="text-muted-foreground hover:text-primary transition-colors"><Youtube className="w-5 h-5" /></a>
-              <a href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="w-5 h-5" /></a>
+              <a href="#" aria-label="Facebook" className="text-primary-foreground/60 hover:text-gold transition-colors"><Facebook className="w-5 h-5" /></a>
+              <a href="#" aria-label="Instagram" className="text-primary-foreground/60 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
+              <a href="#" aria-label="Youtube" className="text-primary-foreground/60 hover:text-gold transition-colors"><Youtube className="w-5 h-5" /></a>
+              <a href="#" aria-label="Twitter" className="text-primary-foreground/60 hover:text-gold transition-colors"><Twitter className="w-5 h-5" /></a>
             </div>
           </div>
         </div>
-        <div className="border-t py-4 text-center text-xs text-muted-foreground">
+        <div className="border-t border-primary-foreground/10 py-4 text-center text-xs text-primary-foreground/50">
           {t.footer.copyright}
         </div>
       </footer>
