@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Language, translations } from '@/data/translations';
 import heroImage from '@/assets/hero.jpg';
+import logoImg from '@/assets/logo.png';
 import { motion } from 'framer-motion';
 
 const HeroSection = ({ lang }: { lang: Language }) => {
@@ -22,15 +23,23 @@ const HeroSection = ({ lang }: { lang: Language }) => {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="relative z-10 text-center px-4 max-w-3xl"
       >
-        {/* Bismillah / ornamental crescent */}
+        {/* Glowing logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mb-6"
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mb-6 flex flex-col items-center"
         >
-          <span className="text-gold text-4xl">☪</span>
-          <div className="flex items-center justify-center gap-3 mt-2">
+          <div className="relative">
+            <img
+              src={logoImg}
+              alt="Al Mehfuz Khanqah ae Qadriyaa"
+              className="h-28 md:h-36 w-auto relative z-10 drop-shadow-[0_0_25px_hsl(var(--gold)/0.6)]"
+            />
+            {/* Glow behind logo */}
+            <div className="absolute inset-0 bg-gold/20 blur-3xl rounded-full scale-150" />
+          </div>
+          <div className="flex items-center justify-center gap-3 mt-3">
             <span className="w-16 h-px bg-gradient-to-r from-transparent to-gold/60" />
             <span className="text-gold text-sm tracking-[0.3em] uppercase font-medium">بِسْمِ ٱللَّٰهِ</span>
             <span className="w-16 h-px bg-gradient-to-l from-transparent to-gold/60" />
