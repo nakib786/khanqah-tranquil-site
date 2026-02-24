@@ -327,3 +327,5 @@ const hi = {
     mapPlaceholder: 'यहाँ नक्शा दिखाया जाएगा',
   },
 };
+
+export const translations: Record<Language, typeof en> = { en, ur, ar, hi };
