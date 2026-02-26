@@ -10,7 +10,7 @@ export const languageConfig: Record<Language, { name: string; nativeName: string
 
 const en = {
   nav: { home: 'Home', about: 'About', activities: 'Activities', teachings: 'Teachings', gallery: 'Gallery', contact: 'Contact' },
-  hero: { title: 'Al Mehfuz Khanqah ae Qadriyaa', subtitle: 'A sanctuary of spiritual learning, remembrance, and peace', cta1: 'View Activities', cta2: 'Read Teachings' },
+  hero: { title: 'Al Mehfuz', fullTitle: 'Astana e Aliya Silsila e Quadria Shattaria', subtitle: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.', cta1: 'View Activities', cta2: 'Read Teachings', sajjadaNashin: 'Sajjada Nashin', sajjadaNashinName: 'Hazrat Syed Nakib Muzafar Ali', sajjadaNashinDesc: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.' },
   purpose: { title: 'Our Purpose', cards: [
     { title: 'Spiritual Guidance', description: 'Nurturing the soul through traditional spiritual mentorship and guidance on the path of divine nearness.' },
     { title: 'Remembrance (Dhikr)', description: 'Engaging hearts in the remembrance of the Divine, finding peace and tranquility in sacred gatherings.' },
@@ -18,16 +18,18 @@ const en = {
   ]},
   schedule: { title: "Today's Schedule" },
   latestTeachings: { title: 'Latest Teachings', viewAll: 'View All Teachings' },
-  visitUs: { title: 'Visit Us', address: '123 Peace Road, Spiritual Quarter, City', timings: 'Open daily from Fajr to Isha' },
+  visitUs: { title: 'Visit Us', address: 'Khankah Sharif, Mehfuz Baugh, Chikhli, Gujarat, India', timings: 'Open daily from Fajr to Isha' },
   about: {
     title: 'About Us',
-    history: 'Al Mehfuz Khanqah ae Qadriyaa has been a beacon of spiritual light for generations. Established in the tradition of the great Qadri order, this sacred space serves as a center for spiritual learning, remembrance of the Divine, and community gathering. Our doors are open to all seekers of truth and peace, regardless of background. The Khanqah continues to uphold the timeless values of love, devotion, and service that have been passed down through an unbroken chain of spiritual masters.',
+    history: 'Al Mehfuz Astana e Aliya Silsila e Quadria Shattaria was established as a center for spiritual cultivation, learning, and the transmission of sacred knowledge within the noble Qadri and Shattari traditions. Under the guidance of our Sajjada Nashin, the khanqah welcomes sincere seekers from all walks of life who wish to draw closer to the Divine through prayer, remembrance, and search for spiritual truth.',
     missionTitle: 'Mission & Values',
     mission: [
-      'To preserve and transmit traditional spiritual knowledge through authentic chains of learning',
-      'To provide a peaceful space for remembrance (dhikr) and contemplation',
-      'To foster a welcoming community of peace, learning, and mutual support',
-      'To guide sincere seekers on the path of spiritual purification and nearness to the Divine',
+      'To provide a nurturing space where the heart may be purified and the soul may find peace in Allah\'s remembrance',
+      'Sincerity (Ikhlas) in all actions and worship',
+      'Respect & Adab — proper etiquette toward the Divine, teachers, and fellow seekers',
+      'Love for the Prophet ﷺ at the heart of all spiritual practice',
+      'Service to all people regardless of background',
+      'Preservation of authentic tradition through an unbroken chain of spiritual masters',
     ],
     lineageTitle: 'Spiritual Lineage (Silsila)',
     imageAlt: 'Khanqah Interior',
@@ -58,12 +60,12 @@ const en = {
   gallery: { title: 'Gallery', photos: 'photos' },
   contact: {
     title: 'Contact Us',
-    address: '123 Peace Road, Spiritual Quarter, City',
-    phone: '+1 234 567 8900',
-    email: 'info@almehfuzkhanqah.org',
+    address: 'Khankah Sharif, Mehfuz Baugh, Chikhli, Gujarat, India',
+    phone: '+91 81289 27862',
+    email: 'info@almehfuz.org',
     successTitle: 'Message Sent',
     successMessage: "Thank you for reaching out. We will get back to you soon, insha'Allah.",
-    hours: ['Monday – Friday: 6:00 AM – 10:00 PM', 'Saturday – Sunday: 5:00 AM – 11:00 PM', 'Special hours during Ramadan'],
+    hours: ['Mon–Sun: After Fajr – After Isha', 'Thu Evening: Dhikr Gathering (8 PM)', 'Fri: Post-Jumu\'ah Lecture (2 PM)', 'Sat Morning: Study Circle (9 AM)'],
   },
   footer: {
     mission: 'Dedicated to spiritual learning, remembrance, and community peace.',
@@ -90,7 +92,7 @@ const en = {
 
 const ur = {
   nav: { home: 'ہوم', about: 'ہمارے بارے میں', activities: 'سرگرمیاں', teachings: 'تعلیمات', gallery: 'گیلری', contact: 'رابطہ' },
-  hero: { title: 'المحفوظ خانقاہِ قادریہ', subtitle: 'روحانی تعلیم، ذکر اور سکون کا مرکز', cta1: 'سرگرمیاں دیکھیں', cta2: 'تعلیمات پڑھیں' },
+  hero: { title: 'المحفوظ', fullTitle: 'آستانہ عالیہ سلسلہ قادریہ شطاریہ', subtitle: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادری روایت میں جڑا ہوا', cta1: 'سرگرمیاں دیکھیں', cta2: 'تعلیمات پڑھیں', sajjadaNashin: 'سجادہ نشین', sajjadaNashinName: 'حضرت سید نقیب مظفر علی', sajjadaNashinDesc: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادری روایت میں جڑا ہوا۔' },
   purpose: { title: 'ہمارا مقصد', cards: [
     { title: 'روحانی رہنمائی', description: 'روایتی روحانی تربیت اور قربِ الٰہی کے راستے پر رہنمائی کے ذریعے روح کی پرورش۔' },
     { title: 'ذکر و اذکار', description: 'ذکرِ الٰہی میں دلوں کو مشغول کرنا، مقدس مجالس میں سکون اور اطمینان پانا۔' },
@@ -98,7 +100,7 @@ const ur = {
   ]},
   schedule: { title: 'آج کا شیڈول' },
   latestTeachings: { title: 'تازہ ترین تعلیمات', viewAll: 'تمام تعلیمات دیکھیں' },
-  visitUs: { title: 'ہم سے ملیں', address: '۱۲۳ امن روڈ، روحانی محلہ، شہر', timings: 'فجر سے عشاء تک روزانہ کھلا ہے' },
+  visitUs: { title: 'ہم سے ملیں', address: 'خانقاہ شریف، محفوظ باغ، چکھلی، گجرات، انڈیا', timings: 'فجر سے عشاء تک روزانہ کھلا ہے' },
   about: {
     title: 'ہمارے بارے میں',
     history: 'المحفوظ خانقاہِ قادریہ نسلوں سے روحانی روشنی کا مینار رہی ہے۔ عظیم قادری سلسلے کی روایت میں قائم، یہ مقدس مقام روحانی تعلیم، ذکرِ الٰہی اور اجتماعی محفل کا مرکز ہے۔ ہمارے دروازے حق اور سکون کے ہر متلاشی کے لیے کھلے ہیں۔ خانقاہ محبت، عقیدت اور خدمت کی لازوال اقدار کو برقرار رکھے ہوئے ہے جو روحانی اساتذہ کے غیر منقطع سلسلے سے منتقل ہوئی ہیں۔',
@@ -138,9 +140,9 @@ const ur = {
   gallery: { title: 'گیلری', photos: 'تصاویر' },
   contact: {
     title: 'ہم سے رابطہ کریں',
-    address: '۱۲۳ امن روڈ، روحانی محلہ، شہر',
-    phone: '+1 234 567 8900',
-    email: 'info@almehfuzkhanqah.org',
+    address: 'خانقاہ شریف، محفوظ باغ، چکھلی، گجرات، انڈیا',
+    phone: '+91 81289 27862',
+    email: 'info@almehfuz.org',
     successTitle: 'پیغام بھیج دیا گیا',
     successMessage: 'رابطے کے لیے شکریہ۔ ہم جلد آپ سے رابطہ کریں گے، ان شاء اللہ۔',
     hours: ['پیر تا جمعہ: صبح ۶ بجے سے رات ۱۰ بجے تک', 'ہفتہ و اتوار: صبح ۵ بجے سے رات ۱۱ بجے تک', 'رمضان المبارک میں خصوصی اوقات'],
@@ -170,7 +172,7 @@ const ur = {
 
 const ar = {
   nav: { home: 'الرئيسية', about: 'عن الخانقاه', activities: 'الأنشطة', teachings: 'التعاليم', gallery: 'المعرض', contact: 'اتصل بنا' },
-  hero: { title: 'المحفوظ خانقاه القادرية', subtitle: 'ملاذ للتعلم الروحاني والذكر والسلام', cta1: 'عرض الأنشطة', cta2: 'اقرأ التعاليم' },
+  hero: { title: 'المحفوظ', fullTitle: 'آستانه عالیه سلسله قادریه شطاریه', subtitle: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك', cta1: 'عرض الأنشطة', cta2: 'اقرأ التعاليم', sajjadaNashin: 'السجادة نشين', sajjadaNashinName: 'حضرة سيد نقيب مظفر علي', sajjadaNashinDesc: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك.' },
   purpose: { title: 'هدفنا', cards: [
     { title: 'الإرشاد الروحاني', description: 'تنمية الروح من خلال التوجيه الروحاني التقليدي والإرشاد على طريق القرب الإلهي.' },
     { title: 'الذكر', description: 'إشراك القلوب في ذكر الله، وإيجاد السكينة والطمأنينة في المجالس المقدسة.' },
@@ -178,7 +180,7 @@ const ar = {
   ]},
   schedule: { title: 'جدول اليوم' },
   latestTeachings: { title: 'أحدث التعاليم', viewAll: 'عرض جميع التعاليم' },
-  visitUs: { title: 'زورونا', address: '١٢٣ طريق السلام، الحي الروحاني، المدينة', timings: 'مفتوح يومياً من الفجر إلى العشاء' },
+  visitUs: { title: 'زورونا', address: 'خانقاه شريف، محفوظ باغ، تشيخلي، غوجارات، الهند', timings: 'مفتوح يومياً من الفجر إلى العشاء' },
   about: {
     title: 'عن الخانقاه',
     history: 'كانت المحفوظ خانقاه القادرية منارة للنور الروحاني عبر الأجيال. تأسست في تقليد الطريقة القادرية العظيمة، ويعمل هذا المكان المقدس كمركز للتعلم الروحاني وذكر الله والتجمع المجتمعي. أبوابنا مفتوحة لجميع الباحثين عن الحق والسلام. تواصل الخانقاه الحفاظ على القيم الخالدة للمحبة والإخلاص والخدمة التي انتقلت عبر سلسلة متصلة من المشايخ.',
@@ -218,9 +220,9 @@ const ar = {
   gallery: { title: 'المعرض', photos: 'صور' },
   contact: {
     title: 'اتصل بنا',
-    address: '١٢٣ طريق السلام، الحي الروحاني، المدينة',
-    phone: '+1 234 567 8900',
-    email: 'info@almehfuzkhanqah.org',
+    address: 'خانقاه شريف، محفوظ باغ، تشيخلي، غوجارات، الهند',
+    phone: '+91 81289 27862',
+    email: 'info@almehfuz.org',
     successTitle: 'تم إرسال الرسالة',
     successMessage: 'شكراً لتواصلكم. سنرد عليكم قريباً إن شاء الله.',
     hours: ['الإثنين – الجمعة: ٦:٠٠ صباحاً – ١٠:٠٠ مساءً', 'السبت – الأحد: ٥:٠٠ صباحاً – ١١:٠٠ مساءً', 'أوقات خاصة خلال شهر رمضان'],
@@ -250,7 +252,7 @@ const ar = {
 
 const hi = {
   nav: { home: 'होम', about: 'हमारे बारे में', activities: 'गतिविधियाँ', teachings: 'शिक्षाएँ', gallery: 'गैलरी', contact: 'संपर्क' },
-  hero: { title: 'अल मेहफ़ूज़ ख़ानक़ाह-ए-क़ादरिया', subtitle: 'आध्यात्मिक शिक्षा, ज़िक्र और शांति का केंद्र', cta1: 'गतिविधियाँ देखें', cta2: 'शिक्षाएँ पढ़ें' },
+  hero: { title: 'अल मेहफ़ूज़', fullTitle: 'आस्ताना-ए-आलिया सिलसिला-ए-क़ादरिया शट्टारिया', subtitle: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित', cta1: 'गतिविधियाँ देखें', cta2: 'शिक्षाएँ पढ़ें', sajjadaNashin: 'सज्जादा नशीन', sajjadaNashinName: 'हज़रत सैयद नक़ीब मुज़फ़्फ़र अली', sajjadaNashinDesc: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित।' },
   purpose: { title: 'हमारा उद्देश्य', cards: [
     { title: 'आध्यात्मिक मार्गदर्शन', description: 'पारंपरिक आध्यात्मिक मार्गदर्शन और ईश्वरीय निकटता के मार्ग पर मार्गदर्शन के माध्यम से आत्मा का पोषण।' },
     { title: 'ज़िक्र', description: 'ईश्वर के स्मरण में हृदयों को लगाना, पवित्र सभाओं में शांति और सुकून पाना।' },
@@ -258,7 +260,7 @@ const hi = {
   ]},
   schedule: { title: 'आज का कार्यक्रम' },
   latestTeachings: { title: 'नवीनतम शिक्षाएँ', viewAll: 'सभी शिक्षाएँ देखें' },
-  visitUs: { title: 'हमसे मिलें', address: '123 शांति मार्ग, आध्यात्मिक क्षेत्र, शहर', timings: 'फज्र से ईशा तक दैनिक खुला' },
+  visitUs: { title: 'हमसे मिलें', address: 'ख़ानक़ाह शरीफ़, मेहफ़ूज़ बाग़, चिखली, गुजरात, भारत', timings: 'फज्र से ईशा तक दैनिक खुला' },
   about: {
     title: 'हमारे बारे में',
     history: 'अल मेहफ़ूज़ ख़ानक़ाह-ए-क़ादरिया पीढ़ियों से आध्यात्मिक प्रकाश का स्तंभ रही है। महान क़ादरी सिलसिले की परंपरा में स्थापित, यह पवित्र स्थान आध्यात्मिक शिक्षा, ईश्वर के स्मरण और सामुदायिक एकत्रण का केंद्र है। हमारे द्वार सत्य और शांति के सभी साधकों के लिए खुले हैं। ख़ानक़ाह प्रेम, भक्ति और सेवा के शाश्वत मूल्यों को बनाए रखती है जो आध्यात्मिक गुरुओं की अटूट श्रृंखला से प्रसारित हुए हैं।',
@@ -298,9 +300,9 @@ const hi = {
   gallery: { title: 'गैलरी', photos: 'तस्वीरें' },
   contact: {
     title: 'हमसे संपर्क करें',
-    address: '123 शांति मार्ग, आध्यात्मिक क्षेत्र, शहर',
-    phone: '+1 234 567 8900',
-    email: 'info@almehfuzkhanqah.org',
+    address: 'ख़ानक़ाह शरीफ़, मेहफ़ूज़ बाग़, चिखली, गुजरात, भारत',
+    phone: '+91 81289 27862',
+    email: 'info@almehfuz.org',
     successTitle: 'संदेश भेजा गया',
     successMessage: 'संपर्क करने के लिए धन्यवाद। हम जल्द ही आपसे संपर्क करेंगे, इन्शा अल्लाह।',
     hours: ['सोमवार – शुक्रवार: सुबह 6:00 बजे – रात 10:00 बजे', 'शनिवार – रविवार: सुबह 5:00 बजे – रात 11:00 बजे', 'रमज़ान के दौरान विशेष समय'],
