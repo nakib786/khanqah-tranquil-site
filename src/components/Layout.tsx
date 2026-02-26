@@ -45,9 +45,9 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
           <Link to={`/${lang}`} className="flex items-center gap-2 shrink-0">
             <img src={logoImg} alt="Al Mehfuz Khanqah ae Qadriyaa" className="h-11 w-auto" />
-            <span className="text-base font-bold text-primary truncate max-w-[120px] sm:max-w-[200px] md:max-w-none">
-              <span className="sm:hidden">Al Mehfuz</span>
-              <span className="hidden sm:inline">{t.hero.title}</span>
+            <span className="text-base font-bold text-primary truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">
+              <span className="sm:hidden">{t.hero.title}</span>
+              <span className="hidden sm:inline">{t.hero.title} — {t.hero.fullTitle}</span>
             </span>
           </Link>
 

@@ -97,6 +97,18 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Sajjada Nashin */}
+      <section className="py-16 px-4 bg-secondary islamic-pattern">
+        <div className="container mx-auto max-w-3xl text-center">
+          <div className="ornamental-divider">
+            <span className="text-gold text-lg">✦</span>
+          </div>
+          <p className="text-sm text-primary font-medium uppercase tracking-widest mb-2">{t.hero.sajjadaNashin}</p>
+          <h2 className="text-3xl font-bold mb-3">{t.hero.sajjadaNashinName}</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">{t.hero.sajjadaNashinDesc}</p>
+        </div>
+      </section>
+
       {/* Visit Us */}
       <section className="py-16 px-4 bg-primary text-primary-foreground islamic-pattern">
         <div className="container mx-auto max-w-2xl text-center">

@@ -46,10 +46,13 @@ const HeroSection = ({ lang }: { lang: Language }) => {
           </div>
         </motion.div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2 leading-tight">
           {t.hero.title}
         </h1>
-        <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-lg md:text-2xl text-gold font-semibold mb-3 tracking-wide">
+          {t.hero.fullTitle}
+        </p>
+        <p className="text-base md:text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
           {t.hero.subtitle}
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
