@@ -31,7 +31,7 @@ const TeachingDetail = () => {
 
   return (
     <Layout lang={lang}>
-      <article className="py-16 px-4">
+      <article className="pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-3xl">
           <Link
             to={`/${lang}/teachings`}

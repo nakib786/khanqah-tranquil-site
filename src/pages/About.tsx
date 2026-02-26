@@ -13,7 +13,7 @@ const About = () => {
 
   return (
     <Layout lang={lang}>
-      <section className="py-16 px-4">
+      <section className="pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
