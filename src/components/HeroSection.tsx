@@ -10,7 +10,16 @@ const HeroSection = ({ lang }: { lang: Language }) => {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImage} alt="" className="w-full h-full object-cover" loading="eager" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover object-[10%] md:object-center"
+          poster={heroImage}
+        >
+          <source src="https://videos.pexels.com/video-files/27411350/12138101_1920_1080_30fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/50 to-foreground/70" />
       </div>
 

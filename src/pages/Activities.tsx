@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { translations } from '@/data/translations';
-import { schedule, gatherings, events } from '@/data/content';
+import { gatherings, events } from '@/data/content';
 import { getLang } from '@/lib/i18n';
+import { getLocalizedSchedule } from '@/lib/prayer-times';
 import Layout from '@/components/Layout';
 import { motion } from 'framer-motion';
 
@@ -9,6 +10,7 @@ const Activities = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
   const lang = getLang(langParam);
   const t = translations[lang];
+  const scheduleItems = getLocalizedSchedule(lang);
 
   return (
     <Layout lang={lang}>
@@ -30,7 +32,7 @@ const Activities = () => {
                 </tr>
               </thead>
               <tbody>
-                {schedule[lang].map((item, i) => (
+                {scheduleItems.map((item, i) => (
                   <tr key={i} className="border-b hover:bg-accent/50 transition-colors">
                     <td className="p-3 font-medium">{item.name}</td>
                     <td className="p-3 text-primary">{item.time}</td>

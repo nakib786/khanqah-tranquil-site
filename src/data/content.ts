@@ -9,37 +9,6 @@ export interface Teaching { slug: string; title: string; date: string; tags: str
 export interface Album { id: string; title: string; imageCount: number; }
 export interface LineageEntry { name: string; period: string; description: string; }
 
-export const schedule: ML<ScheduleItem[]> = {
-  en: [
-    { time: '5:00 AM', name: 'Fajr Prayer', description: 'Morning prayer followed by Quran recitation' },
-    { time: '1:00 PM', name: 'Dhuhr Prayer', description: 'Afternoon prayer and short discourse' },
-    { time: '4:30 PM', name: 'Asr Prayer', description: 'Afternoon prayer and study circle' },
-    { time: '6:30 PM', name: 'Maghrib Prayer', description: 'Evening prayer followed by dhikr session' },
-    { time: '8:00 PM', name: 'Isha Prayer', description: 'Night prayer and spiritual discourse' },
-  ],
-  ur: [
-    { time: '5:00 AM', name: 'نمازِ فجر', description: 'صبح کی نماز اور تلاوتِ قرآن' },
-    { time: '1:00 PM', name: 'نمازِ ظہر', description: 'دوپہر کی نماز اور مختصر بیان' },
-    { time: '4:30 PM', name: 'نمازِ عصر', description: 'عصر کی نماز اور حلقۂ درس' },
-    { time: '6:30 PM', name: 'نمازِ مغرب', description: 'مغرب کی نماز اور ذکر کی مجلس' },
-    { time: '8:00 PM', name: 'نمازِ عشاء', description: 'عشاء کی نماز اور روحانی بیان' },
-  ],
-  ar: [
-    { time: '5:00 AM', name: 'صلاة الفجر', description: 'صلاة الفجر متبوعة بتلاوة القرآن' },
-    { time: '1:00 PM', name: 'صلاة الظهر', description: 'صلاة الظهر وحديث قصير' },
-    { time: '4:30 PM', name: 'صلاة العصر', description: 'صلاة العصر وحلقة علم' },
-    { time: '6:30 PM', name: 'صلاة المغرب', description: 'صلاة المغرب متبوعة بجلسة ذكر' },
-    { time: '8:00 PM', name: 'صلاة العشاء', description: 'صلاة العشاء وحديث روحاني' },
-  ],
-  hi: [
-    { time: '5:00 AM', name: 'फज्र नमाज़', description: 'सुबह की नमाज़ और क़ुरआन तिलावत' },
-    { time: '1:00 PM', name: 'ज़ुहर नमाज़', description: 'दोपहर की नमाज़ और संक्षिप्त बयान' },
-    { time: '4:30 PM', name: 'अस्र नमाज़', description: 'अस्र की नमाज़ और अध्ययन मंडली' },
-    { time: '6:30 PM', name: 'मग़रिब नमाज़', description: 'मग़रिब की नमाज़ और ज़िक्र सत्र' },
-    { time: '8:00 PM', name: 'ईशा नमाज़', description: 'ईशा की नमाज़ और आध्यात्मिक बयान' },
-  ],
-};
-
 export const gatherings: ML<Gathering[]> = {
   en: [
     { day: 'Thursday', title: 'Night of Dhikr', time: '8:00 PM – 10:00 PM', description: 'Weekly remembrance circle with spiritual songs and collective meditation.' },
@@ -153,31 +122,31 @@ export const lineage: ML<LineageEntry[]> = {
     { name: 'Shaykh al-Muqaddam (RA)', period: '1800s', description: 'The lineage of the Qadri path reached the Indian subcontinent through blessed teachers.' },
     { name: 'Hazrat Syed Mehfuz Ali (RA)', period: 'Founding Era', description: 'The founding light of this blessed branch, establishing the khanqah as a center for spiritual seekers.' },
     { name: 'Hazrat Syed Muzafar Ali (RA)', period: 'Lineage', description: 'The successor who continued the mission of spiritual training and preservation of the sacred path.' },
-    { name: 'Hazrat Syed Abrar Ahmed (RA)', period: 'Previous Era', description: 'The previous Sajjada Nashin who guided the community with wisdom and intense devotion.' },
-    { name: 'Hazrat Syed Nakib Muzafar Ali', period: 'Present', description: 'The current Sajjada Nashin, continuing the blessed legacy of spiritual guidance and service.' },
+    { name: 'Hazrat Syed Abrar Ahmed', period: 'Sajjada Nashin', description: 'The current Sajjada Nashin, guiding the community with profound wisdom and spiritual devotion.' },
+    { name: 'Hazrat Syed Nakib Muzafar Ali', period: 'Naib Sajjada Nashin', description: 'Occupies a prominent seat of spiritual guidance and service, supporting the mission of the Khanqah.' },
   ],
   ur: [
     { name: 'شیخ عبدالقادر جیلانی (رضی اللہ عنہ)', period: '1077 – 1166 عیسوی', description: 'قادری سلسلے کے بانی، غوث الاعظم، سلطان الاولیا۔' },
     { name: 'شیخ المقدم (رضی اللہ عنہ)', period: '1800 کی دہائی', description: 'قادری سلسلے کا نور مبارک اساتذہ کے ذریعے برصغیر تک پہنچا۔' },
     { name: 'حضرت سید محفوظ علی (رضی اللہ عنہ)', period: 'بانی دور', description: 'اس مبارک شاخ کی بنیاد رکھنے والے، جنہوں نے خانقاہ کو روحانی سالکوں کا مرکز بنایا۔' },
     { name: 'حضرت سید مظفر علی (رضی اللہ عنہ)', period: 'سلسلہ', description: 'جانشین جنہوں نے روحانی تربیت اور مقدس راستے کے تحفظ کا مشن جاری رکھا۔' },
-    { name: 'حضرت سید ابرار احمد (رضی اللہ عنہ)', period: 'سابقہ دور', description: 'سابق سجادہ نشین جنہوں نے حکمت اور شدید عقیدت سے معاشرے کی رہنمائی کی۔' },
-    { name: 'حضرت سید نقیب مظفر علی', period: 'حال', description: 'موجودہ سجادہ نشین، روحانی رہنمائی اور خدمت کی مبارک وراثت کو جاری رکھے ہوئے ہیں۔' },
+    { name: 'حضرت سید ابرار احمد', period: 'سجادہ نشین', description: 'موجودہ سجادہ نشین، جو حکمت اور روحانی عقیدت کے ساتھ معاشرے کی رہنمائی فرما رہے ہیں۔' },
+    { name: 'حضرت سید نقیب مظفر علی', period: 'نائب سجادہ نشین', description: 'روحانی رہنمائی کی نمایاں نشست پر فائز، خانقاہ کے مشن میں معاونت فرما رہے ہیں۔' },
   ],
   ar: [
     { name: 'الشيخ عبد القادر الجيلاني (رضي الله عنه)', period: '1077 – 1166 م', description: 'مؤسس الطريقة القادرية، الغوث الأعظم، سلطان الأولياء.' },
     { name: 'الشيخ المقدم (رضي الله عنه)', period: 'القرن 19', description: 'وصل نسب الطريقة القادرية إلى شبه القارة الهندية عبر معلمين مباركين.' },
     { name: 'حضرة سيد محفوظ علي (رضي الله عنه)', period: 'عصر التأسيس', description: 'النور المؤسس لهذا الفرع المبارك، الذي أسس الخانقاه كمركز للسالكين الروحانيين.' },
     { name: 'حضرة سيد مظفر علي (رضي الله عنه)', period: 'السلسلة', description: 'الخليفة الذي واصل مهمة التدريب الروحاني والحفاظ على الطريق المقدس.' },
-    { name: 'حضرة سيد أبرار أحمد (رضي الله عنه)', period: 'العصر السابق', description: 'السجادة نشين السابق الذي أرشد المجتمع بالحكمة والإخلاص الشديد.' },
-    { name: 'حضرة سيد نقيب مظفر علي', period: 'الحاضر', description: 'السجادة نشين الحالي، يواصل الإرث المبارك للإرشاد الروحاني والخدمة.' },
+    { name: 'حضرة سيد أبرار أحمد', period: 'السجادة نشين', description: 'السجادة نشين الحالي، يرشد المجتمع بحكمة عميقة وإخلاص روحاني.' },
+    { name: 'حضرة سيد نقيب مظفر علي', period: 'نائب السجادة', description: 'يشغل مقعداً بارزاً للإرشاد الروحي والخدمة، ويدعم رسالة الخانقاه.' },
   ],
   hi: [
     { name: 'शैख़ अब्दुल क़ादिर जीलानी (रज़ि.)', period: '1077 – 1166 ई.', description: 'क़ादरी सिलसिले के संस्थापक, ग़ौस-उल-आज़म, सुल्तान-उल-औलिया।' },
     { name: 'शैख़ अल-मुक़द्दम (रज़ि.)', period: '1800 के दशक', description: 'क़ादरी सिलसिले का नूर मुबारक उस्तादों के ज़रिए भारतीय उपमहाद्वीप तक पहुँचा।' },
     { name: 'हज़रत सैयद मेहफ़ूज़ अली (रज़ि.)', period: 'संस्थापक काल', description: 'इस मुबारक शाख़ की बुनियाद रखने वाले, जिन्होंने ख़ानक़ाह को रूहानी तालिबों का मरकज़ बनाया।' },
     { name: 'हज़रत सैयद मुज़फ़्फ़र अली (रज़ि.)', period: 'सिलसिला', description: 'जानशीन जिन्होंने रूहानी तरबियत और मुक़द्दस रास्ते की हिफ़ाज़त का मिशन जारी रखा।' },
-    { name: 'हज़रत सैयद अबरार अहमद (रज़ि.)', period: 'पिछला दौर', description: 'पिछले सज्जादा नशीन जिन्होंने हिकमत और शदीद इबादत से समुदाय की रहनुमाई की।' },
-    { name: 'हज़रत सैयद नक़ीब मुज़फ़्फ़र अली', period: 'वर्तमान', description: 'वर्तमान सज्जादा नशीन, रूहानी रहनुमाई और ख़िदमत की मुबारक विरासत को जारी रखे हुए हैं।' },
+    { name: 'हज़रत सैयद अबरार अहमद', period: 'सज्जादा नशीन', description: 'वर्तमान सज्जादा नशीन, जो हिकमत और आध्यात्मिक भक्ति के साथ समुदाय का मार्गदर्शन कर रहे हैं।' },
+    { name: 'हज़रत सैयद नक़ीब मुज़फ़्फ़र अली', period: 'नायब सज्जादा नशीन', description: 'आध्यात्मिक मार्गदर्शन की प्रमुख सीट पर आसीन, ख़ानक़ाह کے مشن میں सहयोग فرما رہے ہیں۔' },
   ],
 };

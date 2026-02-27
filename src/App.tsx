@@ -12,6 +12,7 @@ import TeachingDetail from "./pages/TeachingDetail";
 import GalleryPage from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import BackgroundMusic from "./components/BackgroundMusic";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/:lang/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <BackgroundMusic />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

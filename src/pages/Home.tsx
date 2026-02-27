@@ -1,7 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { translations } from '@/data/translations';
-import { schedule, teachings } from '@/data/content';
+import { teachings } from '@/data/content';
 import { getLang } from '@/lib/i18n';
+import { getLocalizedSchedule } from '@/lib/prayer-times';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
 import TeachingCard from '@/components/TeachingCard';
@@ -12,7 +13,7 @@ const Home = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
   const lang = getLang(langParam);
   const t = translations[lang];
-  const scheduleItems = schedule[lang];
+  const scheduleItems = getLocalizedSchedule(lang);
   const latestTeachings = teachings[lang].slice(0, 3);
 
   const purposeIcons = [Heart, BookOpen, Users];
@@ -97,28 +98,123 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sajjada Nashin */}
-      <section className="py-16 px-4 bg-secondary islamic-pattern">
-        <div className="container mx-auto max-w-3xl text-center">
-          <div className="ornamental-divider">
-            <span className="text-gold text-lg">✦</span>
+      {/* Sajjada Nashin Section */}
+      <section className="py-20 px-4 bg-secondary/50 islamic-pattern border-y border-gold/10">
+        <div className="container mx-auto max-w-5xl">
+          <div className="ornamental-divider mb-12">
+            <span className="text-gold text-2xl">✦</span>
           </div>
-          <p className="text-sm text-primary font-medium uppercase tracking-widest mb-2">{t.hero.sajjadaNashin}</p>
-          <h2 className="text-3xl font-bold mb-3">{t.hero.sajjadaNashinName}</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">{t.hero.sajjadaNashinDesc}</p>
+
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+            {/* Abrar - Sajjada Nashin */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group"
+            >
+              <div className="absolute inset-0 bg-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+              <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{t.hero.sajjadaNashin}</p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{t.hero.sajjadaNashinName}</h2>
+              <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
+              <p className="text-sm text-muted-foreground leading-relaxed">Blessed Sajjada Nashin continuing the noble path of spiritual guidance.</p>
+            </motion.div>
+
+            {/* Nakib - Naib Sajjada Nashin */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group"
+            >
+              <div className="absolute inset-0 bg-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+              <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{t.hero.sajjadaNashin2}</p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{t.hero.sajjadaNashinName2}</h2>
+              <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
+              <p className="text-sm text-muted-foreground leading-relaxed">Prominent seat of authority, serving the community with devotion.</p>
+            </motion.div>
+          </div>
+
+          <p className="text-center mt-12 text-muted-foreground max-w-2xl mx-auto italic text-sm border-t border-gold/5 pt-8">
+            {t.hero.sajjadaNashinDesc}
+          </p>
         </div>
       </section>
 
       {/* Visit Us */}
-      <section className="py-16 px-4 bg-primary text-primary-foreground islamic-pattern">
-        <div className="container mx-auto max-w-2xl text-center">
-          <span className="text-gold text-2xl">☪</span>
-          <h2 className="text-3xl font-bold mb-4 mt-2">{t.visitUs.title}</h2>
-          <div className="flex items-center justify-center gap-2 text-primary-foreground/70 mb-2">
-            <MapPin className="w-4 h-4 shrink-0" />
-            <span>{t.visitUs.address}</span>
+      <section className="pt-20 pb-10 px-4 bg-primary text-primary-foreground islamic-pattern relative overflow-hidden">
+        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-center lg:text-start"
+            >
+              <span className="text-gold text-2xl">☪</span>
+              <h2 className="text-4xl font-bold mb-6 mt-2">{t.visitUs.title}</h2>
+
+              <div className="space-y-8 max-w-md mx-auto lg:mx-0">
+                <div className="flex items-start gap-4 justify-center lg:justify-start">
+                  <div className="w-10 h-10 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-gold" />
+                  </div>
+                  <div className="text-start">
+                    <p className="font-semibold text-gold mb-1">{t.common.contactInfo}</p>
+                    <p className="text-primary-foreground/70 text-sm leading-relaxed">{t.visitUs.address}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 justify-center lg:justify-start">
+                  <div className="w-10 h-10 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5 text-gold" />
+                  </div>
+                  <div className="text-start">
+                    <p className="font-semibold text-gold mb-1">{t.common.visitingHours}</p>
+                    <p className="text-primary-foreground/70 text-sm mb-3">{t.visitUs.timings}</p>
+                    <div className="grid grid-cols-1 gap-1 text-xs text-primary-foreground/50">
+                      {t.contact.hours.map((h, i) => (
+                        <p key={i} className="flex items-center gap-2">
+                          <span className="w-1 h-1 bg-gold/40 rounded-full" /> {h}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <Link
+                    to={`/${lang}/contact`}
+                    className="inline-flex items-center gap-2 bg-gold text-primary font-bold px-8 py-3.5 rounded-xl hover:bg-gold-light transition-all hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] active:scale-95"
+                  >
+                    {t.nav.contact} <MapPin className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden border border-gold/30 shadow-2xl aspect-video lg:aspect-[4/3] bg-muted relative"
+            >
+              <div className="absolute inset-0 bg-gold/5 pointer-events-none" />
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2212.391064109656!2d73.06278859838102!3d20.78228114052743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0ed158806d347%3A0x55cc4ceb9ed2ef98!2sMehfuz%20Baugh%2C%20Thala%2C%20Chikhli%2C%20Gujarat%20396521%2C%20India!5e1!3m2!1sen!2sca!4v1772161842171!5m2!1sen!2sca"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Al Mehfuz Location"
+                className="relative z-10"
+              />
+            </motion.div>
           </div>
-          <p className="text-primary-foreground/70">{t.visitUs.timings}</p>
         </div>
       </section>
     </Layout>

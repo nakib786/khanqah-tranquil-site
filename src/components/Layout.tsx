@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { Language, languageConfig, translations } from '@/data/translations';
 import { getFontClass } from '@/lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
-import { Facebook, Instagram, Youtube, Twitter, Menu, X } from 'lucide-react';
+import BackgroundMusic from './BackgroundMusic';
+import { Facebook, Instagram, Menu, X } from 'lucide-react';
 import logoImg from '@/assets/logo.png';
 
 interface LayoutProps {
@@ -93,7 +94,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-primary text-primary-foreground border-t mt-16 islamic-pattern" role="contentinfo">
+      <footer className="bg-primary text-primary-foreground border-t border-primary-foreground/10 islamic-pattern" role="contentinfo">
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-bold text-gold mb-2 flex items-center gap-2">
@@ -114,10 +115,8 @@ const Layout = ({ lang, children }: LayoutProps) => {
           <div>
             <h4 className="font-semibold mb-3 text-gold-light">{t.footer.social}</h4>
             <div className="flex gap-3">
-              <a href="#" aria-label="Facebook" className="text-primary-foreground/60 hover:text-gold transition-colors"><Facebook className="w-5 h-5" /></a>
-              <a href="#" aria-label="Instagram" className="text-primary-foreground/60 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
-              <a href="#" aria-label="Youtube" className="text-primary-foreground/60 hover:text-gold transition-colors"><Youtube className="w-5 h-5" /></a>
-              <a href="#" aria-label="Twitter" className="text-primary-foreground/60 hover:text-gold transition-colors"><Twitter className="w-5 h-5" /></a>
+              <a href="https://www.facebook.com/profile.php?id=100081794237656#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-foreground/60 hover:text-gold transition-colors"><Facebook className="w-5 h-5" /></a>
+              <a href="https://www.instagram.com/almehfuz92/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-foreground/60 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
             </div>
           </div>
         </div>

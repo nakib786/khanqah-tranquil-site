@@ -36,6 +36,18 @@ const About = () => {
           </ul>
 
           <h2 className="text-2xl font-bold mb-8">{t.about.lineageTitle}</h2>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16 p-8 bg-secondary/30 rounded-2xl border border-gold/10">
+            <div className="text-center border-b md:border-b-0 md:border-e border-gold/10 pb-6 md:pb-0">
+              <p className="text-[10px] text-primary font-bold uppercase tracking-widest mb-2 italic">{t.hero.sajjadaNashin}</p>
+              <h3 className="text-xl font-bold text-primary mb-1">{t.hero.sajjadaNashinName}</h3>
+            </div>
+            <div className="text-center pt-6 md:pt-0">
+              <p className="text-[10px] text-primary font-bold uppercase tracking-widest mb-2 italic">{t.hero.sajjadaNashin2}</p>
+              <h3 className="text-xl font-bold text-primary mb-1">{t.hero.sajjadaNashinName2}</h3>
+            </div>
+          </div>
+
           <div className="space-y-0 mb-12">
             {lineageData.map((entry, i) => (
               <motion.div
