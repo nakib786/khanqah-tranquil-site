@@ -50,7 +50,7 @@ const HeroSection = ({ lang }: { lang: Language }) => {
           </div>
           <div className="flex items-center justify-center gap-3 mt-3">
             <span className="w-16 h-px bg-gradient-to-r from-transparent to-gold/60" />
-            <span className="text-gold text-sm tracking-[0.3em] uppercase font-medium">بِسْمِ ٱللَّٰهِ</span>
+            <span className="text-gold text-sm tracking-[0.3em] font-medium">بِسْمِ ٱللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
             <span className="w-16 h-px bg-gradient-to-l from-transparent to-gold/60" />
           </div>
         </motion.div>
