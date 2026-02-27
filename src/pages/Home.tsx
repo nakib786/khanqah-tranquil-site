@@ -11,35 +11,30 @@ import { motion } from 'framer-motion';
 import { BookOpen, Heart, Users, Clock, MapPin, Timer } from 'lucide-react';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
+const formatCountdown = (diff: number) => {
+  const totalSec = Math.floor(diff / 1000);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+};
+
 const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; scheduleItems: ScheduleItem[] }) => {
-  const [countdown, setCountdown] = useState('');
-  const [nextPrayerName, setNextPrayerName] = useState('');
+  const [now, setNow] = useState(Date.now());
   const islamicDate = getIslamicDate();
   const islamicDateAr = getIslamicDateArabic();
 
   useEffect(() => {
-    const tick = () => {
-      const next = getNextPrayer(scheduleItems);
-      if (next) {
-        setNextPrayerName(next.name);
-        const totalSec = Math.floor(next.diff / 1000);
-        const h = Math.floor(totalSec / 3600);
-        const m = Math.floor((totalSec % 3600) / 60);
-        const s = totalSec % 60;
-        setCountdown(`${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`);
-      } else {
-        setNextPrayerName('');
-        setCountdown('');
-      }
-    };
-    tick();
-    const id = setInterval(tick, 1000);
+    const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
-  }, [scheduleItems]);
+  }, []);
+
+  // Find next prayer
+  const nextIdx = scheduleItems.findIndex(item => item.prayerDate.getTime() > now);
 
   return (
     <section className="py-16 px-4 bg-secondary islamic-pattern">
-      <div className="container mx-auto max-w-3xl">
+      <div className="container mx-auto max-w-4xl">
         {islamicDate && (
           <div className="text-center mb-6">
             <p className="text-gold font-semibold text-lg">{islamicDateAr}</p>
@@ -47,41 +42,44 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
           </div>
         )}
 
-        <h2 className="text-3xl font-bold text-center mb-4">{t.schedule.title}</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">{t.schedule.title}</h2>
 
-        {nextPrayerName && countdown && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8 bg-card border border-gold/30 rounded-xl p-4 shadow-[0_0_20px_-5px_hsl(var(--gold)/0.15)]"
-          >
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">
-              {lang === 'ur' ? 'اگلی نماز' : lang === 'ar' ? 'الصلاة القادمة' : lang === 'hi' ? 'अगली नमाज़' : 'Next Prayer'}
-            </p>
-            <p className="text-gold font-bold text-xl">{nextPrayerName}</p>
-            <div className="flex items-center justify-center gap-2 mt-1">
-              <Timer className="w-4 h-4 text-primary" />
-              <span className="font-mono text-2xl font-bold text-primary tabular-nums">{countdown}</span>
-            </div>
-          </motion.div>
-        )}
-
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {scheduleItems.map((item, i) => {
-            const isNext = item.name === nextPrayerName;
+            const isNext = i === nextIdx;
+            const isPast = nextIdx === -1 || i < nextIdx;
+            const diff = item.prayerDate.getTime() - now;
+
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className={`flex justify-between items-center rounded-lg px-4 py-3 border ${isNext ? 'bg-gold/10 border-gold/40 shadow-sm' : 'bg-card'}`}
+                className={`relative rounded-xl p-4 border text-center flex flex-col items-center justify-center min-h-[130px] transition-all ${
+                  isNext
+                    ? 'bg-gold/10 border-gold/50 shadow-[0_0_20px_-5px_hsl(var(--gold)/0.2)] ring-1 ring-gold/20'
+                    : isPast
+                      ? 'bg-card/50 border-border/50 opacity-60'
+                      : 'bg-card border-border'
+                }`}
               >
-                <span className={`font-medium ${isNext ? 'text-gold' : ''}`}>{item.name}</span>
-                <span className={`text-sm font-medium flex items-center gap-1 shrink-0 ms-3 ${isNext ? 'text-gold' : 'text-primary'}`}>
+                {isNext && (
+                  <span className="absolute -top-2.5 inset-x-0 mx-auto w-fit px-2 py-0.5 bg-gold text-primary-foreground text-[10px] font-bold uppercase tracking-wider rounded-full">
+                    {lang === 'ur' ? 'اگلی' : lang === 'ar' ? 'القادمة' : lang === 'hi' ? 'अगली' : 'Next'}
+                  </span>
+                )}
+                <span className={`text-lg font-bold mb-1 ${isNext ? 'text-gold' : 'text-foreground'}`}>{item.name}</span>
+                <span className={`text-sm flex items-center gap-1 ${isNext ? 'text-gold' : 'text-primary'}`}>
                   <Clock className="w-3 h-3" />{item.time}
                 </span>
+                {diff > 0 && (
+                  <span className={`mt-2 font-mono text-xs tabular-nums ${isNext ? 'text-gold font-semibold' : 'text-muted-foreground'}`}>
+                    <Timer className="w-3 h-3 inline-block me-1 -mt-0.5" />
+                    {formatCountdown(diff)}
+                  </span>
+                )}
               </motion.div>
             );
           })}
