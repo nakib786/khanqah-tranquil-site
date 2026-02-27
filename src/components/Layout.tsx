@@ -98,7 +98,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-bold text-gold mb-2 flex items-center gap-2">
-              <img src={logoImg} alt="" className="h-8 w-auto" /> {t.hero.title}
+              <img src={logoImg} alt="" className="h-16 w-auto" /> {t.hero.title}
             </h3>
             <p className="text-sm text-primary-foreground/70">{t.footer.mission}</p>
           </div>

@@ -55,7 +55,7 @@ const HeroSection = ({ lang }: { lang: Language }) => {
           </div>
         </motion.div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2 leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2 leading-tight hero-title-fancy">
           {t.hero.title}
         </h1>
         <p className="text-lg md:text-2xl text-gold font-semibold mb-3 tracking-wide">
