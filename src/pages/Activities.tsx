@@ -36,7 +36,7 @@ const Activities = () => {
                   <tr key={i} className="border-b hover:bg-accent/50 transition-colors">
                     <td className="p-3 font-medium">{item.name}</td>
                     <td className="p-3 text-primary">{item.time}</td>
-                    <td className="p-3 text-muted-foreground text-sm">{item.description}</td>
+                    <td className="p-3 text-muted-foreground text-sm">{item.time}</td>
                   </tr>
                 ))}
               </tbody>

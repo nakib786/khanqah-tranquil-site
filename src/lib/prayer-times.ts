@@ -21,45 +21,14 @@ export function formatTime(date: Date, lang: string = 'en'): string {
 export interface ScheduleItem {
     time: string;
     name: string;
-    description: string;
+    prayerDate: Date;
 }
 
 const names: Record<Language, string[]> = {
-    en: ['Fajr Prayer', 'Dhuhr Prayer', 'Asr Prayer', 'Maghrib Prayer', 'Isha Prayer'],
-    ur: ['نمازِ فجر', 'نمازِ ظہر', 'نمازِ عصر', 'نمازِ مغرب', 'نمازِ عشاء'],
-    ar: ['صلاة الفجر', 'صلاة الظهر', 'صلاة العصر', 'صلاة المغرب', 'صلاة العشاء'],
-    hi: ['फज्र नमाज़', 'ज़ुहर नमाज़', 'अस्र नमाज़', 'मग़रिब नमाज़', 'ईशा नमाज़'],
-};
-
-const descriptions: Record<Language, string[]> = {
-    en: [
-        'Morning prayer followed by Quran recitation',
-        'Afternoon prayer and short discourse',
-        'Afternoon prayer and study circle',
-        'Evening prayer followed by dhikr session',
-        'Night prayer and spiritual discourse',
-    ],
-    ur: [
-        'صبح کی نماز اور تلاوتِ قرآن',
-        'دوپہر کی نماز اور مختصر بیان',
-        'عصر کی نماز اور حلقۂ درس',
-        'مغرب کی نماز اور ذکر کی مجلس',
-        'عشاء کی نماز اور روحانی بیان',
-    ],
-    ar: [
-        'صلاة الفجر متبوعة بتلاوة القرآن',
-        'صلاة الظهر وحديث قصير',
-        'صلاة العصر وحلقة علم',
-        'صلاة المغرب متبوعة بجلسة ذكر',
-        'صلاة العشاء وحديث روحاني',
-    ],
-    hi: [
-        'सुबह की नमाज़ और क़ुरआन तिलावत',
-        'दोपहर की नमाज़ और संक्षिप्त बयान',
-        'अस्र की नमाज़ और अध्ययन मंडली',
-        'मग़रिब की नमाज़ और ज़िक्र सत्र',
-        'ईशा की नमाज़ और आध्यात्मिक बयान',
-    ],
+    en: ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'],
+    ur: ['فجر', 'ظہر', 'عصر', 'مغرب', 'عشاء'],
+    ar: ['الفجر', 'الظهر', 'العصر', 'المغرب', 'العشاء'],
+    hi: ['फज्र', 'ज़ुहर', 'अस्र', 'मग़रिब', 'ईशा'],
 };
 
 export function getLocalizedSchedule(lang: Language): ScheduleItem[] {
@@ -75,6 +44,43 @@ export function getLocalizedSchedule(lang: Language): ScheduleItem[] {
     return prayerDates.map((date, i) => ({
         time: formatTime(date, lang),
         name: names[lang][i],
-        description: descriptions[lang][i],
+        prayerDate: date,
     }));
+}
+
+export function getNextPrayer(items: ScheduleItem[]): { name: string; diff: number } | null {
+    const now = new Date();
+    for (const item of items) {
+        if (item.prayerDate > now) {
+            return { name: item.name, diff: item.prayerDate.getTime() - now.getTime() };
+        }
+    }
+    return null;
+}
+
+export function getIslamicDate(): string {
+    try {
+        const formatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            weekday: 'long',
+        });
+        return formatter.format(new Date());
+    } catch {
+        return '';
+    }
+}
+
+export function getIslamicDateArabic(): string {
+    try {
+        const formatter = new Intl.DateTimeFormat('ar-u-ca-islamic-umalqura', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+        return formatter.format(new Date());
+    } catch {
+        return '';
+    }
 }
