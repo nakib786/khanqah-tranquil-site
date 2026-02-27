@@ -49,6 +49,7 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
             const isNext = i === nextIdx;
             const isPast = nextIdx === -1 || i < nextIdx;
             const diff = item.prayerDate.getTime() - now;
+            const isFuture = diff > 0;
 
             return (
               <motion.div
@@ -61,7 +62,7 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
                   isNext
                     ? 'bg-gold/10 border-gold/50 shadow-[0_0_20px_-5px_hsl(var(--gold)/0.2)] ring-1 ring-gold/20'
                     : isPast
-                      ? 'bg-card/50 border-border/50 opacity-60'
+                      ? 'bg-card/50 border-border/50 opacity-60 grayscale'
                       : 'bg-card border-border'
                 }`}
               >
@@ -74,10 +75,20 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
                 <span className={`text-sm flex items-center gap-1 ${isNext ? 'text-gold' : 'text-primary'}`}>
                   <Clock className="w-3 h-3" />{item.time}
                 </span>
-                {diff > 0 && (
+                {isFuture ? (
                   <span className={`mt-2 font-mono text-xs tabular-nums ${isNext ? 'text-gold font-semibold' : 'text-muted-foreground'}`}>
                     <Timer className="w-3 h-3 inline-block me-1 -mt-0.5" />
                     {formatCountdown(diff)}
+                  </span>
+                ) : (
+                  <span className="mt-2 text-[10px] uppercase tracking-wide text-muted-foreground">
+                    {lang === 'ur'
+                      ? 'ادا ہو چکی'
+                      : lang === 'ar'
+                        ? 'انتهت'
+                        : lang === 'hi'
+                          ? 'पूरा हो चुका'
+                          : 'Completed'}
                   </span>
                 )}
               </motion.div>

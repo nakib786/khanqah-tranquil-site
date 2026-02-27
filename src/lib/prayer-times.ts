@@ -2,8 +2,31 @@ import { Coordinates, CalculationMethod, PrayerTimes, Madhab } from 'adhan';
 import { Language } from '@/data/translations';
 
 export const NAVSARI_COORDINATES = new Coordinates(20.9467, 72.9520);
+export const IST_TIME_ZONE = 'Asia/Kolkata';
 
-export function getPrayerTimesForNavsari(date: Date = new Date()): PrayerTimes {
+function getDatePartsInTimeZone(date: Date, timeZone: string): { year: number; month: number; day: number } {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).formatToParts(date);
+
+    const year = Number(parts.find((p) => p.type === 'year')?.value);
+    const month = Number(parts.find((p) => p.type === 'month')?.value);
+    const day = Number(parts.find((p) => p.type === 'day')?.value);
+
+    return { year, month, day };
+}
+
+export function getTodayInISTDate(baseDate: Date = new Date()): Date {
+    const { year, month, day } = getDatePartsInTimeZone(baseDate, IST_TIME_ZONE);
+    // Intentionally create a local Date using IST calendar day.
+    // This ensures the prayer schedule aligns to the IST day even if the viewer is in another timezone.
+    return new Date(year, month - 1, day, 12, 0, 0, 0);
+}
+
+export function getPrayerTimesForNavsari(date: Date = getTodayInISTDate()): PrayerTimes {
     const params = CalculationMethod.Karachi();
     params.madhab = Madhab.Hanafi;
     return new PrayerTimes(NAVSARI_COORDINATES, date, params);
@@ -14,7 +37,7 @@ export function formatTime(date: Date, lang: string = 'en'): string {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true,
-        timeZone: 'Asia/Kolkata',
+        timeZone: IST_TIME_ZONE,
     });
 }
 
@@ -61,6 +84,7 @@ export function getNextPrayer(items: ScheduleItem[]): { name: string; diff: numb
 export function getIslamicDate(): string {
     try {
         const formatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
+            timeZone: IST_TIME_ZONE,
             day: 'numeric',
             month: 'long',
             year: 'numeric',
@@ -75,6 +99,7 @@ export function getIslamicDate(): string {
 export function getIslamicDateArabic(): string {
     try {
         const formatter = new Intl.DateTimeFormat('ar-u-ca-islamic-umalqura', {
+            timeZone: IST_TIME_ZONE,
             day: 'numeric',
             month: 'long',
             year: 'numeric',

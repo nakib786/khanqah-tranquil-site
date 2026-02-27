@@ -1,8 +1,9 @@
+import { ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -13,8 +14,19 @@ import GalleryPage from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import BackgroundMusic from "./components/BackgroundMusic";
+import { isValidLang } from "@/lib/i18n";
 
 const queryClient = new QueryClient();
+
+const LangGuard = ({ children }: { children: ReactNode }) => {
+  const { lang } = useParams<{ lang: string }>();
+
+  if (!isValidLang(lang)) {
+    return <NotFound />;
+  }
+
+  return <>{children}</>;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -24,13 +36,62 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/:lang" element={<Home />} />
-          <Route path="/:lang/about" element={<About />} />
-          <Route path="/:lang/activities" element={<Activities />} />
-          <Route path="/:lang/teachings" element={<TeachingsPage />} />
-          <Route path="/:lang/teachings/:slug" element={<TeachingDetail />} />
-          <Route path="/:lang/gallery" element={<GalleryPage />} />
-          <Route path="/:lang/contact" element={<Contact />} />
+          <Route
+            path="/:lang"
+            element={
+              <LangGuard>
+                <Home />
+              </LangGuard>
+            }
+          />
+          <Route
+            path="/:lang/about"
+            element={
+              <LangGuard>
+                <About />
+              </LangGuard>
+            }
+          />
+          <Route
+            path="/:lang/activities"
+            element={
+              <LangGuard>
+                <Activities />
+              </LangGuard>
+            }
+          />
+          <Route
+            path="/:lang/teachings"
+            element={
+              <LangGuard>
+                <TeachingsPage />
+              </LangGuard>
+            }
+          />
+          <Route
+            path="/:lang/teachings/:slug"
+            element={
+              <LangGuard>
+                <TeachingDetail />
+              </LangGuard>
+            }
+          />
+          <Route
+            path="/:lang/gallery"
+            element={
+              <LangGuard>
+                <GalleryPage />
+              </LangGuard>
+            }
+          />
+          <Route
+            path="/:lang/contact"
+            element={
+              <LangGuard>
+                <Contact />
+              </LangGuard>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BackgroundMusic />
