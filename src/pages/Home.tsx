@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { translations } from '@/data/translations';
 import { teachings } from '@/data/content';
 import { getLang } from '@/lib/i18n';
-import { getLocalizedSchedule, getNextPrayer, getIslamicDate, getIslamicDateArabic } from '@/lib/prayer-times';
+import { getLocalizedSchedule, getNextPrayer, getIslamicDate, getIslamicDateArabic, getIslamicDateFromAladhan, DEFAULT_ISLAMIC_OFFSET } from '@/lib/prayer-times';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
 import TeachingCard from '@/components/TeachingCard';
@@ -21,8 +21,26 @@ const formatCountdown = (diff: number) => {
 
 const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; scheduleItems: ScheduleItem[] }) => {
   const [now, setNow] = useState(Date.now());
-  const islamicDate = getIslamicDate();
-  const islamicDateAr = getIslamicDateArabic();
+  // apply default offset configured for the region; you can override this by
+  // passing a custom number (e.g. -1, -2) if your local sighting differs.
+  const islamicDate = getIslamicDate(undefined, DEFAULT_ISLAMIC_OFFSET);
+  const islamicDateAr = getIslamicDateArabic(undefined, DEFAULT_ISLAMIC_OFFSET);
+
+  const [apiIslamicDate, setApiIslamicDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    getIslamicDateFromAladhan(undefined, DEFAULT_ISLAMIC_OFFSET)
+      .then((d) => {
+        if (!cancelled) setApiIslamicDate(d);
+      })
+      .catch(() => {
+        // ignore; fallback will show computed date
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
@@ -35,10 +53,14 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
   return (
     <section className="py-16 px-4 bg-secondary islamic-pattern">
       <div className="container mx-auto max-w-4xl">
-        {islamicDate && (
+        {(apiIslamicDate || islamicDate) && (
           <div className="text-center mb-6">
-            <p className="text-gold font-semibold text-lg">{islamicDateAr}</p>
-            <p className="text-muted-foreground text-sm">{islamicDate}</p>
+            <p className="text-gold font-semibold text-lg">
+              {islamicDateAr}
+            </p>
+            <p className="text-muted-foreground text-sm">
+              {apiIslamicDate || islamicDate}
+            </p>
           </div>
         )}
 
