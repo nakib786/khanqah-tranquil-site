@@ -16,9 +16,14 @@ interface LayoutProps {
 const Layout = ({ lang, children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setShowBackToTop(window.scrollY > 400);
+    const onScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -43,6 +48,21 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
   return (
     <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col`}>
+      {/* Premium scroll progress bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-[60] h-[3px]"
+        style={{ background: 'transparent' }}
+      >
+        <motion.div
+          className="h-full origin-left"
+          style={{
+            scaleX: scrollProgress / 100,
+            background: 'linear-gradient(90deg, hsl(var(--gold) / 0.6), hsl(var(--gold)), hsl(var(--gold-light)))',
+            boxShadow: '0 0 12px hsl(var(--gold) / 0.5), 0 0 4px hsl(var(--gold) / 0.3)',
+          }}
+        />
+      </motion.div>
+
       {/* Floating tubelight header */}
       <header className="fixed top-4 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
         <div className="relative bg-background/80 backdrop-blur-xl border border-gold/30 rounded-2xl shadow-[0_4px_30px_-4px_hsl(var(--gold)/0.25),0_0_80px_-20px_hsl(var(--gold)/0.15)] px-4 md:px-6 h-16 flex items-center justify-between">
