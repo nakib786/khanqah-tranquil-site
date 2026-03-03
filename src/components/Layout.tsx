@@ -81,23 +81,44 @@ const Layout = ({ lang, children }: LayoutProps) => {
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-        {mobileMenuOpen && (
-          <nav className="lg:hidden mt-2 bg-background/95 backdrop-blur-xl border border-gold/20 rounded-xl shadow-lg p-4 flex flex-col gap-3" role="navigation" aria-label="Mobile navigation">
-            {navLinks.map(link => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm py-1 ${isActive(link.to) ? 'text-gold font-medium' : 'text-foreground/60 hover:text-gold'}`}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, y: -12, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+              className="lg:hidden mt-2 bg-background/95 backdrop-blur-xl border border-gold/20 rounded-xl shadow-[0_8px_40px_-8px_hsl(var(--gold)/0.2)] p-4 flex flex-col gap-1 overflow-hidden"
+              role="navigation"
+              aria-label="Mobile navigation"
+            >
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.to}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.04 * i, type: 'spring', stiffness: 300, damping: 24 }}
+                >
+                  <Link
+                    to={link.to}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block text-sm py-2.5 px-3 rounded-lg transition-all ${isActive(link.to) ? 'text-gold font-medium bg-gold/10' : 'text-foreground/60 hover:text-gold hover:bg-gold/5'}`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.25 }}
+                className="pt-2 mt-1 border-t border-gold/10"
               >
-                {link.label}
-              </Link>
-            ))}
-            <div className="pt-2 border-t border-gold/10">
-              <LanguageSwitcher lang={lang} />
-            </div>
-          </nav>
-        )}
+                <LanguageSwitcher lang={lang} />
+              </motion.div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="flex-1">{children}</main>
