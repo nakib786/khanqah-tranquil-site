@@ -8,7 +8,7 @@ const HeroSection = ({ lang }: { lang: Language }) => {
   const t = translations[lang];
 
   return (
-    <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[75vh] flex items-start md:items-center justify-center overflow-hidden pt-28 md:pt-0">
       <div className="absolute inset-0">
         <video
           autoPlay
@@ -30,7 +30,7 @@ const HeroSection = ({ lang }: { lang: Language }) => {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10 text-center px-4 max-w-3xl"
+        className="relative z-10 text-center px-4 max-w-3xl pt-4 md:pt-0"
       >
         {/* Glowing logo */}
         <motion.div
