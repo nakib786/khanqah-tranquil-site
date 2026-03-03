@@ -114,7 +114,7 @@ describe('islamic date helpers', () => {
     });
 
     it('throws on non-ok response', async () => {
-      (global.fetch as unknown as vi.Mock).mockImplementationOnce(() =>
+      (global.fetch as unknown as ReturnType<typeof vi.fn>).mockImplementationOnce(() =>
         Promise.resolve({ ok: false, status: 500 })
       );
       await expect(getIslamicDateFromAladhan()).rejects.toThrow(/Aladhan API error/);

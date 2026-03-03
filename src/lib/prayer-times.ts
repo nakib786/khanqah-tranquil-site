@@ -205,6 +205,8 @@ export function getIslamicDate(
     offsetDays: number = DEFAULT_ISLAMIC_OFFSET
 ): string {
     const today = getTodayInISTDate(baseDate);
+    // Apply offset by shifting the date before formatting
+    const adjusted = new Date(today.getTime() + offsetDays * 24 * 60 * 60 * 1000);
     try {
         const formatter = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', {
             timeZone: IST_TIME_ZONE,
@@ -213,12 +215,11 @@ export function getIslamicDate(
             year: 'numeric',
             weekday: 'long',
         });
-        const formatted = formatter.format(today);
+        const formatted = formatter.format(adjusted);
         const options = formatter.resolvedOptions();
         if (options.calendar && options.calendar.startsWith('islamic')) {
             return formatted;
         }
-        // if the calendar is not islamic we fall through to the manual code
     } catch {
         // fallthrough to manual fallback
     }
@@ -261,6 +262,7 @@ export function getIslamicDateArabic(
     offsetDays: number = DEFAULT_ISLAMIC_OFFSET
 ): string {
     const today = getTodayInISTDate(baseDate);
+    const adjusted = new Date(today.getTime() + offsetDays * 24 * 60 * 60 * 1000);
     try {
         const formatter = new Intl.DateTimeFormat('ar-u-ca-islamic-umalqura', {
             timeZone: IST_TIME_ZONE,
@@ -268,7 +270,7 @@ export function getIslamicDateArabic(
             month: 'long',
             year: 'numeric',
         });
-        const formatted = formatter.format(today);
+        const formatted = formatter.format(adjusted);
         const options = formatter.resolvedOptions();
         if (options.calendar && options.calendar.startsWith('islamic')) {
             return formatted;
