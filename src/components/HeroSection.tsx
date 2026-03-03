@@ -4,7 +4,7 @@ import heroImage from '@/assets/hero.jpg';
 import logoImg from '@/assets/logo.png';
 import { motion } from 'framer-motion';
 
-const HeroSection = ({ lang }: { lang: Language }) => {
+const HeroSection = ({ lang }: {lang: Language;}) => {
   const t = translations[lang];
 
   return (
@@ -16,8 +16,8 @@ const HeroSection = ({ lang }: { lang: Language }) => {
           loop
           playsInline
           className="w-full h-full object-cover object-[10%] md:object-center"
-          poster={heroImage}
-        >
+          poster={heroImage}>
+          
           <source src="https://videos.pexels.com/video-files/27411350/12138101_1920_1080_30fps.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/50 to-foreground/70" />
@@ -30,21 +30,21 @@ const HeroSection = ({ lang }: { lang: Language }) => {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10 text-center px-4 max-w-3xl pt-4 md:pt-0"
-      >
+        className="relative z-10 text-center px-4 max-w-3xl pt-4 md:pt-0">
+        
         {/* Glowing logo */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6 flex flex-col items-center"
-        >
+          className="mb-6 flex flex-col items-center">
+          
           <div className="relative">
             <img
               src={logoImg}
               alt="Al Mehfuz Khanqah ae Qadriyaa"
-              className="h-28 md:h-36 w-auto relative z-10 drop-shadow-[0_0_25px_hsl(var(--gold)/0.6)]"
-            />
+              className="h-28 md:h-36 w-auto relative z-10 drop-shadow-[0_0_25px_hsl(var(--gold)/0.6)]" />
+            
             {/* Glow behind logo */}
             <div className="absolute inset-0 bg-gold/20 blur-3xl rounded-full scale-150" />
           </div>
@@ -67,14 +67,14 @@ const HeroSection = ({ lang }: { lang: Language }) => {
         <div className="flex flex-wrap gap-4 justify-center">
           <Link
             to={`/${lang}/activities`}
-            className="inline-flex items-center px-6 py-3 bg-gold text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity shadow-lg"
-          >
+            className="inline-flex items-center px-6 py-3 bg-gold text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity shadow-lg">
+            
             {t.hero.cta1}
           </Link>
           <Link
             to={`/${lang}/teachings`}
-            className="inline-flex items-center px-6 py-3 border-2 border-gold/50 text-primary-foreground rounded-lg font-medium hover:bg-gold/20 transition-colors"
-          >
+            className="inline-flex items-center border-2 border-gold/50 text-primary-foreground rounded-lg font-medium hover:bg-gold/20 transition-colors py-[8px] px-[20px]">
+            
             {t.hero.cta2}
           </Link>
         </div>
@@ -82,8 +82,8 @@ const HeroSection = ({ lang }: { lang: Language }) => {
 
       {/* Bottom ornamental border */}
       <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent" />
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
