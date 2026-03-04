@@ -12,7 +12,7 @@ const en = {
   nav: { home: 'Home', about: 'About', activities: 'Activities', teachings: 'Teachings', gallery: 'Gallery', contact: 'Contact' },
   hero: {
     title: 'Al Mehfuz',
-    fullTitle: 'Astana e Aliya Silsila e Quadria Shattaria',
+    fullTitle: 'Khanqah-e-Qadriya Shattariyah',
     subtitle: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.',
     cta1: 'View Activities',
     cta2: 'Read Teachings',

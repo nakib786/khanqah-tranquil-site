@@ -4,7 +4,7 @@ import { Language, languageConfig, translations } from '@/data/translations';
 import { getFontClass } from '@/lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import BackgroundMusic from './BackgroundMusic';
-import { Facebook, Instagram, Menu, X, ChevronUp } from 'lucide-react';
+import { Facebook, Instagram, Menu, X, ChevronUp, Globe } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import logoImg from '@/assets/logo.png';
 
@@ -75,7 +75,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
           <Link to={`/${lang}`} className="flex items-center gap-2 shrink-0">
             <img src={logoImg} alt="Al Mehfuz Khanqah ae Qadriyaa" className="h-11 w-auto" />
             <span className="text-base font-bold text-primary truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">
-              <span className="sm:hidden">{t.hero.title}</span>
+              <span className="sm:hidden hero-title-fancy">{t.hero.title}</span>
               <span className="hidden sm:inline">{t.hero.title} — {t.hero.fullTitle}</span>
             </span>
           </Link>
@@ -134,7 +134,26 @@ const Layout = ({ lang, children }: LayoutProps) => {
                 transition={{ delay: 0.25 }}
                 className="pt-2 mt-1 border-t border-gold/10"
               >
-                <LanguageSwitcher lang={lang} />
+                <div className="flex items-center gap-2 px-3 py-2">
+                  <Globe className="w-4 h-4 text-foreground/40 shrink-0" />
+                  <div className="flex flex-wrap gap-2">
+                    {(Object.keys(languageConfig) as Language[]).map(l => (
+                      <button
+                        key={l}
+                        onClick={() => {
+                          const newPath = location.pathname.replace(`/${lang}`, `/${l}`);
+                          window.location.href = newPath || `/${l}`;
+                        }}
+                        className={`text-sm px-3 py-1 rounded-lg transition-all ${l === lang
+                          ? 'bg-gold/20 text-gold font-medium'
+                          : 'text-foreground/60 hover:text-gold hover:bg-gold/10'
+                          }`}
+                      >
+                        {languageConfig[l].nativeName}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </motion.nav>
           )}
@@ -155,7 +174,12 @@ const Layout = ({ lang, children }: LayoutProps) => {
             <h4 className="font-semibold mb-3 text-gold-light">{t.footer.quickLinks}</h4>
             <div className="flex flex-col gap-2">
               {navLinks.slice(0, 5).map(link => (
-                <Link key={link.to} to={link.to} className="text-sm text-primary-foreground/70 hover:text-gold transition-colors">
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+                  className="text-sm text-primary-foreground/70 hover:text-gold transition-colors"
+                >
                   {link.label}
                 </Link>
               ))}
