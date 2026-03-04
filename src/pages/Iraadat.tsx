@@ -232,8 +232,10 @@ const Iraadat = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mt-16"
           >
-            <div className="ornamental-divider max-w-md mx-auto mb-8">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <span className="w-16 h-px bg-gradient-to-r from-transparent to-gold/60" />
               <span className="text-gold text-xl">☪</span>
+              <span className="w-16 h-px bg-gradient-to-l from-transparent to-gold/60" />
             </div>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Take the first step on your spiritual journey. Connect with the blessed Silsila-e-Qadriya and experience the transformative power of Iraadat.
