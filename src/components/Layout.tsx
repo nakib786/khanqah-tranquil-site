@@ -36,6 +36,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
     { to: `/${lang}/about`, label: t.nav.about },
     { to: `/${lang}/activities`, label: t.nav.activities },
     { to: `/${lang}/teachings`, label: t.nav.teachings },
+    { to: `/${lang}/iraadat`, label: t.nav.iraadat },
     { to: `/${lang}/gallery`, label: t.nav.gallery },
     { to: `/${lang}/contact`, label: t.nav.contact },
   ];
