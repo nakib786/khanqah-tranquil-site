@@ -8,7 +8,8 @@ import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
 import TeachingCard from '@/components/TeachingCard';
 import { motion } from 'framer-motion';
-import { BookOpen, Heart, Users, Clock, MapPin, Timer } from 'lucide-react';
+import { Clock, MapPin, Timer } from 'lucide-react';
+import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
 const formatCountdown = (diff: number) => {
@@ -80,13 +81,12 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className={`relative rounded-xl p-4 border text-center flex flex-col items-center justify-center min-h-[130px] transition-all ${
-                  isNext
+                className={`relative rounded-xl p-4 border text-center flex flex-col items-center justify-center min-h-[130px] transition-all ${isNext
                     ? 'bg-gold/10 border-gold/50 shadow-[0_0_20px_-5px_hsl(var(--gold)/0.2)] ring-1 ring-gold/20'
                     : isPast
                       ? 'bg-card/50 border-border/50 opacity-60 grayscale'
                       : 'bg-card border-border'
-                }`}
+                  }`}
               >
                 {isNext && (
                   <span className="absolute -top-2.5 inset-x-0 mx-auto w-fit px-2 py-0.5 bg-gold text-primary-foreground text-[10px] font-bold uppercase tracking-wider rounded-full">
@@ -129,7 +129,7 @@ const Home = () => {
   const scheduleItems = getLocalizedSchedule(lang);
   const latestTeachings = teachings[lang].slice(0, 3);
 
-  const purposeIcons = [Heart, BookOpen, Users];
+  const purposeIcons = [TasbihIcon, DuaIcon, MosqueIcon];
 
   return (
     <Layout lang={lang}>
@@ -156,7 +156,7 @@ const Home = () => {
                 >
                   <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
                   <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
+                    <Icon className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">{card.title}</h3>
                   <p className="text-sm text-muted-foreground">{card.description}</p>
