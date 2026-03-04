@@ -15,6 +15,17 @@ interface Country {
 
 const defaultCountry: Country = { code: '+91', country: 'India', flag: '🇮🇳' };
 
+declare global {
+  interface Window {
+    turnstile: {
+      render: (container: string | HTMLElement, options: { sitekey: string; theme?: string; callback?: (token: string) => void }) => string;
+      remove: (widgetId: string) => void;
+      reset: (widgetId: string) => void;
+    };
+    onloadTurnstileCallback: () => void;
+  }
+}
+
 const Contact = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
   const lang = getLang(langParam);
@@ -48,6 +59,55 @@ const Contact = () => {
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Turnstile rendering
+  useEffect(() => {
+    let widgetId: string | undefined;
+
+    const tryRender = () => {
+      const container = document.getElementById('turnstile-widget');
+      if (window.turnstile && container) {
+        try {
+          // Clear any existing content first
+          container.innerHTML = '';
+          widgetId = window.turnstile.render('#turnstile-widget', {
+            sitekey: '0x4AAAAAAAC195tfAhuODDCb3',
+            theme: 'light',
+          });
+          return true;
+        } catch (e) {
+          console.error('Turnstile render error:', e);
+        }
+      }
+      return false;
+    };
+
+    window.onloadTurnstileCallback = () => {
+      tryRender();
+    };
+
+    if (window.turnstile) {
+      tryRender();
+    }
+
+    // Backup interval in case callback or immediate check fails
+    const intervalId = setInterval(() => {
+      if (window.turnstile && !widgetId) {
+        if (tryRender()) clearInterval(intervalId);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+      if (widgetId && window.turnstile) {
+        try {
+          window.turnstile.remove(widgetId);
+        } catch (e) {
+          // Ignore removal errors
+        }
+      }
+    };
   }, []);
 
   // Fetch countries only when dropdown is opened
@@ -101,7 +161,18 @@ const Contact = () => {
   }, [form.email]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const token = formData.get('cf-turnstile-response');
+
+    if (!token) {
+      toast({
+        title: "Security Check Required",
+        description: "Please complete the security check to send your message.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     if (!isEmailValid) {
       toast({
         title: "Validation Error",
@@ -294,7 +365,7 @@ const Contact = () => {
                                     ))
                                   ) : (
                                     <div className="p-4 text-center text-xs text-muted-foreground">
-                                      {t.common.noResults || "No country found."}
+                                      {t.teachings.noResults || "No country found."}
                                     </div>
                                   )}
                                 </div>
@@ -350,6 +421,10 @@ const Contact = () => {
                       rows={4}
                       className="w-full px-3 py-2.5 border rounded-xl bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none transition-all border-muted-foreground/20 hover:border-primary/50"
                     />
+                  </div>
+
+                  <div className="py-2 min-h-[65px]">
+                    <div id="turnstile-widget" className="cf-turnstile"></div>
                   </div>
 
                   <div className="pt-1">
