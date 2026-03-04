@@ -8,69 +8,30 @@ import {
   ShieldCheck, Users, Star, RefreshCw, ScrollText
 } from 'lucide-react';
 
-const benefits = [
-  {
-    icon: Compass,
-    title: 'Spiritual Guidance',
-    description: 'Receive personal guidance from a Sheikh or Murshid to strengthen your faith and spiritual journey.',
-  },
-  {
-    icon: Heart,
-    title: 'Inner Peace & Calmness',
-    description: 'Regular spiritual practices and dhikr help reduce stress and bring inner tranquility.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Connection with Divine Energy',
-    description: 'Through Iraadat, one feels a closer connection to Allah and experiences spiritual elevation.',
-  },
-  {
-    icon: Scale,
-    title: 'Moral & Ethical Development',
-    description: 'Members are encouraged to develop virtues such as honesty, patience, humility, and generosity.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Structured Spiritual Practices',
-    description: 'The Silsila provides a clear path of practices like daily dhikr, meditation, and prayers.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Protection from Spiritual Negativity',
-    description: 'Regular guidance and prayers are believed to help protect from negative influences.',
-  },
-  {
-    icon: Users,
-    title: 'Community & Brotherhood',
-    description: 'Joining a Silsila fosters a sense of belonging with spiritually-minded companions who support one another.',
-  },
-  {
-    icon: Star,
-    title: 'Blessings of Barakah',
-    description: 'Being connected to a spiritual lineage is believed to bring divine blessings into daily life.',
-  },
-  {
-    icon: RefreshCw,
-    title: 'Personal Transformation',
-    description: 'Continuous spiritual training leads to self-improvement and purification of the heart.',
-  },
-  {
-    icon: ScrollText,
-    title: 'Legacy of Spiritual Knowledge',
-    description: 'Access to centuries-old teachings, wisdom, and practices passed down through the Silsila.',
-  },
-];
+const benefitIcons = [Compass, Heart, Sparkles, Scale, BookOpen, ShieldCheck, Users, Star, RefreshCw, ScrollText];
 
 const Iraadat = () => {
   const { lang: paramLang } = useParams();
   const lang = getLang(paramLang);
   const t = translations[lang];
+  const ir = t.iraadat;
+
+  // Parse intro text with <gold> tags
+  const renderIntro = (text: string) => {
+    const parts = text.split(/<gold>(.*?)<\/gold>/g);
+    return parts.map((part, i) =>
+      i % 2 === 1 ? (
+        <span key={i} className="text-gold font-semibold">{part}</span>
+      ) : (
+        <span key={i}>{part}</span>
+      )
+    );
+  };
 
   return (
     <Layout lang={lang}>
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-        {/* Animated background */}
         <div className="absolute inset-0 bg-primary" />
         <div className="absolute inset-0 islamic-pattern opacity-30" />
 
@@ -86,16 +47,8 @@ const Iraadat = () => {
                 rotate: `${i * 60}deg`,
                 transformOrigin: 'bottom center',
               }}
-              animate={{
-                opacity: [0.3, 0.7, 0.3],
-                scaleY: [0.9, 1.1, 0.9],
-              }}
-              transition={{
-                duration: 4 + i * 0.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: i * 0.3,
-              }}
+              animate={{ opacity: [0.3, 0.7, 0.3], scaleY: [0.9, 1.1, 0.9] }}
+              transition={{ duration: 4 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
             />
           ))}
         </div>
@@ -106,20 +59,9 @@ const Iraadat = () => {
             <motion.div
               key={`p-${i}`}
               className="absolute w-1 h-1 rounded-full bg-gold/40"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0, 0.8, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: 'easeInOut',
-              }}
+              style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              animate={{ y: [0, -30, 0], opacity: [0, 0.8, 0] }}
+              transition={{ duration: 3 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
             />
           ))}
         </div>
@@ -137,15 +79,15 @@ const Iraadat = () => {
             className="mb-6"
           >
             <span className="text-gold text-sm tracking-[0.3em] font-medium uppercase">
-              Iraadat · إرادت
+              {ir.subtitle}
             </span>
           </motion.div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 leading-tight hero-title-fancy">
-            Benefits of Joining a Silsila
+            {ir.heroTitle}
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto">
-            Discover the spiritual treasures and transformative blessings that come through connecting with the Qadri lineage
+            {ir.heroDescription}
           </p>
 
           <div className="flex items-center justify-center gap-3 mt-8">
@@ -170,34 +112,27 @@ const Iraadat = () => {
             className="text-center mb-16 max-w-3xl mx-auto"
           >
             <p className="text-muted-foreground text-lg leading-relaxed">
-              The concept of <span className="text-gold font-semibold">Iraadat</span> (spiritual devotion to a guide) has been a cornerstone of Islamic spirituality for centuries. 
-              Through the blessed <span className="text-gold font-semibold">Silsila-e-Qadriya</span>, seekers receive a structured path toward divine closeness.
+              {renderIntro(ir.intro)}
             </p>
           </motion.div>
 
           {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 gap-6">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
+            {ir.benefits.map((benefit, index) => {
+              const Icon = benefitIcons[index];
               return (
                 <motion.div
-                  key={benefit.title}
+                  key={index}
                   initial={{ opacity: 0, y: 30, scale: 0.97 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: '-30px' }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
-                    ease: 'easeOut',
-                  }}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
                   className="group relative"
                 >
                   <div className="relative bg-card border border-border rounded-xl p-6 h-full transition-all duration-300 hover:border-gold/40 hover:shadow-[0_0_30px_-8px_hsl(var(--gold)/0.2)] overflow-hidden">
-                    {/* Subtle glow on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-gold/0 via-gold/0 to-gold/0 group-hover:from-gold/5 group-hover:via-transparent group-hover:to-gold/3 transition-all duration-500 rounded-xl" />
 
                     <div className="relative flex gap-4">
-                      {/* Icon */}
                       <motion.div
                         className="shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-gold/15 transition-colors duration-300"
                         whileHover={{ rotate: [0, -5, 5, 0] }}
@@ -216,7 +151,6 @@ const Iraadat = () => {
                       </div>
                     </div>
 
-                    {/* Top accent line */}
                     <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-gold/0 to-transparent group-hover:via-gold/40 transition-all duration-500" />
                   </div>
                 </motion.div>
@@ -238,7 +172,7 @@ const Iraadat = () => {
               <span className="w-16 h-px bg-gradient-to-l from-transparent to-gold/60" />
             </div>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Take the first step on your spiritual journey. Connect with the blessed Silsila-e-Qadriya and experience the transformative power of Iraadat.
+              {ir.ctaText}
             </p>
             <Link
               to={`/${lang}/contact`}
