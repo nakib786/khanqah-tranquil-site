@@ -232,7 +232,7 @@ const Iraadat = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mt-16"
           >
-            <div className="ornamental-divider max-w-md mx-auto mb-8 flex items-center justify-center">
+            <div className="ornamental-divider max-w-md mx-auto mb-8">
               <span className="text-gold text-xl">☪</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
