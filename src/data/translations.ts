@@ -9,7 +9,7 @@ export const languageConfig: Record<Language, { name: string; nativeName: string
 };
 
 const en = {
-  nav: { home: 'Home', about: 'About', activities: 'Activities', teachings: 'Teachings', gallery: 'Gallery', contact: 'Contact' },
+  nav: { home: 'Home', about: 'About', activities: 'Activities', teachings: 'Teachings', gallery: 'Gallery', contact: 'Contact', iraadat: 'Iraadat' },
   hero: {
     title: 'Al Mehfuz',
     fullTitle: 'Khanqah-e-Qadriya Shattariyah',
@@ -113,7 +113,7 @@ const en = {
 };
 
 const ur = {
-  nav: { home: 'ہوم', about: 'ہمارے بارے میں', activities: 'سرگرمیاں', teachings: 'تعلیمات', gallery: 'گیلری', contact: 'رابطہ' },
+  nav: { home: 'ہوم', about: 'ہمارے بارے میں', activities: 'سرگرمیاں', teachings: 'تعلیمات', gallery: 'گیلری', contact: 'رابطہ', iraadat: 'ارادت' },
   hero: { title: 'المحفوظ', fullTitle: 'آستانہ عالیہ سلسلہ قادریہ شطاریہ', subtitle: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادر روایت میں جڑا ہوا', cta1: 'سرگرمیاں دیکھیں', cta2: 'تعلیمات پڑھیں', sajjadaNashin: 'سجادہ نشین', sajjadaNashinName: 'حضرت سید ابرار احمد', sajjadaNashin2: 'نائب سجادہ نشین', sajjadaNashinName2: 'حضرت سید نقیب مظفر علی', sajjadaNashinDesc: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادری روایت میں جڑا ہوا۔' },
   purpose: {
     title: 'ہمارا مقصد', cards: [
@@ -204,7 +204,7 @@ const ur = {
 };
 
 const ar = {
-  nav: { home: 'الرئيسية', about: 'عن الخانقاه', activities: 'الأنشطة', teachings: 'التعاليم', gallery: 'المعرض', contact: 'اتصل بنا' },
+  nav: { home: 'الرئيسية', about: 'عن الخانقاه', activities: 'الأنشطة', teachings: 'التعاليم', gallery: 'المعرض', contact: 'اتصل بنا', iraadat: 'الإرادة' },
   hero: { title: 'المحفوظ', fullTitle: 'آستانه عالیه سلسله قادریه شطاریه', subtitle: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك', cta1: 'عرض الأنشطة', cta2: 'اقرأ التعاليم', sajjadaNashin: 'السجادة نشين', sajjadaNashinName: 'حضرة سيد أبرار أحمد', sajjadaNashin2: 'نائب السجادة', sajjadaNashinName2: 'حضرة سيد نقيب مظفر علي', sajjadaNashinDesc: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك.' },
   purpose: {
     title: 'هدفنا', cards: [
@@ -295,7 +295,7 @@ const ar = {
 };
 
 const hi = {
-  nav: { home: 'होम', about: 'हमारे बारे में', activities: 'गतिविधियाँ', teachings: 'शिक्षाएँ', gallery: 'गैलरी', contact: 'संपर्क' },
+  nav: { home: 'होम', about: 'हमारे बारे में', activities: 'गतिविधियाँ', teachings: 'शिक्षाएँ', gallery: 'गैलरी', contact: 'संपर्क', iraadat: 'इरादत' },
   hero: { title: 'अल मेहफ़ूज़', fullTitle: 'आस्ताना-ए-आलिया सिलसिला-ए-क़ादरिया शट्टारिया', subtitle: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित', cta1: 'गतिविधियाँ देखें', cta2: 'शिक्षाएँ पढ़ें', sajjadaNashin: 'सज्जादा नशीन', sajjadaNashinName: 'हज़रत सैयद अबरार अहमद', sajjadaNashin2: 'नायब सज्जादा नशीन', sajjadaNashinName2: 'हज़रत सैयद नक़ीब मुज़फ़्फ़र अली', sajjadaNashinDesc: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित।' },
   purpose: {
     title: 'हमारा उद्देश्य', cards: [
