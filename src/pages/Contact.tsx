@@ -23,10 +23,7 @@ declare global {
       reset: (widgetId: string) => void;
     };
     onloadTurnstileCallback: () => void;
-<<<<<<< HEAD
     onTurnstileLoad?: () => void;
-=======
->>>>>>> 69ba7799180776a86c005555968d6404aea8cfe9
   }
 }
 
@@ -73,18 +70,12 @@ const Contact = () => {
       const container = document.getElementById('turnstile-widget');
       if (window.turnstile && container) {
         try {
-<<<<<<< HEAD
+          // Clear any existing content first
           container.innerHTML = '';
           const key = '0x4AAAAAACl95tfAhuODDCb3';
           console.log('Rendering Turnstile with sitekey:', key);
           widgetId = window.turnstile.render('#turnstile-widget', {
             sitekey: key,
-=======
-          // Clear any existing content first
-          container.innerHTML = '';
-          widgetId = window.turnstile.render('#turnstile-widget', {
-            sitekey: '0x4AAAAAAAC195tfAhuODDCb3',
->>>>>>> 69ba7799180776a86c005555968d6404aea8cfe9
             theme: 'light',
           });
           return true;
@@ -95,13 +86,9 @@ const Contact = () => {
       return false;
     };
 
-<<<<<<< HEAD
-    // Listen for the callback from index.html
+    // Listen for the callback from index.html (window.onTurnstileLoad)
     window.onTurnstileLoad = () => {
       console.log('Turnstile load event received in component');
-=======
-    window.onloadTurnstileCallback = () => {
->>>>>>> 69ba7799180776a86c005555968d6404aea8cfe9
       tryRender();
     };
 
@@ -118,10 +105,7 @@ const Contact = () => {
 
     return () => {
       clearInterval(intervalId);
-<<<<<<< HEAD
       window.onTurnstileLoad = undefined;
-=======
->>>>>>> 69ba7799180776a86c005555968d6404aea8cfe9
       if (widgetId && window.turnstile) {
         try {
           window.turnstile.remove(widgetId);
