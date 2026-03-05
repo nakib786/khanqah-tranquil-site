@@ -5,10 +5,8 @@ import { Slider } from '@/components/ui/slider';
 import { cn } from '@/lib/utils';
 
 const BackgroundMusic = () => {
-    // Persistent state: Initialize from localStorage or defaults
     const [isPlaying, setIsPlaying] = useState(() => {
         const saved = localStorage.getItem('bg-music-playing');
-        // If not set, we default to false now to be less intrusive, or true if that's the desired branding
         return saved !== null ? saved === 'true' : true;
     });
 
@@ -18,6 +16,8 @@ const BackgroundMusic = () => {
     });
 
     const [showVolume, setShowVolume] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
+    const tooltipTimerRef = useRef<NodeJS.Timeout | null>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,6 +47,20 @@ const BackgroundMusic = () => {
             playAudio();
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // Show tooltip on mount for 3-5 seconds
+    useEffect(() => {
+        const delay = setTimeout(() => {
+            setShowTooltip(true);
+            tooltipTimerRef.current = setTimeout(() => {
+                setShowTooltip(false);
+            }, 4000);
+        }, 1500);
+        return () => {
+            clearTimeout(delay);
+            if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current);
+        };
+    }, []);
 
     useEffect(() => {
         // Handle clicks outside to close volume on mobile
@@ -141,6 +155,26 @@ const BackgroundMusic = () => {
                     </div>
                 )}
             </button>
+
+            {/* Play Qasida tooltip */}
+            <AnimatePresence>
+                {showTooltip && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.95 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        className="absolute bottom-[calc(100%+12px)] right-0 whitespace-nowrap bg-background/95 backdrop-blur-xl border border-gold/30 text-foreground text-sm font-medium px-4 py-2.5 rounded-xl shadow-[0_4px_20px_-4px_hsl(var(--gold)/0.3)] pointer-events-none"
+                    >
+                        <span className="flex items-center gap-2">
+                            <Music className="w-4 h-4 text-gold" />
+                            <span>Play Qasida ♪</span>
+                        </span>
+                        {/* Arrow */}
+                        <div className="absolute -bottom-1.5 right-5 w-3 h-3 bg-background/95 border-r border-b border-gold/30 rotate-45" />
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Manual toggle for mobile volume on small screens */}
             <button
