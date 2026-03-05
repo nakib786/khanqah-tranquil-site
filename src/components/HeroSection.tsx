@@ -69,7 +69,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
         </p>
         <div className="flex flex-row gap-3 items-center justify-center">
           <Link
-            to={`/${lang}/activities`}
+            to={`/${lang}/iraadat`}
             className="inline-flex items-center justify-center px-4 py-2 text-sm bg-gold text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity shadow-lg">
 
             {t.hero.cta1}
