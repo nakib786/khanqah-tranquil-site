@@ -89,9 +89,9 @@ const en = {
   iraadat: {
     subtitle: 'Iraadat · إرادت',
     heroTitle: 'Benefits of Joining a Silsila',
-    heroDescription: 'Discover the spiritual treasures and transformative blessings that come through connecting with the Qadri lineage',
-    intro: 'The concept of <gold>Iraadat</gold> (spiritual devotion to a guide) has been a cornerstone of Islamic spirituality for centuries. Through the blessed <gold>Silsila-e-Qadriya</gold>, seekers receive a structured path toward divine closeness.',
-    ctaText: 'Take the first step on your spiritual journey. Connect with the blessed Silsila-e-Qadriya and experience the transformative power of Iraadat.',
+    heroDescription: 'Discover the spiritual treasures and transformative blessings that come through connecting with the Qadriya Shattariyah Silsila',
+    intro: 'The concept of <gold>Iraadat</gold> (spiritual devotion to a guide) has been a cornerstone of Islamic spirituality for centuries. Through the blessed <gold>Qadriya Shattariyah Silsila</gold>, seekers receive a structured path toward divine closeness.',
+    ctaText: 'Take the first step on your spiritual journey. Connect with the blessed Qadriya Shattariyah Silsila and experience the transformative power of Iraadat.',
     benefits: [
       { title: 'Spiritual Guidance', description: 'Receive personal guidance from a Sheikh or Murshid to strengthen your faith and spiritual journey.' },
       { title: 'Inner Peace & Calmness', description: 'Regular spiritual practices and dhikr help reduce stress and bring inner tranquility.' },
@@ -199,9 +199,9 @@ const ur = {
   iraadat: {
     subtitle: 'ارادت · إرادت',
     heroTitle: 'سلسلے میں شامل ہونے کے فوائد',
-    heroDescription: 'قادری سلسلے سے جڑ کر ملنے والے روحانی خزانوں اور تبدیلی لانے والی برکات کو دریافت کریں',
-    intro: '<gold>ارادت</gold> (روحانی مرشد سے عقیدت) صدیوں سے اسلامی روحانیت کا سنگِ بنیاد رہا ہے۔ مبارک <gold>سلسلہ قادریہ</gold> کے ذریعے سالکین کو قربِ الٰہی کی طرف ایک منظم راستہ ملتا ہے۔',
-    ctaText: 'اپنے روحانی سفر کا پہلا قدم اٹھائیں۔ مبارک سلسلہ قادریہ سے جڑیں اور ارادت کی تبدیلی لانے والی طاقت کا تجربہ کریں۔',
+    heroDescription: 'قادریہ شطاریہ سلسلے سے جڑ کر ملنے والے روحانی خزانوں اور تبدیلی لانے والی برکات کو دریافت کریں',
+    intro: '<gold>ارادت</gold> (روحانی مرشد سے عقیدت) صدیوں سے اسلامی روحانیت کا سنگِ بنیاد رہا ہے۔ مبارک <gold>سلسلہ قادریہ شطاریہ</gold> کے ذریعے سالکین کو قربِ الٰہی کی طرف ایک منظم راستہ ملتا ہے۔',
+    ctaText: 'اپنے روحانی سفر کا پہلا قدم اٹھائیں۔ مبارک سلسلہ قادریہ شطاریہ سے جڑیں اور ارادت کی تبدیلی لانے والی طاقت کا تجربہ کریں۔',
     benefits: [
       { title: 'روحانی رہنمائی', description: 'اپنے ایمان اور روحانی سفر کو مضبوط کرنے کے لیے شیخ یا مرشد سے ذاتی رہنمائی حاصل کریں۔' },
       { title: 'باطنی سکون و اطمینان', description: 'باقاعدہ روحانی عبادات اور ذکر تناؤ کم کرنے اور باطنی سکون لانے میں مدد کرتے ہیں۔' },
@@ -309,9 +309,9 @@ const ar = {
   iraadat: {
     subtitle: 'الإرادة · إرادت',
     heroTitle: 'فوائد الانضمام إلى السلسلة',
-    heroDescription: 'اكتشف الكنوز الروحانية والبركات التحويلية التي تأتي من خلال الارتباط بالسلسلة القادرية',
-    intro: 'مفهوم <gold>الإرادة</gold> (الإخلاص الروحاني للمرشد) كان حجر الزاوية في الروحانية الإسلامية لقرون. من خلال <gold>السلسلة القادرية</gold> المباركة، يتلقى السالكون طريقاً منظماً نحو القرب الإلهي.',
-    ctaText: 'اتخذ الخطوة الأولى في رحلتك الروحانية. تواصل مع السلسلة القادرية المباركة واختبر القوة التحويلية للإرادة.',
+    heroDescription: 'اكتشف الكنوز الروحانية والبركات التحويلية التي تأتي من خلال الارتباط بالسلسلة القادرية الشطارية',
+    intro: 'مفهوم <gold>الإرادة</gold> (الإخلاص الروحاني للمرشد) كان حجر الزاوية في الروحانية الإسلامية لقرون. من خلال <gold>السلسلة القادرية الشطارية</gold> المباركة، يتلقى السالكون طريقاً منظماً نحو القرب الإلهي.',
+    ctaText: 'اتخذ الخطوة الأولى في رحلتك الروحانية. تواصل مع السلسلة القادرية الشطارية المباركة واختبر القوة التحويلية للإرادة.',
     benefits: [
       { title: 'الإرشاد الروحاني', description: 'تلقي إرشاد شخصي من شيخ أو مرشد لتقوية إيمانك ورحلتك الروحانية.' },
       { title: 'السكينة والطمأنينة', description: 'الممارسات الروحانية المنتظمة والذكر تساعد في تقليل التوتر وجلب الهدوء الداخلي.' },
@@ -419,9 +419,9 @@ const hi = {
   iraadat: {
     subtitle: 'इरादत · إرادت',
     heroTitle: 'सिलसिले में शामिल होने के लाभ',
-    heroDescription: 'क़ादरी सिलसिले से जुड़कर मिलने वाले आध्यात्मिक ख़ज़ानों और परिवर्तनकारी बरकतों की खोज करें',
-    intro: '<gold>इरादत</gold> (आध्यात्मिक मार्गदर्शक के प्रति समर्पण) सदियों से इस्लामी आध्यात्मिकता की आधारशिला रही है। मुबारक <gold>सिलसिला-ए-क़ादरिया</gold> के माध्यम से साधकों को ईश्वरीय निकटता की ओर एक व्यवस्थित मार्ग प्राप्त होता है।',
-    ctaText: 'अपनी आध्यात्मिक यात्रा का पहला कदम उठाएँ। मुबारक सिलसिला-ए-क़ादरिया से जुड़ें और इरादत की परिवर्तनकारी शक्ति का अनुभव करें।',
+    heroDescription: 'क़ादरिया शत्तारिया सिलसिले से जुड़कर मिलने वाले आध्यात्मिक ख़ज़ानों और परिवर्तनकारी बरकतों की खोज करें',
+    intro: '<gold>इरादत</gold> (आध्यात्मिक मार्गदर्शक के प्रति समर्पण) सदियों से इस्लामी आध्यात्मिकता की आधारशिला रही है। मुबारक <gold>क़ादरिया शत्तारिया सिलसिला</gold> के माध्यम से साधकों को ईश्वरीय निकटता की ओर एक व्यवस्थित मार्ग प्राप्त होता है।',
+    ctaText: 'अपनी आध्यात्मिक यात्रा का पहला कदम उठाएँ। मुबारक क़ादरिया शत्तारिया सिलसिला से जुड़ें और इरादत की परिवर्तनकारी शक्ति का अनुभव करें।',
     benefits: [
       { title: 'आध्यात्मिक मार्गदर्शन', description: 'अपने ईमान और आध्यात्मिक यात्रा को मज़बूत करने के लिए शेख या मुर्शिद से व्यक्तिगत मार्गदर्शन प्राप्त करें।' },
       { title: 'आंतरिक शांति और सुकून', description: 'नियमित आध्यात्मिक अभ्यास और ज़िक्र तनाव कम करने और आंतरिक शांति लाने में मदद करते हैं।' },
