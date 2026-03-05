@@ -193,7 +193,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
               <a href="https://www.instagram.com/almehfuz92/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-foreground/60 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
             </div>
 
-            <h4 className="font-semibold mb-3 text-gold-light">{t.nav.contact}</h4>
+            <Link to={`/${lang}/contact`} onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })} className="font-semibold mb-3 text-gold-light block">{t.nav.contact}</Link>
             <div className="space-y-3">
               <a
                 href={`mailto:${t.contact.email}`}

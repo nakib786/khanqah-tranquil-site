@@ -70,9 +70,9 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
         <div className="flex flex-row gap-3 items-center justify-center">
           <Link
             to={`/${lang}/iraadat`}
-            className="inline-flex items-center justify-center px-4 py-2 text-sm bg-gold text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity shadow-lg">
+            className="inline-flex items-center justify-center px-5 py-2.5 text-sm bg-gold text-primary-foreground rounded-lg font-bold hover:opacity-90 transition-all shadow-[0_0_20px_hsl(var(--gold)/0.4)] hover:shadow-[0_0_30px_hsl(var(--gold)/0.6)] ring-1 ring-gold-light/30 animate-pulse-slow">
 
-            {t.hero.cta1}
+            ✦ {t.hero.cta1}
           </Link>
           <Link
             to={`/${lang}/teachings`}
