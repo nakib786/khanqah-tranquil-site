@@ -176,6 +176,7 @@ const Iraadat = () => {
             </p>
             <Link
               to={`/${lang}/contact`}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
               className="inline-flex items-center justify-center px-6 py-3 bg-gold text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity shadow-lg shadow-gold/20"
             >
               {t.nav.contact}
