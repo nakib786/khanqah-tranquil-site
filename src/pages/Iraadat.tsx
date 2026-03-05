@@ -175,7 +175,7 @@ const Iraadat = () => {
               {ir.ctaText}
             </p>
             <Link
-              to={`/${lang}/contact`}
+              to={`/${lang}/contact?inquiry=iraadat`}
               onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
               className="inline-flex items-center justify-center px-6 py-3 bg-gold text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity shadow-lg shadow-gold/20"
             >

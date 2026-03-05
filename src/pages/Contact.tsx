@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { translations } from '@/data/translations';
 import { getLang } from '@/lib/i18n';
 import Layout from '@/components/Layout';
@@ -29,10 +29,16 @@ declare global {
 
 const Contact = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
+  const [searchParams] = useSearchParams();
   const lang = getLang(langParam);
   const t = translations[lang];
   const isRtl = lang === 'ur' || lang === 'ar';
   const { toast } = useToast();
+
+  // If coming from Iraadat page, default inquiry type to Iraadat (index 2)
+  const defaultInquiryType = searchParams.get('inquiry') === 'iraadat'
+    ? t.common.inquiryTypes[2]
+    : t.common.inquiryTypes[0];
 
   const [form, setForm] = useState({
     name: '',
@@ -40,7 +46,7 @@ const Contact = () => {
     phone: '',
     countryCode: '+91',
     subject: '',
-    inquiryType: t.common.inquiryTypes[0],
+    inquiryType: defaultInquiryType,
     message: ''
   });
 
