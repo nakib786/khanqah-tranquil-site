@@ -88,6 +88,14 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(var(--gold) / 0.4)" },
           "50%": { boxShadow: "0 0 35px hsl(var(--gold) / 0.7)" },
         },
+        "vibrate": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "10%": { transform: "translateX(-1px) rotate(-1deg)" },
+          "20%": { transform: "translateX(1px) rotate(1deg)" },
+          "30%": { transform: "translateX(-1px)" },
+          "40%": { transform: "translateX(1px)" },
+          "50%": { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
