@@ -4,6 +4,7 @@ import { lineage } from '@/data/content';
 import { getLang } from '@/lib/i18n';
 import Layout from '@/components/Layout';
 import { motion } from 'framer-motion';
+import SEO from '@/components/SEO';
 
 const About = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
@@ -13,6 +14,7 @@ const About = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO title={t.about.title} description={t.about.history} />
       <section className="pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-3xl">
           <motion.h1

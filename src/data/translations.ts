@@ -131,6 +131,15 @@ const en = {
     call: 'Call',
     whatsApp: 'WhatsApp',
   },
+  seo: {
+    homeDescription: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.',
+    aboutDescription: 'Al Mehfuz Astana e Aliya Silsila e Quadria Shattaria was established as a center for spiritual cultivation and learning.',
+    activitiesDescription: 'Explore the daily schedule, weekly gatherings, and upcoming events at Khanqah Al Mehfuz.',
+    teachingsDescription: 'Explore spiritual teachings and wisdom from the Qadri and Shattari traditions.',
+    galleryDescription: 'View photos and memories from gatherings and events at Khanqah Al Mehfuz.',
+    contactDescription: 'Contact Khanqah Al Mehfuz for inquiries, spiritual guidance, or visit planning.',
+    iraadatDescription: 'Discover the spiritual treasures and transformative blessings of joining the Qadriya Shattariyah Silsila.',
+  }
 };
 
 const ur = {
@@ -241,6 +250,15 @@ const ur = {
     call: 'کال کریں',
     whatsApp: 'واٹس ایپ',
   },
+  seo: {
+    homeDescription: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادر روایت میں جڑا ہوا',
+    aboutDescription: 'المحفوظ خانقاہِ قادریہ نسلوں سے روحانی روشنی کا مینار رہی ہے جہاں روحانی تعلیم اور ذکرِ الٰہی ہوتا ہے۔',
+    activitiesDescription: 'خانقاہ المحفوظ میں روزانہ کا شیڈول، ہفتہ وار مجالس اور آنے والے پروگراموں کی تفصیلات جانیں۔',
+    teachingsDescription: 'قادری اور شطاری روایات سے روحانی تعلیمات اور حکمت کو دریافت کریں۔',
+    galleryDescription: 'خانقاہ المحفوظ کی مجالس اور تقریبات کی تصاویر اور یادیں دیکھیں۔',
+    contactDescription: 'سوالات، روحانی رہنمائی، یا دورے کی منصوبہ بندی کے لیے خانقاہ المحفوظ سے رابطہ کریں۔',
+    iraadatDescription: 'قادریہ شطاریہ سلسلے سے جڑ کر ملنے والے روحانی خزانوں اور برکات کو دریافت کریں۔',
+  }
 };
 
 const ar = {
@@ -351,6 +369,15 @@ const ar = {
     call: 'اتصال',
     whatsApp: 'واتساب',
   },
+  seo: {
+    homeDescription: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك',
+    aboutDescription: 'كانت المحفوظ خانقاه القادرية منارة للنور الروحاني عبر الأجيال للتعلم والذكر.',
+    activitiesDescription: 'استكشف الجدول اليومي والمجالس الأسبوعية والفعاليات القادمة في خانقاه المحفوظ.',
+    teachingsDescription: 'اكتشف التعاليم والروحانية والحكمة من التقاليد القادرية والشطارية.',
+    galleryDescription: 'شاهد الصور والذكريات من التجمعات والفعاليات في خانقاه المحفوظ.',
+    contactDescription: 'اتصل بخانقاه المحفوظ للاستفسارات أو الإرشاد الروحاني أو تخطيط الزيارة.',
+    iraadatDescription: 'اكتشف الكنوز الروحانية والبركات التحويلية للانضمام إلى السلسلة القادرية الشطارية.',
+  }
 };
 
 const hi = {
@@ -461,6 +488,15 @@ const hi = {
     call: 'कॉल करें',
     whatsApp: 'व्हाट्सएप',
   },
+  seo: {
+    homeDescription: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित',
+    aboutDescription: 'अल मेहफ़ूज़ ख़ानक़ाह-ए-क़ादरिया पीढ़ियों से आध्यात्मिक प्रकाश का केंद्र रही है।',
+    activitiesDescription: 'खानकाह अल मेहफूज में दैनिक कार्यक्रम, साप्ताहिक सभाओं और आगामी कार्यक्रमों का विवरण देखें।',
+    teachingsDescription: 'कादरी और शत्तारा परंपराओं की आध्यात्मिक शिक्षाओं और ज्ञान की खोज करें।',
+    galleryDescription: 'खानकाह अल मेहफूज की सभाओं और कार्यक्रमों की तस्वीरें और यादें देखें।',
+    contactDescription: 'पूछताछ, आध्यात्मिक मार्गदर्शन या यात्रा योजना के लिए खानकाह अल मेहफूज से संपर्क करें।',
+    iraadatDescription: 'कादरिया शत्तारिया सिलसिले से जुड़ने के आध्यात्मिक लाभों और बरकतों की खोज करें।',
+  }
 };
 
 export const translations: Record<Language, typeof en> = { en, ur, ar, hi };

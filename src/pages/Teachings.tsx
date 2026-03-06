@@ -7,6 +7,7 @@ import Layout from '@/components/Layout';
 import TeachingCard from '@/components/TeachingCard';
 import { Search } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SEO from '@/components/SEO';
 
 const TeachingsPage = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
@@ -34,6 +35,7 @@ const TeachingsPage = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO title={t.teachings.title} />
       <section className="pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-5xl">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold mb-8">
@@ -55,9 +57,8 @@ const TeachingsPage = () => {
           <div className="flex flex-wrap gap-2 mb-8">
             <button
               onClick={() => setActiveTag(null)}
-              className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                !activeTag ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-accent'
-              }`}
+              className={`text-sm px-3 py-1 rounded-full border transition-colors ${!activeTag ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-accent'
+                }`}
             >
               {t.common.allCategories}
             </button>
@@ -65,9 +66,8 @@ const TeachingsPage = () => {
               <button
                 key={tag}
                 onClick={() => setActiveTag(tag === activeTag ? null : tag)}
-                className={`text-sm px-3 py-1 rounded-full border transition-colors ${
-                  activeTag === tag ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-accent'
-                }`}
+                className={`text-sm px-3 py-1 rounded-full border transition-colors ${activeTag === tag ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-accent'
+                  }`}
               >
                 {tag}
               </button>

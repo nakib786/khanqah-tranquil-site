@@ -6,6 +6,7 @@ import Layout from '@/components/Layout';
 import TeachingCard from '@/components/TeachingCard';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SEO from '@/components/SEO';
 
 const TeachingDetail = () => {
   const { lang: langParam, slug } = useParams<{ lang: string; slug: string }>();
@@ -31,6 +32,22 @@ const TeachingDetail = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO
+        title={teaching.title}
+        description={teaching.excerpt}
+        article={true}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": teaching.title,
+          "description": teaching.excerpt,
+          "datePublished": teaching.date,
+          "author": {
+            "@type": "Organization",
+            "name": "Al Mehfuz"
+          }
+        }}
+      />
       <article className="pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-3xl">
           <Link

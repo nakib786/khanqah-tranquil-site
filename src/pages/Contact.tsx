@@ -6,6 +6,7 @@ import Layout from '@/components/Layout';
 import { MapPin, Phone, Mail, Clock, ChevronDown, CheckCircle2, AlertCircle, Search, MessageSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '@/components/SEO';
 
 interface Country {
   code: string;
@@ -223,6 +224,7 @@ const Contact = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO title={t.contact.title} />
       <section className="pt-24 pb-12 bg-background/50">
         <div className={`w-full max-w-5xl mx-auto px-4 sm:px-6 ${isRtl ? 'text-right' : 'text-left'}`}>
           <motion.div

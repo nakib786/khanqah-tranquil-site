@@ -3,6 +3,7 @@ import { getLang } from '@/lib/i18n';
 import { translations } from '@/data/translations';
 import Layout from '@/components/Layout';
 import { motion } from 'framer-motion';
+import SEO from '@/components/SEO';
 import {
   Compass, Heart, Sparkles, Scale, BookOpen,
   ShieldCheck, Users, Star, RefreshCw, ScrollText
@@ -30,6 +31,7 @@ const Iraadat = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO title={ir.heroTitle} description={ir.heroDescription} />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-primary" />

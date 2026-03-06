@@ -8,6 +8,7 @@ import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
 import TeachingCard from '@/components/TeachingCard';
 import { motion } from 'framer-motion';
+import SEO from '@/components/SEO';
 import { Clock, MapPin, Timer } from 'lucide-react';
 import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
 import abrarImg from '@/assets/abrar.webp';
@@ -239,6 +240,7 @@ const Home = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO />
       <HeroSection lang={lang} />
 
       {/* Purpose */}

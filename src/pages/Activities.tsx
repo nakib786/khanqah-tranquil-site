@@ -5,6 +5,7 @@ import { getLang } from '@/lib/i18n';
 import { getLocalizedSchedule } from '@/lib/prayer-times';
 import Layout from '@/components/Layout';
 import { motion } from 'framer-motion';
+import SEO from '@/components/SEO';
 
 const Activities = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
@@ -14,6 +15,7 @@ const Activities = () => {
 
   return (
     <Layout lang={lang}>
+      <SEO title={t.activities.title} />
       <section className="pt-28 pb-16 px-4">
         <div className="container mx-auto max-w-4xl">
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold mb-12">
