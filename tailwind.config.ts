@@ -88,13 +88,16 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(var(--gold) / 0.4)" },
           "50%": { boxShadow: "0 0 35px hsl(var(--gold) / 0.7)" },
         },
-        "vibrate": {
-          "0%, 100%": { transform: "translateX(0)" },
-          "10%": { transform: "translateX(-1px) rotate(-1deg)" },
-          "20%": { transform: "translateX(1px) rotate(1deg)" },
-          "30%": { transform: "translateX(-1px)" },
-          "40%": { transform: "translateX(1px)" },
-          "50%": { transform: "translateX(0)" },
+        "heartbeat": {
+          "0%, 100%": { transform: "scale(1)" },
+          "10%": { transform: "scale(1.15)" },
+          "20%": { transform: "scale(1)" },
+          "30%": { transform: "scale(1.15)" },
+          "50%": { transform: "scale(1)" },
+        },
+        "ripple": {
+          "0%": { transform: "scale(1)", opacity: "0.6" },
+          "100%": { transform: "scale(2.5)", opacity: "0" },
         },
       },
       animation: {
@@ -102,6 +105,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "pulse-slow": "pulse-slow 2.5s ease-in-out infinite",
+        "heartbeat": "heartbeat 2s ease-in-out infinite",
+        "ripple": "ripple 3s linear infinite",
       },
     },
   },

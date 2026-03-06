@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import { Clock, MapPin, Timer } from 'lucide-react';
 import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
 import abrarImg from '@/assets/abrar.webp';
-import nakibImg from '@/assets/nakib.webp';
+import nakibImg from '@/assets/nakibBawa.jpg';
 import { useIsMobile } from '@/hooks/use-mobile';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
@@ -85,10 +85,10 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
                 className={`relative rounded-xl p-4 border text-center flex flex-col items-center justify-center min-h-[130px] transition-all ${isNext
-                    ? 'bg-gold/10 border-gold/50 shadow-[0_0_20px_-5px_hsl(var(--gold)/0.2)] ring-1 ring-gold/20'
-                    : isPast
-                      ? 'bg-card/50 border-border/50 opacity-60 grayscale'
-                      : 'bg-card border-border'
+                  ? 'bg-gold/10 border-gold/50 shadow-[0_0_20px_-5px_hsl(var(--gold)/0.2)] ring-1 ring-gold/20'
+                  : isPast
+                    ? 'bg-card/50 border-border/50 opacity-60 grayscale'
+                    : 'bg-card border-border'
                   }`}
               >
                 {isNext && (
@@ -165,7 +165,7 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
   return (
     <div
       ref={cardRef}
-      className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer"
+      className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer h-full flex flex-col justify-center"
       onMouseEnter={() => !isMobile && setShowImage(true)}
       onMouseLeave={() => !isMobile && setShowImage(false)}
       onClick={handleTap}
@@ -202,20 +202,20 @@ const SajjadaNashinSection = ({ lang, t }: { lang: string; t: any }) => (
       </div>
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="h-full">
           <SajjadaNashinCard
             title={t.hero.sajjadaNashinName}
             subtitle={t.hero.sajjadaNashin}
-            description="Blessed Sajjada Nashin continuing the noble path of spiritual guidance."
+            description={t.hero.sajjadaNashinDesc1}
             image={abrarImg}
           />
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="h-full">
           <SajjadaNashinCard
             title={t.hero.sajjadaNashinName2}
             subtitle={t.hero.sajjadaNashin2}
-            description="Prominent seat of authority, serving the community with devotion."
+            description={t.hero.sajjadaNashinDesc2}
             image={nakibImg}
           />
         </motion.div>
@@ -258,14 +258,16 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15, duration: 0.5 }}
-                  className="bg-card border rounded-lg p-6 text-center relative overflow-hidden group hover:border-gold/40 transition-colors"
+                  className="h-full"
                 >
-                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
-                  <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8 text-primary" />
+                  <div className="bg-card border rounded-lg p-6 text-center relative overflow-hidden group hover:border-gold/40 transition-colors h-full flex flex-col items-center">
+                    <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+                    <div className="w-14 h-14 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 shrink-0">
+                      <Icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="font-semibold mb-2">{card.title}</h3>
+                    <p className="text-sm text-muted-foreground">{card.description}</p>
                   </div>
-                  <h3 className="font-semibold mb-2">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground">{card.description}</p>
                 </motion.div>
               );
             })}

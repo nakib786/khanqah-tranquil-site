@@ -118,13 +118,17 @@ const BackgroundMusic = () => {
                 onClick={togglePlay}
                 onDoubleClick={toggleVolume} // Desktop shortcut
                 className={cn(
-                    "w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 relative overflow-hidden border border-gold/20 touch-manipulation animate-[vibrate_0.3s_ease-in-out_infinite]",
-                    isPlaying ? "bg-gold text-primary shadow-gold/20" : "bg-primary text-primary-foreground"
+                    "w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 relative border border-gold/20 touch-manipulation",
+                    isPlaying ? "bg-gold text-primary shadow-gold/20 animate-heartbeat" : "bg-primary text-primary-foreground animate-[heartbeat_4s_ease-in-out_infinite]"
                 )}
                 aria-label={isPlaying ? "Pause music" : "Play music"}
             >
                 {isPlaying && (
-                    <span className="absolute inset-0 rounded-full bg-gold/50 animate-ping opacity-20" />
+                    <>
+                        <span className="absolute inset-0 rounded-full bg-gold/60 animate-ripple" />
+                        <span className="absolute inset-0 rounded-full bg-gold/40 animate-ripple [animation-delay:1s]" />
+                        <span className="absolute inset-0 rounded-full bg-gold/20 animate-ripple [animation-delay:2s]" />
+                    </>
                 )}
 
                 <div className={cn(

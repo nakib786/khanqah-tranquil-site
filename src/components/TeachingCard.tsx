@@ -13,9 +13,9 @@ const TeachingCard = ({ teaching, lang }: Props) => {
   return (
     <Link
       to={`/${lang}/teachings/${teaching.slug}`}
-      className="bg-card border rounded-lg overflow-hidden hover:shadow-md transition-shadow group block"
+      className="bg-card border rounded-lg overflow-hidden hover:shadow-md transition-shadow group block h-full"
     >
-      <div className="p-5">
+      <div className="p-5 h-full flex flex-col">
         <div className="flex flex-wrap gap-2 mb-3">
           {teaching.tags.map(tag => (
             <span key={tag} className="text-xs bg-accent text-accent-foreground px-2 py-0.5 rounded-full">
@@ -26,8 +26,8 @@ const TeachingCard = ({ teaching, lang }: Props) => {
         <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
           {teaching.title}
         </h3>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{teaching.excerpt}</p>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        <p className="text-sm text-muted-foreground mb-3 line-clamp-2 flex-grow">{teaching.excerpt}</p>
+        <div className="flex items-center gap-4 text-xs text-muted-foreground mt-auto">
           <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{teaching.date}</span>
           <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{teaching.readingTime} {t.common.readingTime}</span>
         </div>
