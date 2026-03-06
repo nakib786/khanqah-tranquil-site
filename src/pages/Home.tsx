@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { translations } from '@/data/translations';
 import { teachings } from '@/data/content';
 import { getLang } from '@/lib/i18n';
@@ -125,48 +125,48 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
   );
 };
 
-const FlipCard = ({ title, subtitle, description, image }: { title: string; subtitle: string; description: string; image: string }) => {
+const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: string; subtitle: string; description: string; image: string }) => {
+  const [showImage, setShowImage] = useState(false);
   const isMobile = useIsMobile();
-  const [flipped, setFlipped] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleMobileTap = () => {
-    if (!isMobile || flipped) return;
-    setFlipped(true);
-    setTimeout(() => setFlipped(false), 3000);
+  const handleTap = () => {
+    if (!isMobile || showImage) return;
+    setShowImage(true);
+    timerRef.current = setTimeout(() => setShowImage(false), 3000);
   };
+
+  useEffect(() => {
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
 
   return (
     <div
-      className="perspective-[1000px] min-h-[280px] cursor-pointer"
-      onMouseEnter={() => !isMobile && setFlipped(true)}
-      onMouseLeave={() => !isMobile && setFlipped(false)}
-      onClick={handleMobileTap}
+      className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer"
+      onMouseEnter={() => !isMobile && setShowImage(true)}
+      onMouseLeave={() => !isMobile && setShowImage(false)}
+      onClick={handleTap}
     >
+      <div className="absolute inset-0 bg-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+      {/* Image overlay */}
       <motion.div
-        className="relative w-full h-full min-h-[280px]"
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        style={{ transformStyle: 'preserve-3d' }}
+        className="absolute inset-0 z-10 rounded-2xl overflow-hidden"
+        initial={false}
+        animate={{ opacity: showImage ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        style={{ pointerEvents: showImage ? 'auto' : 'none' }}
       >
-        {/* Front */}
-        <div className="absolute inset-0 backface-hidden rounded-2xl bg-background border border-gold/10 shadow-sm p-8 text-center flex flex-col items-center justify-center">
-          <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{subtitle}</p>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{title}</h2>
-          <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
-          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-        </div>
-        {/* Back */}
-        <div
-          className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden border border-gold/30 shadow-lg"
-          style={{ transform: 'rotateY(180deg)' }}
-        >
-          <img src={image} alt={title} className="w-full h-full object-cover object-top" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-            <p className="text-white font-bold text-lg font-serif">{title}</p>
-            <p className="text-white/70 text-xs uppercase tracking-wider">{subtitle}</p>
-          </div>
+        <img src={image} alt={title} className="w-full h-full object-cover" style={{ objectPosition: 'center 35%' }} />
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
+          <p className="text-white font-bold text-xl font-serif">{title}</p>
+          <p className="text-white/70 text-xs uppercase tracking-wider">{subtitle}</p>
         </div>
       </motion.div>
+      {/* Original card content */}
+      <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{subtitle}</p>
+      <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{title}</h2>
+      <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
+      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );
 };
@@ -180,7 +180,7 @@ const SajjadaNashinSection = ({ lang, t }: { lang: string; t: any }) => (
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <FlipCard
+          <SajjadaNashinCard
             title={t.hero.sajjadaNashinName}
             subtitle={t.hero.sajjadaNashin}
             description="Blessed Sajjada Nashin continuing the noble path of spiritual guidance."
@@ -189,7 +189,7 @@ const SajjadaNashinSection = ({ lang, t }: { lang: string; t: any }) => (
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-          <FlipCard
+          <SajjadaNashinCard
             title={t.hero.sajjadaNashinName2}
             subtitle={t.hero.sajjadaNashin2}
             description="Prominent seat of authority, serving the community with devotion."
