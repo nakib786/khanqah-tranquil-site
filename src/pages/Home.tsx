@@ -10,6 +10,9 @@ import TeachingCard from '@/components/TeachingCard';
 import { motion } from 'framer-motion';
 import { Clock, MapPin, Timer } from 'lucide-react';
 import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
+import abrarImg from '@/assets/abrar.png';
+import nakibImg from '@/assets/nakib.png';
+import { useIsMobile } from '@/hooks/use-mobile';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
 const formatCountdown = (diff: number) => {
@@ -122,6 +125,86 @@ const PrayerTimesSection = ({ lang, t, scheduleItems }: { lang: string; t: any; 
   );
 };
 
+const FlipCard = ({ title, subtitle, description, image }: { title: string; subtitle: string; description: string; image: string }) => {
+  const isMobile = useIsMobile();
+  const [flipped, setFlipped] = useState(false);
+
+  const handleMobileTap = () => {
+    if (!isMobile || flipped) return;
+    setFlipped(true);
+    setTimeout(() => setFlipped(false), 3000);
+  };
+
+  return (
+    <div
+      className="perspective-[1000px] min-h-[280px] cursor-pointer"
+      onMouseEnter={() => !isMobile && setFlipped(true)}
+      onMouseLeave={() => !isMobile && setFlipped(false)}
+      onClick={handleMobileTap}
+    >
+      <motion.div
+        className="relative w-full h-full min-h-[280px]"
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* Front */}
+        <div className="absolute inset-0 backface-hidden rounded-2xl bg-background border border-gold/10 shadow-sm p-8 text-center flex flex-col items-center justify-center">
+          <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{subtitle}</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{title}</h2>
+          <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
+          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+        </div>
+        {/* Back */}
+        <div
+          className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden border border-gold/30 shadow-lg"
+          style={{ transform: 'rotateY(180deg)' }}
+        >
+          <img src={image} alt={title} className="w-full h-full object-cover object-top" />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+            <p className="text-white font-bold text-lg font-serif">{title}</p>
+            <p className="text-white/70 text-xs uppercase tracking-wider">{subtitle}</p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+const SajjadaNashinSection = ({ lang, t }: { lang: string; t: any }) => (
+  <section className="py-20 px-4 bg-secondary/50 islamic-pattern border-y border-gold/10">
+    <div className="container mx-auto max-w-5xl">
+      <div className="ornamental-divider mb-12">
+        <span className="text-gold text-2xl">✦</span>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <FlipCard
+            title={t.hero.sajjadaNashinName}
+            subtitle={t.hero.sajjadaNashin}
+            description="Blessed Sajjada Nashin continuing the noble path of spiritual guidance."
+            image={abrarImg}
+          />
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+          <FlipCard
+            title={t.hero.sajjadaNashinName2}
+            subtitle={t.hero.sajjadaNashin2}
+            description="Prominent seat of authority, serving the community with devotion."
+            image={nakibImg}
+          />
+        </motion.div>
+      </div>
+
+      <p className="text-center mt-12 text-muted-foreground max-w-2xl mx-auto italic text-sm border-t border-gold/5 pt-8">
+        {t.hero.sajjadaNashinDesc}
+      </p>
+    </div>
+  </section>
+);
+
 const Home = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
   const lang = getLang(langParam);
@@ -188,48 +271,7 @@ const Home = () => {
       </section>
 
       {/* Sajjada Nashin Section */}
-      <section className="py-20 px-4 bg-secondary/50 islamic-pattern border-y border-gold/10">
-        <div className="container mx-auto max-w-5xl">
-          <div className="ornamental-divider mb-12">
-            <span className="text-gold text-2xl">✦</span>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-stretch">
-            {/* Abrar - Sajjada Nashin */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group"
-            >
-              <div className="absolute inset-0 bg-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
-              <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{t.hero.sajjadaNashin}</p>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{t.hero.sajjadaNashinName}</h2>
-              <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
-              <p className="text-sm text-muted-foreground leading-relaxed">Blessed Sajjada Nashin continuing the noble path of spiritual guidance.</p>
-            </motion.div>
-
-            {/* Nakib - Naib Sajjada Nashin */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group"
-            >
-              <div className="absolute inset-0 bg-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
-              <p className="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-4 opacity-70 italic">{t.hero.sajjadaNashin2}</p>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{t.hero.sajjadaNashinName2}</h2>
-              <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
-              <p className="text-sm text-muted-foreground leading-relaxed">Prominent seat of authority, serving the community with devotion.</p>
-            </motion.div>
-          </div>
-
-          <p className="text-center mt-12 text-muted-foreground max-w-2xl mx-auto italic text-sm border-t border-gold/5 pt-8">
-            {t.hero.sajjadaNashinDesc}
-          </p>
-        </div>
-      </section>
+      <SajjadaNashinSection lang={lang} t={t} />
 
       {/* Visit Us */}
       <section className="pt-20 pb-10 px-4 bg-primary text-primary-foreground islamic-pattern relative overflow-hidden">
