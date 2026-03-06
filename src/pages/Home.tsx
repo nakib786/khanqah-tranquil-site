@@ -129,6 +129,8 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
   const [showImage, setShowImage] = useState(false);
   const isMobile = useIsMobile();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasTeased = useRef(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleTap = () => {
     if (!isMobile || showImage) return;
@@ -136,12 +138,33 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
     timerRef.current = setTimeout(() => setShowImage(false), 3000);
   };
 
+  // Scroll-triggered peek: show image for 1 sec when card enters viewport
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasTeased.current) {
+          hasTeased.current = true;
+          setTimeout(() => {
+            setShowImage(true);
+            timerRef.current = setTimeout(() => setShowImage(false), 1000);
+          }, 300);
+        }
+      },
+      { threshold: 0.6 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, []);
 
   return (
     <div
+      ref={cardRef}
       className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer"
       onMouseEnter={() => !isMobile && setShowImage(true)}
       onMouseLeave={() => !isMobile && setShowImage(false)}
@@ -156,7 +179,7 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
         transition={{ duration: 0.4 }}
         style={{ pointerEvents: showImage ? 'auto' : 'none' }}
       >
-        <img src={image} alt={title} className="w-full h-full object-cover" style={{ objectPosition: 'center 35%' }} />
+        <img src={image} alt={title} className="w-full h-full object-cover" style={{ objectPosition: 'center 35%' }} loading="lazy" decoding="async" />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
           <p className="text-white font-bold text-xl font-serif">{title}</p>
           <p className="text-white/70 text-xs uppercase tracking-wider">{subtitle}</p>
