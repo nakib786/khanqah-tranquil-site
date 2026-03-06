@@ -10,8 +10,8 @@ import TeachingCard from '@/components/TeachingCard';
 import { motion } from 'framer-motion';
 import { Clock, MapPin, Timer } from 'lucide-react';
 import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
-import abrarImg from '@/assets/abrar.png';
-import nakibImg from '@/assets/nakib.png';
+import abrarImg from '@/assets/abrar.webp';
+import nakibImg from '@/assets/nakib.webp';
 import { useIsMobile } from '@/hooks/use-mobile';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
