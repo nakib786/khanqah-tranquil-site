@@ -1,37 +1,50 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { translations } from '@/data/translations';
-import { teachings } from '@/data/content';
+import { teachings as staticTeachings } from '@/data/content';
 import { getLang } from '@/lib/i18n';
 import Layout from '@/components/Layout';
 import TeachingCard from '@/components/TeachingCard';
+import PostCard from '@/components/blog/PostCard';
+import CategoryFilter from '@/components/blog/CategoryFilter';
+import BlogPagination from '@/components/blog/BlogPagination';
+import { useBlogPosts } from '@/hooks/blog/useBlogPosts';
+import { useBlogCategories } from '@/hooks/blog/useBlogCategories';
 import { Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const POSTS_PER_PAGE = 9;
 
 const TeachingsPage = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
   const lang = getLang(langParam);
   const t = translations[lang];
-  const allTeachings = teachings[lang];
+  const staticData = staticTeachings[lang];
 
   const [search, setSearch] = useState('');
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
 
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    allTeachings.forEach(t => t.tags.forEach(tag => tags.add(tag)));
-    return Array.from(tags);
-  }, [allTeachings]);
+  const { data: postsData, isLoading: postsLoading } = useBlogPosts({
+    page,
+    limit: POSTS_PER_PAGE,
+    categoryId: activeCategoryId ?? undefined,
+  });
+  const { data: categoriesData } = useBlogCategories();
 
-  const filtered = useMemo(() => {
-    return allTeachings.filter(teaching => {
-      const q = search.toLowerCase();
-      const matchesSearch = !search || teaching.title.toLowerCase().includes(q) || teaching.excerpt.toLowerCase().includes(q);
-      const matchesTag = !activeTag || teaching.tags.includes(activeTag);
-      return matchesSearch && matchesTag;
-    });
-  }, [allTeachings, search, activeTag]);
+  const wixPosts = postsData?.posts ?? [];
+  const totalCount = postsData?.totalCount ?? 0;
+  const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
+  const wixCategories = categoriesData?.categories ?? [];
+  const hasWixData = wixPosts.length > 0;
+
+  // Filter static data for search (fallback)
+  const filteredStatic = staticData.filter(teaching => {
+    const q = search.toLowerCase();
+    return !search || teaching.title.toLowerCase().includes(q) || teaching.excerpt.toLowerCase().includes(q);
+  });
 
   return (
     <Layout lang={lang}>
@@ -54,34 +67,57 @@ const TeachingsPage = () => {
             />
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-8">
-            <button
-              onClick={() => setActiveTag(null)}
-              className={`text-sm px-3 py-1 rounded-full border transition-colors ${!activeTag ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-accent'
-                }`}
-            >
-              {t.common.allCategories}
-            </button>
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                onClick={() => setActiveTag(tag === activeTag ? null : tag)}
-                className={`text-sm px-3 py-1 rounded-full border transition-colors ${activeTag === tag ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-accent'
-                  }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+          {/* Wix Categories */}
+          {wixCategories.length > 0 && (
+            <CategoryFilter
+              categories={wixCategories as unknown as Record<string, unknown>[]}
+              activeCategoryId={activeCategoryId}
+              onSelect={(id) => { setActiveCategoryId(id); setPage(1); }}
+              allLabel={t.common.allCategories}
+            />
+          )}
 
-          {filtered.length > 0 ? (
+          {/* Loading state */}
+          {postsLoading && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map(teaching => (
-                <TeachingCard key={teaching.slug} teaching={teaching} lang={lang} />
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-card border rounded-lg overflow-hidden">
+                  <Skeleton className="aspect-video w-full" />
+                  <div className="p-5 space-y-3">
+                    <Skeleton className="h-5 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                </div>
               ))}
             </div>
-          ) : (
-            <p className="text-center text-muted-foreground py-12">{t.teachings.noResults}</p>
+          )}
+
+          {/* Wix blog posts */}
+          {!postsLoading && hasWixData && (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {wixPosts.map((post) => (
+                  <PostCard key={(post as Record<string, unknown>)._id as string} post={post as Record<string, unknown>} lang={lang} />
+                ))}
+              </div>
+              <BlogPagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+            </>
+          )}
+
+          {/* Fallback: static teachings if no Wix data */}
+          {!postsLoading && !hasWixData && (
+            <>
+              {filteredStatic.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredStatic.map(teaching => (
+                    <TeachingCard key={teaching.slug} teaching={teaching} lang={lang} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-muted-foreground py-12">{t.teachings.noResults}</p>
+              )}
+            </>
           )}
         </div>
       </section>
