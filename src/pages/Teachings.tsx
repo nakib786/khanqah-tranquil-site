@@ -70,7 +70,7 @@ const TeachingsPage = () => {
           {/* Wix Categories */}
           {wixCategories.length > 0 && (
             <CategoryFilter
-              categories={wixCategories}
+              categories={wixCategories as unknown as Record<string, unknown>[]}
               activeCategoryId={activeCategoryId}
               onSelect={(id) => { setActiveCategoryId(id); setPage(1); }}
               allLabel={t.common.allCategories}
