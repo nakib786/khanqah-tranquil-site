@@ -1,32 +1,37 @@
 import { useQuery } from "@tanstack/react-query";
-import { items as dataItems } from "@wix/data";
 import { wixClient } from "@/lib/wixClient";
 
 interface UseEventsParams {
   upcomingOnly?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const dataItems = () => (wixClient as any).items;
+
 export function useEvents({ upcomingOnly = false }: UseEventsParams = {}) {
   return useQuery({
     queryKey: ["wix-events", upcomingOnly],
     queryFn: async () => {
       try {
-        const result = await (wixClient.items as typeof dataItems).queryDataItems({
-          dataCollectionId: "Events",
-        }).find();
+        const api = dataItems();
+        // Try new API (query) first, fall back to queryDataItems
+        const queryFn = api.query ?? api.queryDataItems;
+        const builder = typeof queryFn === "function"
+          ? queryFn.call(api, "Events")
+          : null;
 
-        let events = (result.items ?? []).map((item) => item.data ?? item);
+        if (!builder) {
+          console.error("Wix Data items API not available");
+          return { events: [] };
+        }
+
+        const result = await builder.descending("eventDate").find();
+        let events = (result.items ?? []).map((item: Record<string, unknown>) => (item as any).data ?? item);
 
         if (upcomingOnly) {
           const now = new Date().toISOString();
-          events = events.filter((e) => e.eventDate && e.eventDate >= now);
+          events = events.filter((e: Record<string, unknown>) => e.eventDate && (e.eventDate as string) >= now);
         }
-
-        events.sort((a, b) => {
-          const da = a.eventDate ?? "";
-          const db = b.eventDate ?? "";
-          return db.localeCompare(da);
-        });
 
         return { events };
       } catch (error) {
