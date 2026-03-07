@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Activities from "./pages/Activities";
+import EventDetailPage from "./pages/EventDetailPage";
 import TeachingsPage from "./pages/Teachings";
 import TeachingDetail from "./pages/TeachingDetail";
 import GalleryPage from "./pages/Gallery";
