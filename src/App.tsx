@@ -63,6 +63,14 @@ const App = () => (
             }
           />
           <Route
+            path="/:lang/activities/:slug"
+            element={
+              <LangGuard>
+                <EventDetailPage />
+              </LangGuard>
+            }
+          />
+          <Route
             path="/:lang/teachings"
             element={
               <LangGuard>
