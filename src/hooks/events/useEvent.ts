@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { items as dataItems } from "@wix/data";
 import { wixClient } from "@/lib/wixClient";
 
 export function useEvent(slug: string | undefined) {
@@ -7,7 +8,7 @@ export function useEvent(slug: string | undefined) {
     queryFn: async () => {
       if (!slug) return { event: null };
       try {
-        const result = await wixClient.items
+        const result = await (wixClient.items as typeof dataItems)
           .queryDataItems({ dataCollectionId: "Events" })
           .eq("slug", slug)
           .limit(1)

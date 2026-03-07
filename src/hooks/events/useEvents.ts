@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { items as dataItems } from "@wix/data";
 import { wixClient } from "@/lib/wixClient";
 
 interface UseEventsParams {
@@ -10,19 +11,23 @@ export function useEvents({ upcomingOnly = false }: UseEventsParams = {}) {
     queryKey: ["wix-events", upcomingOnly],
     queryFn: async () => {
       try {
-        let query = wixClient.items.queryDataItems({
+        const result = await (wixClient.items as typeof dataItems).queryDataItems({
           dataCollectionId: "Events",
-        });
+        }).find();
+
+        let events = (result.items ?? []).map((item) => item.data ?? item);
 
         if (upcomingOnly) {
-          query = query.ge("eventDate", new Date().toISOString());
+          const now = new Date().toISOString();
+          events = events.filter((e) => e.eventDate && e.eventDate >= now);
         }
 
-        const result = await query
-          .descending("eventDate")
-          .find();
+        events.sort((a, b) => {
+          const da = a.eventDate ?? "";
+          const db = b.eventDate ?? "";
+          return db.localeCompare(da);
+        });
 
-        const events = (result.items ?? []).map((item) => item.data ?? item);
         return { events };
       } catch (error) {
         console.error("Failed to fetch events:", error);

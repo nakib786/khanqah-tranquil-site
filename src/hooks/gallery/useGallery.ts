@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { items as dataItems } from "@wix/data";
 import { wixClient } from "@/lib/wixClient";
 import { resolveWixImageUrl } from "@/lib/wixMedia";
 
@@ -20,7 +21,7 @@ export function useGallery({ category }: UseGalleryParams = {}) {
     queryKey: ["wix-gallery", category],
     queryFn: async () => {
       try {
-        let query = wixClient.items.queryDataItems({
+        let query = (wixClient.items as typeof dataItems).queryDataItems({
           dataCollectionId: "Gallery",
         });
 
