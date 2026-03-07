@@ -54,7 +54,7 @@ const TeachingDetail = () => {
     const excerpt = (wixPost.excerpt as string) ?? '';
     const coverImage = wixPost.coverImage as Record<string, unknown> | undefined;
     const imageUrl = resolveWixImageUrl(coverImage?.url as string);
-    const richContent = (wixPost.richContent as string) ?? (wixPost.plainContent as string) ?? '';
+    const contentData = wixPost.richContent ?? wixPost.content ?? wixPost.plainContent ?? '';
     const publishedDate = wixPost.lastPublishedDate
       ? new Date(wixPost.lastPublishedDate as string).toLocaleDateString()
       : '';
@@ -102,8 +102,11 @@ const TeachingDetail = () => {
                 <img src={imageUrl} alt={title} className="w-full rounded-lg mb-8" loading="lazy" />
               )}
 
+              {/* Debug info - hidden by default unless you check the DOM */}
+              <div id="debug-wix-post" className="hidden" data-keys={JSON.stringify(Object.keys(wixPost || {}))}></div>
+
               <div className="mb-16">
-                <PostContent htmlContent={richContent} />
+                <PostContent htmlContent={contentData} />
               </div>
             </motion.div>
 

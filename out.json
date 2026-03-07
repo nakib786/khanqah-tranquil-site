@@ -1,0 +1,37 @@
+[dotenv@17.3.1] injecting env (3) from .env -- tip: ≡ƒöÉ encrypt with Dotenvx: https://dotenvx.com
+{
+  "nodes": [
+    {
+      "type": "PARAGRAPH",
+      "id": "",
+      "nodes": [
+        {
+          "type": "TEXT",
+          "id": "",
+          "nodes": [],
+          "textData": {
+            "text": "Patience (sabr) is described as half of faith. In a world characterized by haste and immediate gratification, cultivating patience is a profound spiritual discipline. It is not merely passive endurance, but an active trust in the Divine timing and wisdom.",
+            "decorations": []
+          }
+        }
+      ],
+      "paragraphData": {}
+    },
+    {
+      "type": "PARAGRAPH",
+      "id": "",
+      "nodes": [
+        {
+          "type": "TEXT",
+          "id": "",
+          "nodes": [],
+          "textData": {
+            "text": "Through patience, the heart develops resilience. Difficulties are no longer seen as punishments, but as opportunities for spiritual growth and refinement. True grace is found when one can maintain inner tranquility amidst life's storms.",
+            "decorations": []
+          }
+        }
+      ],
+      "paragraphData": {}
+    }
+  ]
+}

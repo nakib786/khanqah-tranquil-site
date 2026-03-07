@@ -7,12 +7,11 @@ export function useBlogPost(slug: string | undefined) {
     queryFn: async () => {
       if (!slug) return { post: null };
       try {
-        const result = await wixClient.posts.queryPosts()
-          .eq("slug", slug)
-          .limit(1)
-          .find();
+        const result = await (wixClient.posts as any).getPostBySlug(slug, {
+          fieldsets: ["RICH_CONTENT", "CONTENT"],
+        });
 
-        return { post: result.items?.[0] ?? null };
+        return { post: result.post ?? null };
       } catch (error) {
         console.error("Failed to fetch blog post:", error);
         return { post: null };
