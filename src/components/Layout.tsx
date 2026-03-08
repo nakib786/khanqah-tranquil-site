@@ -68,7 +68,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
       </motion.div>
 
       {/* Floating tubelight header */}
-      <header className="fixed top-4 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
+      <header className="fixed top-12 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
         <div className="relative bg-background/80 backdrop-blur-xl border border-gold/30 rounded-2xl shadow-[0_4px_30px_-4px_hsl(var(--gold)/0.25),0_0_80px_-20px_hsl(var(--gold)/0.15)] px-4 md:px-6 h-16 flex items-center justify-between">
           {/* Tubelight glow effect - top edge */}
           <div className="absolute -top-px inset-x-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
