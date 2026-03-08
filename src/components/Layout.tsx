@@ -7,6 +7,7 @@ import BackgroundMusic from './BackgroundMusic';
 import { Facebook, Instagram, Menu, X, ChevronUp, Globe, Mail, Phone } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import logoImg from '@/assets/logo.png';
+import AnnouncementMarquee from './AnnouncementMarquee';
 
 interface LayoutProps {
   lang: Language;
