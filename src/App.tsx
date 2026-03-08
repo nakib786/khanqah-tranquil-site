@@ -17,6 +17,7 @@ import Iraadat from "./pages/Iraadat";
 import AdminSetup from "./pages/AdminSetup";
 import NotFound from "./pages/NotFound";
 import BackgroundMusic from "./components/BackgroundMusic";
+import WelcomeLightbox from "./components/WelcomeLightbox";
 import { isValidLang } from "@/lib/i18n";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <WelcomeLightbox />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route
