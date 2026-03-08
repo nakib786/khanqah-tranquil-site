@@ -1,12 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { translations } from '@/data/translations';
-import { teachings } from '@/data/content';
 import { getLang } from '@/lib/i18n';
 import { getLocalizedSchedule, getNextPrayer, getIslamicDate, getIslamicDateArabic, getIslamicDateFromAladhan, DEFAULT_ISLAMIC_OFFSET } from '@/lib/prayer-times';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
-import TeachingCard from '@/components/TeachingCard';
+import PostCard from '@/components/blog/PostCard';
+import { useBlogPosts } from '@/hooks/blog/useBlogPosts';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
 import { Clock, MapPin, Timer } from 'lucide-react';
@@ -14,6 +14,7 @@ import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
 import abrarImg from '@/assets/abrar.webp';
 import nakibImg from '@/assets/nakibBawa.jpg';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
 const formatCountdown = (diff: number) => {
