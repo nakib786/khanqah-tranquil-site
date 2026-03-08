@@ -365,7 +365,7 @@ const Contact = () => {
                             <input
                               type="text"
                               value={form.countryCode}
-                              onChange={e => setForm({ ...form, countryCode: e.target.value })}
+                              onChange={e => setForm(prev => ({ ...prev, countryCode: e.target.value.replace(/\D/g, '') ? `+${e.target.value.replace(/\D/g, '')}` : '+' }))}
                               className="w-[60px] bg-background px-1 py-2.5 text-xs focus:outline-none text-center font-bold"
                               placeholder="+X"
                             />
