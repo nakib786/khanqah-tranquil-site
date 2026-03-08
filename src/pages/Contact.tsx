@@ -53,6 +53,8 @@ const Contact = () => {
   });
 
   const [touched, setTouched] = useState({ email: false });
+  const [submitted, setSubmitted] = useState(false);
+  const formTopRef = useRef<HTMLDivElement>(null);
   const [countries, setCountries] = useState<Country[]>([defaultCountry]);
   const [loadingCountries, setLoadingCountries] = useState(false);
   const [showCountrySelector, setShowCountrySelector] = useState(false);
@@ -212,7 +214,7 @@ const Contact = () => {
       });
 
       if (result.success) {
-        toast({ title: t.contact.successTitle, description: t.contact.successMessage });
+        setSubmitted(true);
         setForm({
           name: '',
           email: '',
@@ -223,6 +225,10 @@ const Contact = () => {
           message: ''
         });
         setTouched({ email: false });
+        // Scroll to top of form to show success message
+        setTimeout(() => {
+          formTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
       } else {
         console.error("Wix form error:", result.error);
         toast({
@@ -287,13 +293,30 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               className="lg:col-span-2"
             >
-              <div className="bg-card border rounded-2xl p-4 sm:p-8 shadow-sm">
+              <div ref={formTopRef} className="bg-card border rounded-2xl p-4 sm:p-8 shadow-sm">
+                <AnimatePresence>
+                  {submitted && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="mb-6 p-4 rounded-xl bg-primary/10 border border-primary/30 flex items-center gap-3"
+                    >
+                      <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
+                      <div>
+                        <p className="font-semibold text-primary">{t.contact.successTitle}</p>
+                        <p className="text-sm text-muted-foreground">{t.contact.successMessage}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <h2 className="text-lg md:text-2xl font-bold mb-6 flex items-center gap-2">
                   <Mail className="w-5 h-5 text-primary" />
                   {t.common.formTitle}
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" onChange={() => submitted && setSubmitted(false)}>
                   <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Name */}
                     <div className="space-y-1.5 min-w-0">
