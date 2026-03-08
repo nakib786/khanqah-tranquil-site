@@ -169,7 +169,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-primary text-primary-foreground border-t border-primary-foreground/10 islamic-pattern" role="contentinfo">
+      <footer className="bg-primary dark:bg-[hsl(150,15%,7%)] text-primary-foreground border-t border-primary-foreground/10 islamic-pattern" role="contentinfo">
         <div className="container mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-bold text-gold mb-2 flex items-center gap-2">
