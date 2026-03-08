@@ -55,7 +55,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
           </div>
         </motion.div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2 leading-tight hero-title-fancy">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(42,30%,96%)] mb-2 leading-tight hero-title-fancy">
           {t.hero.title}
         </h1>
         <p className="text-lg md:text-2xl text-gold font-semibold mb-3 tracking-wide">
@@ -64,19 +64,19 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
             MEHFUZ BAUGH
           </span>
         </p>
-        <p className="text-base md:text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-[hsl(42,30%,96%)]/80 mb-8 max-w-2xl mx-auto">
           {t.hero.subtitle}
         </p>
         <div className="flex flex-row gap-3 items-center justify-center">
           <Link
             to={`/${lang}/iraadat`}
-            className="inline-flex items-center justify-center px-5 py-2.5 text-sm bg-gold text-primary-foreground rounded-lg font-bold hover:opacity-90 transition-all shadow-[0_0_20px_hsl(var(--gold)/0.4)] hover:shadow-[0_0_30px_hsl(var(--gold)/0.6)] ring-1 ring-gold-light/30 animate-pulse-slow">
+            className="inline-flex items-center justify-center px-5 py-2.5 text-sm bg-gold text-[hsl(42,30%,96%)] rounded-lg font-bold hover:opacity-90 transition-all shadow-[0_0_20px_hsl(var(--gold)/0.4)] hover:shadow-[0_0_30px_hsl(var(--gold)/0.6)] ring-1 ring-gold-light/30 animate-pulse-slow">
 
             ✦ {t.hero.cta1}
           </Link>
           <Link
             to={`/${lang}/teachings`}
-            className="inline-flex items-center justify-center px-4 py-2 text-sm border-2 border-gold/50 text-primary-foreground rounded-lg font-medium hover:bg-gold/20 transition-colors">
+            className="inline-flex items-center justify-center px-4 py-2 text-sm border-2 border-gold/50 text-[hsl(42,30%,96%)] rounded-lg font-medium hover:bg-gold/20 transition-colors">
 
             {t.hero.cta2}
           </Link>
