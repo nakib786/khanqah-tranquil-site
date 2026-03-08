@@ -5,23 +5,24 @@ import { albums } from '@/data/content';
 import { getLang } from '@/lib/i18n';
 import Layout from '@/components/Layout';
 import GalleryModal from '@/components/GalleryModal';
-import GalleryGrid, { type MediaItem } from '@/components/gallery/GalleryGrid';
+import GallerySlideshow from '@/components/gallery/GallerySlideshow';
 import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import { useGallery } from '@/hooks/gallery/useGallery';
 import { useVideos } from '@/hooks/gallery/useVideos';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ArrowLeft, FolderOpen, Image, Video } from 'lucide-react';
+import { ArrowLeft, Image, Video } from 'lucide-react';
+import type { MediaItem } from '@/components/gallery/GalleryGrid';
 
 const albumGradients = [
   ['158 30% 75%', '158 40% 55%'],
   ['38 35% 78%', '38 45% 58%'],
   ['200 25% 75%', '200 35% 55%'],
   ['280 20% 78%', '280 30% 60%'],
-  ['20 30% 78%', '20 40% 58%'],
-  ['340 25% 75%', '340 35% 55%'],
 ];
+
+type FolderType = 'photos' | 'videos';
 
 const GalleryPage = () => {
   const { lang: langParam } = useParams<{ lang: string }>();
@@ -31,7 +32,7 @@ const GalleryPage = () => {
 
   const [openAlbum, setOpenAlbum] = useState<number | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const [selectedFolder, setSelectedFolder] = useState<FolderType | null>(null);
 
   const { data: galleryData, isLoading: loadingPhotos } = useGallery();
   const { data: videosData, isLoading: loadingVideos } = useVideos();
@@ -41,41 +42,40 @@ const GalleryPage = () => {
   const isLoading = loadingPhotos || loadingVideos;
   const hasWixData = allPhotos.length > 0 || allVideos.length > 0;
 
-  // Build event-based folders
+  const photoItems: MediaItem[] = useMemo(
+    () => allPhotos.map(p => ({ ...p, type: 'photo' as const })),
+    [allPhotos]
+  );
+
+  const videoItems: MediaItem[] = useMemo(
+    () => allVideos.map(v => ({ ...v, type: 'video' as const })),
+    [allVideos]
+  );
+
+  const currentMedia = selectedFolder === 'photos' ? photoItems : selectedFolder === 'videos' ? videoItems : [];
+
   const folders = useMemo(() => {
-    const map = new Map<string, { photos: typeof allPhotos; videos: typeof allVideos }>();
-
-    allPhotos.forEach((img) => {
-      const cat = img.category || 'General';
-      if (!map.has(cat)) map.set(cat, { photos: [], videos: [] });
-      map.get(cat)!.photos.push(img);
-    });
-
-    allVideos.forEach((vid) => {
-      const cat = vid.category || 'General';
-      if (!map.has(cat)) map.set(cat, { photos: [], videos: [] });
-      map.get(cat)!.videos.push(vid);
-    });
-
-    return Array.from(map.entries()).map(([name, data]) => ({
-      name,
-      photoCount: data.photos.length,
-      videoCount: data.videos.length,
-      totalCount: data.photos.length + data.videos.length,
-      photos: data.photos,
-      videos: data.videos,
-    }));
-  }, [allPhotos, allVideos]);
-
-  // Media items for the selected folder
-  const currentMedia: MediaItem[] = useMemo(() => {
-    if (!selectedFolder) return [];
-    const folder = folders.find(f => f.name === selectedFolder);
-    if (!folder) return [];
-    const photos: MediaItem[] = folder.photos.map(p => ({ ...p, type: 'photo' as const }));
-    const videos: MediaItem[] = folder.videos.map(v => ({ ...v, type: 'video' as const }));
-    return [...photos, ...videos];
-  }, [selectedFolder, folders]);
+    const list: { key: FolderType; label: string; count: number; cover?: string; icon: typeof Image }[] = [];
+    if (allPhotos.length > 0) {
+      list.push({
+        key: 'photos',
+        label: t.gallery.photos,
+        count: allPhotos.length,
+        cover: allPhotos[0]?.imageUrl,
+        icon: Image,
+      });
+    }
+    if (allVideos.length > 0) {
+      list.push({
+        key: 'videos',
+        label: t.gallery.videos,
+        count: allVideos.length,
+        cover: allVideos[0]?.thumbnailUrl,
+        icon: Video,
+      });
+    }
+    return list;
+  }, [allPhotos, allVideos, t]);
 
   return (
     <Layout lang={lang}>
@@ -88,63 +88,57 @@ const GalleryPage = () => {
 
           {/* Loading */}
           {isLoading && (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, i) => (
+            <div className="grid grid-cols-2 gap-6">
+              {Array.from({ length: 2 }).map((_, i) => (
                 <Skeleton key={i} className="aspect-[4/3] rounded-lg" />
               ))}
             </div>
           )}
 
-          {/* Wix-powered folder view */}
+          {/* Folder view */}
           {!isLoading && hasWixData && !selectedFolder && (
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {folders.map((folder, i) => {
                 const gradIdx = i % albumGradients.length;
-                const coverPhoto = folder.photos[0];
+                const Icon = folder.icon;
                 return (
                   <motion.button
-                    key={folder.name}
+                    key={folder.key}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
-                    onClick={() => setSelectedFolder(folder.name)}
+                    onClick={() => setSelectedFolder(folder.key)}
                     className="text-start group"
                   >
                     <div
                       className="aspect-[4/3] rounded-lg overflow-hidden mb-3 relative"
                       style={
-                        coverPhoto
+                        folder.cover
                           ? undefined
                           : { background: `linear-gradient(135deg, hsl(${albumGradients[gradIdx]?.[0]}), hsl(${albumGradients[gradIdx]?.[1]}))` }
                       }
                     >
-                      {coverPhoto ? (
+                      {folder.cover ? (
                         <img
-                          src={coverPhoto.imageUrl}
-                          alt={folder.name}
+                          src={folder.cover}
+                          alt={folder.label}
                           loading="lazy"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <FolderOpen className="w-12 h-12 text-primary-foreground/40" />
+                        <div
+                          className="w-full h-full flex items-center justify-center"
+                          style={{ background: `linear-gradient(135deg, hsl(${albumGradients[gradIdx]?.[0]}), hsl(${albumGradients[gradIdx]?.[1]}))` }}
+                        >
+                          <Icon className="w-12 h-12 text-primary-foreground/40" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                       <div className="absolute bottom-3 start-3 end-3">
-                        <h3 className="text-white font-semibold text-lg truncate">{folder.name}</h3>
-                        <div className="flex items-center gap-3 text-white/70 text-xs mt-1">
-                          {folder.photoCount > 0 && (
-                            <span className="flex items-center gap-1">
-                              <Image className="w-3 h-3" /> {folder.photoCount} {t.gallery.photos}
-                            </span>
-                          )}
-                          {folder.videoCount > 0 && (
-                            <span className="flex items-center gap-1">
-                              <Video className="w-3 h-3" /> {folder.videoCount} {t.gallery.videos}
-                            </span>
-                          )}
+                        <h3 className="text-white font-semibold text-lg capitalize">{folder.label}</h3>
+                        <div className="flex items-center gap-2 text-white/70 text-xs mt-1">
+                          <Icon className="w-3 h-3" /> {folder.count}
                         </div>
                       </div>
                     </div>
@@ -154,7 +148,7 @@ const GalleryPage = () => {
             </div>
           )}
 
-          {/* Inside a folder */}
+          {/* Inside a folder — slideshow */}
           {!isLoading && hasWixData && selectedFolder && (
             <>
               <button
@@ -163,12 +157,14 @@ const GalleryPage = () => {
               >
                 <ArrowLeft className="w-4 h-4" /> {t.gallery.backToAlbums}
               </button>
-              <h2 className="text-2xl font-semibold mb-6">{selectedFolder}</h2>
+              <h2 className="text-2xl font-semibold mb-6 capitalize">
+                {selectedFolder === 'photos' ? t.gallery.photos : t.gallery.videos}
+              </h2>
 
               {currentMedia.length === 0 ? (
                 <p className="text-muted-foreground">{t.gallery.noMedia}</p>
               ) : (
-                <GalleryGrid items={currentMedia} onItemClick={setLightboxIndex} />
+                <GallerySlideshow items={currentMedia} onOpenLightbox={setLightboxIndex} />
               )}
 
               {lightboxIndex !== null && (
@@ -181,8 +177,8 @@ const GalleryPage = () => {
             </>
           )}
 
-          {/* Empty state */}
-          {!isLoading && !hasWixData && folders.length === 0 && (
+          {/* Empty / fallback */}
+          {!isLoading && !hasWixData && (
             <div className="grid md:grid-cols-3 gap-6">
               {albumsData.map((album, i) => (
                 <motion.button
@@ -196,7 +192,7 @@ const GalleryPage = () => {
                 >
                   <div
                     className="aspect-[4/3] rounded-lg overflow-hidden mb-3 flex items-center justify-center"
-                    style={{ background: `linear-gradient(135deg, hsl(${albumGradients[i]?.[0]}), hsl(${albumGradients[i]?.[1]}))` }}
+                    style={{ background: `linear-gradient(135deg, hsl(${albumGradients[i % albumGradients.length]?.[0]}), hsl(${albumGradients[i % albumGradients.length]?.[1]}))` }}
                   >
                     <span className="text-primary-foreground/40 text-sm">{album.imageCount} {t.gallery.photos}</span>
                   </div>
