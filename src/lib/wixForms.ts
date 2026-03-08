@@ -21,6 +21,7 @@ export async function submitContactForm(formData: ContactFormData): Promise<{ su
       submission: {
         formId: WIX_FORM_ID,
         submissions: {
+          full_name: formData.name,
           email_6626: formData.email,
           phone_81eb: fullPhone,
           subject: formData.subject,
