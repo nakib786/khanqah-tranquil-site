@@ -98,14 +98,17 @@ const Layout = ({ lang, children }: LayoutProps) => {
             <LanguageSwitcher lang={lang} />
             <AnimatedThemeToggler />
           </nav>
-          <button
-            className="lg:hidden p-2 text-foreground/70 hover:text-gold"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          <div className="lg:hidden flex items-center gap-1">
+            <AnimatedThemeToggler />
+            <button
+              className="p-2 text-foreground/70 hover:text-gold"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
         <AnimatePresence>
           {mobileMenuOpen && (
