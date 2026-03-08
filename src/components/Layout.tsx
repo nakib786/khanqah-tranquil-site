@@ -7,6 +7,7 @@ import BackgroundMusic from './BackgroundMusic';
 import { Facebook, Instagram, Menu, X, ChevronUp, Globe, Mail, Phone } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import logoImg from '@/assets/logo.png';
+import AnnouncementMarquee from './AnnouncementMarquee';
 
 interface LayoutProps {
   lang: Language;
@@ -49,9 +50,11 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
   return (
     <div dir={config.dir} className={`${fontClass} min-h-screen flex flex-col`}>
+      <AnnouncementMarquee lang={lang} />
+
       {/* Premium scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 z-[60] h-[3px]"
+        className="fixed top-8 left-0 right-0 z-[60] h-[3px]"
         style={{ background: 'transparent' }}
       >
         <motion.div
@@ -65,7 +68,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
       </motion.div>
 
       {/* Floating tubelight header */}
-      <header className="fixed top-4 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
+      <header className="fixed top-12 inset-x-4 z-50 mx-auto max-w-6xl" role="banner">
         <div className="relative bg-background/80 backdrop-blur-xl border border-gold/30 rounded-2xl shadow-[0_4px_30px_-4px_hsl(var(--gold)/0.25),0_0_80px_-20px_hsl(var(--gold)/0.15)] px-4 md:px-6 h-16 flex items-center justify-between">
           {/* Tubelight glow effect - top edge */}
           <div className="absolute -top-px inset-x-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
