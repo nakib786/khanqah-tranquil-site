@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 const WIX_FORM_ID = "ca7faeb4-1689-4856-b1a2-5d7af85a6ca7";
-const SUBMISSIONS_URL = "https://www.wixapis.com/wix-forms/v4/submissions";
+const SUBMISSIONS_URL = "https://www.wixapis.com/form-submission/v4/submissions";
 
 interface ContactFormData {
   name: string;
