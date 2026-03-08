@@ -1,28 +1,40 @@
 # Al Mehfuz - Khanqah-e-Qadriya Shattariyah
 
-## About
-Al Mehfuz is a sanctuary of peace, remembrance (Dhikr), and spiritual learning rooted in the blessed Qadriya Shattariyah tradition. Established in Chikhli, Gujarat, India, it serves as a center for spiritual cultivation and the transmission of sacred knowledge.
+> Al Mehfuz is a sanctuary of peace, remembrance (Dhikr), and spiritual learning rooted in the blessed Qadriya Shattariyah tradition. Located in Chikhli, Gujarat, India.
+
+## Website
+- URL: https://almehfuz.org
+- Languages: English, Urdu (اردو), Arabic (العربية), Hindi (हिन्दी)
+- Full context: https://almehfuz.org/llms-full.txt
 
 ## Leadership
-- **Sajjada Nashin:** Hazrat Syed Abrar Ahmed
-- **Naib Sajjada Nashin:** Hazrat Syed Nakib Muzafar Ali
+- Sajjada Nashin: Hazrat Syed Abrar Ahmed
+- Naib Sajjada Nashin: Hazrat Syed Nakib Muzafar Ali
+
+## Pages
+- [Home](https://almehfuz.org/en): Main landing page with prayer times, purpose, teachings, and visit info
+- [About](https://almehfuz.org/en/about): History, mission, values, and spiritual lineage (Silsila)
+- [Activities](https://almehfuz.org/en/activities): Daily prayer schedule, weekly gatherings, upcoming events, visitor etiquette
+- [Teachings](https://almehfuz.org/en/teachings): Blog posts and spiritual teachings from the Qadri and Shattari traditions
+- [Gallery](https://almehfuz.org/en/gallery): Photos and videos from gatherings and events
+- [Contact](https://almehfuz.org/en/contact): Contact form, address, phone, email, visiting hours, Google Maps
+- [Iraadat](https://almehfuz.org/en/iraadat): Benefits of joining the Qadriya Shattariyah Silsila
 
 ## Core Values
-- **Sincerity (Ikhlas):** Pure intention in all actions and worship.
-- **Respect (Adab):** Proper etiquette toward the Divine, teachers, and fellow seekers.
-- **Love for the Prophet ﷺ:** Central to all spiritual practice.
-- **Service (Khidmaat):** Dedicated to serving all people regardless of background.
-- **Tradition:** Preservation of an unbroken chain of spiritual masters (Silsila).
+- Sincerity (Ikhlas): Pure intention in all actions and worship
+- Respect (Adab): Proper etiquette toward the Divine, teachers, and fellow seekers
+- Love for the Prophet ﷺ: Central to all spiritual practice
+- Service (Khidmaat): Dedicated to serving all people regardless of background
+- Tradition: Preservation of an unbroken chain of spiritual masters (Silsila)
 
 ## Key Concepts
-- **Iraadat:** Spiritual devotion to a guide, receiving a structured path toward divine closeness.
-- **Qadriya Shattariyah Silsila:** The specific spiritual lineage and path of practices.
-- **Dhikr:** Communal and individual remembrance of Allah.
+- Iraadat: Spiritual devotion to a guide, receiving a structured path toward divine closeness
+- Qadriya Shattariyah Silsila: The specific spiritual lineage and path of practices
+- Dhikr: Communal and individual remembrance of Allah
+- Khanqah: A place of spiritual retreat and learning
 
-## Visit Information
-- **Location:** Khankah Sharif, Mehfuz Baugh, Thala, Chikhli, Gujarat 396521, India.
-- **Timings:** Open daily from Fajr to Isha.
-
-## Contact
-- **Email:** info@almehfuz.org
-- **Website:** https://almehfuz.org
+## Contact Information
+- Address: Khankah Sharif, Mehfuz Baugh, Thala, Chikhli, Gujarat 396521, India
+- Email: info@almehfuz.org
+- Phone: +91 81289 27862
+- Timings: Open daily from Fajr to Isha
