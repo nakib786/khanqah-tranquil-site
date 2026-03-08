@@ -35,7 +35,7 @@ export function useGallery({ category }: UseGalleryParams = {}) {
           builder = builder.eq("category", category);
         }
 
-        const result = await builder.ascending("_createdDate").find();
+        const result = await builder.find();
 
         const images: GalleryImage[] = (result.items ?? []).map((item: Record<string, unknown>) => {
           const d = (item as any).data ?? item;
