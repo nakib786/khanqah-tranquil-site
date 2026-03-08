@@ -73,11 +73,78 @@ const About = () => {
             ))}
           </div>
 
-          <div className="bg-accent rounded-lg p-8 text-center">
-            <div className="w-full h-48 bg-muted rounded-md flex items-center justify-center text-muted-foreground text-sm">
-              {t.about.imageAlt}
+          {/* Decorative Closing Section */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative bg-primary rounded-2xl p-12 text-center overflow-hidden"
+          >
+            {/* Animated Islamic pattern overlay */}
+            <div className="absolute inset-0 islamic-pattern opacity-20" />
+
+            {/* Animated light rays */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute top-1/2 left-1/2 w-[1px]"
+                  style={{
+                    height: '140%',
+                    background: `linear-gradient(to top, transparent, hsl(var(--gold) / ${0.06 + i * 0.015}))`,
+                    rotate: `${i * 45}deg`,
+                    transformOrigin: 'bottom center',
+                  }}
+                  animate={{ opacity: [0.2, 0.6, 0.2], scaleY: [0.85, 1.1, 0.85] }}
+                  transition={{ duration: 5 + i * 0.6, repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
+                />
+              ))}
             </div>
-          </div>
+
+            {/* Floating particles */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(12)].map((_, i) => (
+                <motion.div
+                  key={`p-${i}`}
+                  className="absolute w-1 h-1 rounded-full bg-gold/30"
+                  style={{ left: `${10 + Math.random() * 80}%`, top: `${10 + Math.random() * 80}%` }}
+                  animate={{ y: [0, -20, 0], opacity: [0, 0.7, 0] }}
+                  transition={{ duration: 3 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3, ease: 'easeInOut' }}
+                />
+              ))}
+            </div>
+
+            <div className="relative z-10 space-y-4">
+              {/* Animated crescent */}
+              <motion.div
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="text-gold text-5xl mb-2"
+              >
+                ☪
+              </motion.div>
+
+              <div className="flex items-center justify-center gap-3">
+                <motion.span
+                  animate={{ scaleX: [0.6, 1, 0.6] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-16 h-px bg-gradient-to-r from-transparent to-gold/60"
+                />
+                <span className="text-gold text-sm tracking-[0.3em] font-medium uppercase">
+                  {lang === 'ur' ? 'بسم اللہ الرحمن الرحیم' : lang === 'ar' ? 'بسم الله الرحمن الرحيم' : 'Bismillahir Rahmanir Raheem'}
+                </span>
+                <motion.span
+                  animate={{ scaleX: [0.6, 1, 0.6] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                  className="w-16 h-px bg-gradient-to-l from-transparent to-gold/60"
+                />
+              </div>
+
+              <p className="text-primary-foreground/70 text-sm max-w-md mx-auto italic leading-relaxed">
+                {t.hero.sajjadaNashinDesc}
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
     </Layout>
