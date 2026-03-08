@@ -46,7 +46,7 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    countryCode: '+880',
+    countryCode: '+91',
     subject: '',
     inquiryType: defaultInquiryType,
     message: ''
