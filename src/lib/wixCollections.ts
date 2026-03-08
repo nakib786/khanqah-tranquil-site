@@ -35,7 +35,7 @@ export async function createCollection(def: CollectionDef): Promise<{ success: b
   try {
     const payload = {
       collection: {
-        _id: def._id,
+        id: def._id,
         displayName: def.displayName,
         fields: def.fields.map((f) => ({
           key: f.key,
