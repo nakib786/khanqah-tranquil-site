@@ -25,7 +25,7 @@ const AnnouncementMarquee = ({ lang }: AnnouncementMarqueeProps) => {
         {/* Green background */}
         <div className="absolute inset-[1px] rounded-b-lg bg-primary" />
         {/* Content */}
-        <div className="relative h-full flex items-center overflow-hidden">
+        <div className="relative z-10 h-full flex items-center overflow-hidden">
           <div className="animate-marquee whitespace-nowrap flex items-center gap-8 min-w-full text-primary-foreground">
             {[...Array(3)].flatMap((_, repeat) =>
               messages.map((ann) => {
