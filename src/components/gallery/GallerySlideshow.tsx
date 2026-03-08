@@ -1,10 +1,23 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Pause, Play, Maximize2 } from 'lucide-react';
 import type { MediaItem } from './GalleryGrid';
 
 interface GallerySlideshowProps {
   items: MediaItem[];
   onOpenLightbox: (index: number) => void;
+}
+
+/** Extract originWidth/originHeight from wix image URI hash */
+function getOrientation(item: MediaItem): 'portrait' | 'landscape' {
+  if (item.type === 'photo') {
+    const match = item.imageUrl?.match(/originWidth=(\d+)&originHeight=(\d+)/);
+    if (match) {
+      const w = parseInt(match[1], 10);
+      const h = parseInt(match[2], 10);
+      if (h > w) return 'portrait';
+    }
+  }
+  return 'landscape';
 }
 
 const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
@@ -16,23 +29,27 @@ const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
 
   useEffect(() => {
     if (!playing || items.length <= 1) return;
-    // Don't auto-advance on videos
     if (items[current]?.type === 'video') return;
     const timer = setInterval(next, 4000);
     return () => clearInterval(timer);
   }, [playing, current, next, items]);
 
+  const orientation = useMemo(() => getOrientation(items[current]), [items, current]);
+
   if (items.length === 0) return null;
 
   const item = items[current];
   const isVideo = item.type === 'video';
+  const isPortrait = orientation === 'portrait';
 
   return (
     <div className="space-y-4">
-      {/* Main slide */}
-      <div className="relative aspect-video rounded-xl overflow-hidden bg-muted group cursor-pointer" onClick={() => onOpenLightbox(current)}>
+      {/* Main slide — adapts to content orientation */}
+      <div className={`relative mx-auto rounded-xl overflow-hidden bg-black group cursor-pointer transition-all duration-300 ${
+        isPortrait ? 'max-w-sm aspect-[3/4]' : 'w-full aspect-video'
+      }`} onClick={() => onOpenLightbox(current)}>
         {isVideo ? (
-          <div className="w-full h-full flex items-center justify-center bg-black">
+          <div className="w-full h-full flex items-center justify-center">
             <img
               src={item.thumbnailUrl || ''}
               alt={item.title || 'Video'}
@@ -48,18 +65,16 @@ const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
           <img
             src={item.imageUrl}
             alt={item.title || 'Gallery image'}
-            className="w-full h-full object-contain bg-black"
+            className="w-full h-full object-contain"
           />
         )}
 
-        {/* Title overlay */}
         {item.title && (
           <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
             <p className="text-white text-lg font-medium">{item.title}</p>
           </div>
         )}
 
-        {/* Expand icon */}
         <div className="absolute top-3 end-3 opacity-0 group-hover:opacity-100 transition-opacity">
           <Maximize2 className="w-5 h-5 text-white drop-shadow-lg" />
         </div>

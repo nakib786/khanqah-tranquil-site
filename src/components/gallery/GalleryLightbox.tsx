@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { MediaItem } from './GalleryGrid';
 
@@ -18,6 +18,18 @@ function getEmbedUrl(url: string): { type: 'iframe' | 'video'; src: string } {
     return { type: 'iframe', src: `https://www.youtube.com/embed/${ytMatch[1]}` };
   }
   return { type: 'video', src: url };
+}
+
+function getOrientation(item: MediaItem): 'portrait' | 'landscape' {
+  if (item.type === 'photo') {
+    const match = item.imageUrl?.match(/originWidth=(\d+)&originHeight=(\d+)/);
+    if (match) {
+      const w = parseInt(match[1], 10);
+      const h = parseInt(match[2], 10);
+      if (h > w) return 'portrait';
+    }
+  }
+  return 'landscape';
 }
 
 const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) => {
@@ -42,6 +54,8 @@ const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) =
 
   const item = items[current];
   const embed = item.type === 'video' ? getEmbedUrl(item.videoUrl || '') : null;
+  const orientation = useMemo(() => getOrientation(item), [item]);
+  const isPortrait = orientation === 'portrait';
 
   return (
     <div
@@ -50,12 +64,14 @@ const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) =
       role="dialog"
       aria-modal="true"
     >
-      <div className="relative max-w-4xl w-full" onClick={e => e.stopPropagation()}>
+      <div className={`relative ${isPortrait ? 'max-w-md' : 'max-w-4xl'} w-full`} onClick={e => e.stopPropagation()}>
         <button onClick={onClose} className="absolute -top-10 end-0 text-primary-foreground/80 hover:text-primary-foreground" aria-label="Close">
           <X className="w-6 h-6" />
         </button>
 
-        <div className="aspect-video rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+        <div className={`rounded-lg overflow-hidden bg-muted flex items-center justify-center ${
+          isPortrait ? 'aspect-[3/4]' : 'aspect-video'
+        }`}>
           {item.type === 'photo' ? (
             <img
               src={item.imageUrl}
