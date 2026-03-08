@@ -96,6 +96,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
               </Link>
             ))}
             <LanguageSwitcher lang={lang} />
+            <AnimatedThemeToggler />
           </nav>
           <button
             className="lg:hidden p-2 text-foreground/70 hover:text-gold"
