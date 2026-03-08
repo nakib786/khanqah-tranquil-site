@@ -36,6 +36,8 @@ serve(async (req) => {
       payload?: unknown;
     };
 
+    console.log(`[wix-proxy] ${method} ${url}`);
+
     if (!url || !url.startsWith("https://www.wixapis.com/")) {
       return new Response(
         JSON.stringify({ error: "Invalid Wix API URL" }),
@@ -56,10 +58,20 @@ serve(async (req) => {
 
     if (payload && (method === "POST" || method === "PUT" || method === "PATCH")) {
       fetchOptions.body = JSON.stringify(payload);
+      console.log(`[wix-proxy] Payload:`, JSON.stringify(payload).substring(0, 500));
     }
 
     const wixRes = await fetch(url, fetchOptions);
-    const data = await wixRes.json().catch(() => ({}));
+    const text = await wixRes.text();
+    console.log(`[wix-proxy] Response status: ${wixRes.status}`);
+    console.log(`[wix-proxy] Response body: ${text.substring(0, 500)}`);
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = { rawResponse: text };
+    }
 
     return new Response(JSON.stringify(data), {
       status: wixRes.status,

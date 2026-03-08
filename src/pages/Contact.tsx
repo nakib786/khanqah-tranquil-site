@@ -3,10 +3,11 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { translations } from '@/data/translations';
 import { getLang } from '@/lib/i18n';
 import Layout from '@/components/Layout';
-import { MapPin, Phone, Mail, Clock, ChevronDown, CheckCircle2, AlertCircle, Search, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ChevronDown, CheckCircle2, AlertCircle, Search, MessageSquare, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
+import { submitContactForm } from '@/lib/wixForms';
 
 interface Country {
   code: string;
@@ -173,7 +174,10 @@ const Contact = () => {
     return emailRegex.test(form.email);
   }, [form.email]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const token = formData.get('cf-turnstile-response');
 
@@ -194,17 +198,49 @@ const Contact = () => {
       });
       return;
     }
-    toast({ title: t.contact.successTitle, description: t.contact.successMessage });
-    setForm({
-      name: '',
-      email: '',
-      phone: '',
-      countryCode: '+91',
-      subject: '',
-      inquiryType: t.common.inquiryTypes[0],
-      message: ''
-    });
-    setTouched({ email: false });
+
+    setSubmitting(true);
+    try {
+      const result = await submitContactForm({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        countryCode: form.countryCode,
+        subject: form.subject,
+        inquiryType: form.inquiryType,
+        message: form.message,
+      });
+
+      if (result.success) {
+        toast({ title: t.contact.successTitle, description: t.contact.successMessage });
+        setForm({
+          name: '',
+          email: '',
+          phone: '',
+          countryCode: '+91',
+          subject: '',
+          inquiryType: t.common.inquiryTypes[0],
+          message: ''
+        });
+        setTouched({ email: false });
+      } else {
+        console.error("Wix form error:", result.error);
+        toast({
+          title: "Submission Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive"
+        });
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      toast({
+        title: "Submission Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const containerVariants = {
@@ -443,12 +479,14 @@ const Contact = () => {
 
                   <div className="pt-1">
                     <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: submitting ? 1 : 1.02 }}
+                      whileTap={{ scale: submitting ? 1 : 0.98 }}
                       type="submit"
-                      className="w-full md:w-auto px-10 py-3 bg-primary text-primary-foreground rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 text-sm"
+                      disabled={submitting}
+                      className="w-full md:w-auto px-10 py-3 bg-primary text-primary-foreground rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-60"
                     >
-                      {t.common.send}
+                      {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                      {submitting ? 'Sending...' : t.common.send}
                     </motion.button>
                   </div>
                 </form>
