@@ -54,7 +54,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
 
       {/* Premium scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 z-[60] h-[3px] top-8"
+        className="fixed top-8 left-0 right-0 z-[60] h-[3px]"
         style={{ background: 'transparent' }}
       >
         <motion.div
