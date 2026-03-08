@@ -172,4 +172,37 @@
   .animate-marquee {
     animation: marquee 20s linear infinite;
   }
+
+  @keyframes border-glow-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .border-glow-travel {
+    z-index: 1;
+  }
+  .border-glow-travel::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      hsl(var(--gold)) 15%,
+      hsl(var(--gold) / 0.6) 25%,
+      transparent 40%,
+      transparent 60%,
+      hsl(var(--gold) / 0.4) 75%,
+      hsl(var(--gold)) 85%,
+      transparent 100%
+    );
+    animation: border-glow-spin 3s linear infinite;
+  }
+  .border-glow-travel::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    background: hsl(var(--primary));
+  }
 }
