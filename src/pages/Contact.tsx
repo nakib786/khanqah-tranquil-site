@@ -174,7 +174,10 @@ const Contact = () => {
     return emailRegex.test(form.email);
   }, [form.email]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const token = formData.get('cf-turnstile-response');
 
@@ -195,17 +198,49 @@ const Contact = () => {
       });
       return;
     }
-    toast({ title: t.contact.successTitle, description: t.contact.successMessage });
-    setForm({
-      name: '',
-      email: '',
-      phone: '',
-      countryCode: '+91',
-      subject: '',
-      inquiryType: t.common.inquiryTypes[0],
-      message: ''
-    });
-    setTouched({ email: false });
+
+    setSubmitting(true);
+    try {
+      const result = await submitContactForm({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        countryCode: form.countryCode,
+        subject: form.subject,
+        inquiryType: form.inquiryType,
+        message: form.message,
+      });
+
+      if (result.success) {
+        toast({ title: t.contact.successTitle, description: t.contact.successMessage });
+        setForm({
+          name: '',
+          email: '',
+          phone: '',
+          countryCode: '+91',
+          subject: '',
+          inquiryType: t.common.inquiryTypes[0],
+          message: ''
+        });
+        setTouched({ email: false });
+      } else {
+        console.error("Wix form error:", result.error);
+        toast({
+          title: "Submission Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive"
+        });
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      toast({
+        title: "Submission Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const containerVariants = {
