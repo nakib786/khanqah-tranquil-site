@@ -429,7 +429,7 @@ const hi = {
     noResults: 'आपकी खोज से मेल खाती कोई शिक्षा नहीं मिली।',
     backToList: 'शिक्षाओं की सूची पर वापस',
   },
-  gallery: { title: 'गैलरी', photos: 'तस्वीरें' },
+  gallery: { title: 'गैलरी', photos: 'तस्वीरें', videos: 'वीडियो', allFolders: 'सभी', backToAlbums: 'एल्बम पर वापस', noMedia: 'कोई मीडिया नहीं मिला' },
   contact: {
     title: 'हमसे संपर्क करें',
     address: 'ख़ानक़ाह शरीफ़, मेहफ़ूज़ बाग़, थला, चिखली, गुजरात 396521, भारत',
