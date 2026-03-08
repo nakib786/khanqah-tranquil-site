@@ -53,6 +53,8 @@ const Contact = () => {
   });
 
   const [touched, setTouched] = useState({ email: false });
+  const [submitted, setSubmitted] = useState(false);
+  const formTopRef = useRef<HTMLDivElement>(null);
   const [countries, setCountries] = useState<Country[]>([defaultCountry]);
   const [loadingCountries, setLoadingCountries] = useState(false);
   const [showCountrySelector, setShowCountrySelector] = useState(false);
