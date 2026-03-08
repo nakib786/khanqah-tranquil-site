@@ -111,6 +111,7 @@ const App = () => (
               </LangGuard>
             }
           />
+          <Route path="/admin/setup" element={<AdminSetup />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BackgroundMusic />
