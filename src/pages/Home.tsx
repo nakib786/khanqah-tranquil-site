@@ -234,7 +234,7 @@ const Home = () => {
   const lang = getLang(langParam);
   const t = translations[lang];
   const scheduleItems = getLocalizedSchedule(lang);
-  const latestTeachings = [...teachings[lang]].reverse().slice(0, 3);
+  const latestTeachings = teachings[lang].slice(0, 3);
 
   const purposeIcons = [TasbihIcon, DuaIcon, MosqueIcon];
 
