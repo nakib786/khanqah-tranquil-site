@@ -310,7 +310,7 @@ const ar = {
     noResults: 'لم يتم العثور على تعاليم مطابقة لبحثك.',
     backToList: 'العودة إلى التعاليم',
   },
-  gallery: { title: 'المعرض', photos: 'صور' },
+  gallery: { title: 'المعرض', photos: 'صور', videos: 'فيديوهات', allFolders: 'الكل', backToAlbums: 'العودة إلى الألبومات', noMedia: 'لا توجد وسائط' },
   contact: {
     title: 'اتصل بنا',
     address: 'خانقاہ شريف، محفوظ باغ، ثالا، تشيخلي، غوجارات 396521، الهند',
