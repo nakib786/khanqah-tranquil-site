@@ -11,7 +11,8 @@ interface GalleryGridProps {
   onItemClick: (index: number) => void;
 }
 
-const GalleryGrid = ({ items, onItemClick }: GalleryGridProps) => {
+const GalleryGrid = ({ items = [], onItemClick }: GalleryGridProps) => {
+  if (!items || items.length === 0) return null;
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {items.map((item, index) => (
