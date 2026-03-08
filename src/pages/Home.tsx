@@ -202,6 +202,7 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
       <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{title}</h2>
       <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
       <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      </div>
     </div>
   );
 };
