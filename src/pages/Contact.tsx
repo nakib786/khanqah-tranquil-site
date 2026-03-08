@@ -267,7 +267,7 @@ const Contact = () => {
   return (
     <Layout lang={lang}>
       <SEO title={t.contact.title} />
-      <section className="pt-24 pb-12 bg-background/50">
+      <section className="pt-32 md:pt-36 pb-12 bg-background/50">
         <div className={`w-full max-w-5xl mx-auto px-4 sm:px-6 ${isRtl ? 'text-right' : 'text-left'}`}>
           <motion.div
             initial="hidden"
