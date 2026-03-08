@@ -1,1 +1,4 @@
 project_id = "jcnyaifcvwrkoshoyahm"
+
+[functions.wix-proxy]
+verify_jwt = false
