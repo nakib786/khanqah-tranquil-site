@@ -21,12 +21,11 @@ export async function submitContactForm(formData: ContactFormData): Promise<{ su
       submission: {
         formId: WIX_FORM_ID,
         submissions: {
-          first_name: formData.name,
-          email: formData.email,
-          phone: fullPhone,
+          email_6626: formData.email,
+          phone_81eb: fullPhone,
           subject: formData.subject,
           inquiry_type: formData.inquiryType,
-          long_answer: formData.message,
+          message: formData.message,
         },
       },
     };
