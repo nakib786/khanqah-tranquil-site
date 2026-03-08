@@ -318,7 +318,7 @@ const Home = () => {
       <SajjadaNashinSection lang={lang} t={t} />
 
       {/* Visit Us */}
-      <section className="pt-20 pb-10 px-4 bg-[hsl(145,45%,22%)] text-[hsl(42,30%,96%)] islamic-pattern relative overflow-hidden">
+      <section className="pt-20 pb-10 px-4 bg-primary text-primary-foreground islamic-pattern relative overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">

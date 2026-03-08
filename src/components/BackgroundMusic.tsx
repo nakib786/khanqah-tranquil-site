@@ -119,7 +119,7 @@ const BackgroundMusic = () => {
                 onDoubleClick={toggleVolume} // Desktop shortcut
                 className={cn(
                     "w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 relative border border-gold/20 touch-manipulation",
-                    isPlaying ? "bg-gold text-[hsl(145,45%,22%)] shadow-gold/20 animate-heartbeat" : "bg-[hsl(145,45%,22%)] text-[hsl(42,30%,96%)] animate-[heartbeat_4s_ease-in-out_infinite]"
+                    isPlaying ? "bg-gold text-primary shadow-gold/20 animate-heartbeat" : "bg-primary text-primary-foreground animate-[heartbeat_4s_ease-in-out_infinite]"
                 )}
                 aria-label={isPlaying ? "Pause music" : "Play music"}
             >
