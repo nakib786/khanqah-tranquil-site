@@ -14,6 +14,7 @@ import TeachingDetail from "./pages/TeachingDetail";
 import GalleryPage from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Iraadat from "./pages/Iraadat";
+import AdminSetup from "./pages/AdminSetup";
 import NotFound from "./pages/NotFound";
 import BackgroundMusic from "./components/BackgroundMusic";
 import { isValidLang } from "@/lib/i18n";
@@ -110,6 +111,7 @@ const App = () => (
               </LangGuard>
             }
           />
+          <Route path="/admin/setup" element={<AdminSetup />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BackgroundMusic />
