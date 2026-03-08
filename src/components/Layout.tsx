@@ -4,12 +4,11 @@ import { Language, languageConfig, translations } from '@/data/translations';
 import { getFontClass } from '@/lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import BackgroundMusic from './BackgroundMusic';
-import { Facebook, Instagram, Menu, X, ChevronUp, Globe, Mail, Phone, Sun, Moon } from 'lucide-react';
+import { Facebook, Instagram, Menu, X, ChevronUp, Globe, Mail, Phone } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import logoImg from '@/assets/logo.png';
 import AnnouncementMarquee from './AnnouncementMarquee';
-import { useTheme } from '@/hooks/useTheme';
-import { Switch } from '@/components/ui/switch';
+import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
 
 interface LayoutProps {
   lang: Language;
@@ -20,7 +19,6 @@ const Layout = ({ lang, children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const { isDark, toggle: toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => {
@@ -98,15 +96,19 @@ const Layout = ({ lang, children }: LayoutProps) => {
               </Link>
             ))}
             <LanguageSwitcher lang={lang} />
+            <AnimatedThemeToggler />
           </nav>
-          <button
-            className="lg:hidden p-2 text-foreground/70 hover:text-gold"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          <div className="lg:hidden flex items-center gap-1">
+            <AnimatedThemeToggler />
+            <button
+              className="p-2 text-foreground/70 hover:text-gold"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
         <AnimatePresence>
           {mobileMenuOpen && (
@@ -233,13 +235,8 @@ const Layout = ({ lang, children }: LayoutProps) => {
             </div>
           </div>
         </div>
-        <div className="border-t border-primary-foreground/10 py-4 flex items-center justify-center gap-4 text-xs text-primary-foreground/50">
-          <span>© {new Date().getFullYear()} Al Mehfuz Khanqah ae Qadriyaa. All rights reserved.</span>
-          <div className="flex items-center gap-2">
-            <Sun className="w-3.5 h-3.5 text-primary-foreground/60" />
-            <Switch checked={isDark} onCheckedChange={toggleTheme} />
-            <Moon className="w-3.5 h-3.5 text-primary-foreground/60" />
-          </div>
+        <div className="border-t border-primary-foreground/10 py-4 text-center text-xs text-primary-foreground/50">
+          © {new Date().getFullYear()} Al Mehfuz Khanqah ae Qadriyaa. All rights reserved.
         </div>
       </footer>
 
