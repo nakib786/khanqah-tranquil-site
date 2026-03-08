@@ -4,10 +4,12 @@ import { Language, languageConfig, translations } from '@/data/translations';
 import { getFontClass } from '@/lib/i18n';
 import LanguageSwitcher from './LanguageSwitcher';
 import BackgroundMusic from './BackgroundMusic';
-import { Facebook, Instagram, Menu, X, ChevronUp, Globe, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Menu, X, ChevronUp, Globe, Mail, Phone, Sun, Moon } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import logoImg from '@/assets/logo.png';
 import AnnouncementMarquee from './AnnouncementMarquee';
+import { useTheme } from '@/hooks/useTheme';
+import { Switch } from '@/components/ui/switch';
 
 interface LayoutProps {
   lang: Language;
