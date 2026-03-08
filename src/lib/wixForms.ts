@@ -1,7 +1,6 @@
-import { supabase } from "@/integrations/supabase/client";
+import { wixClient } from "@/lib/wixClient";
 
 const WIX_FORM_ID = "ca7faeb4-1689-4856-b1a2-5d7af85a6ca7";
-const SUBMISSIONS_URL = "https://www.wixapis.com/form-submission/v4/submissions";
 
 interface ContactFormData {
   name: string;
@@ -17,44 +16,24 @@ export async function submitContactForm(formData: ContactFormData): Promise<{ su
   try {
     const fullPhone = formData.phone ? `${formData.countryCode} ${formData.phone}` : "";
 
-    const payload = {
-      submission: {
-        formId: WIX_FORM_ID,
-        submissions: {
-          full_name: formData.name,
-          email_6626: formData.email,
-          phone_81eb: fullPhone,
-          subject: formData.subject,
-          inquiry_type: formData.inquiryType,
-          message: formData.message,
-        },
+    const submission = {
+      formId: WIX_FORM_ID,
+      submissions: {
+        full_name: formData.name,
+        email_6626: formData.email,
+        phone_81eb: fullPhone,
+        subject: formData.subject,
+        inquiry_type: formData.inquiryType,
+        message: formData.message,
       },
     };
 
-    const { data, error } = await supabase.functions.invoke("wix-proxy", {
-      body: {
-        url: SUBMISSIONS_URL,
-        method: "POST",
-        payload,
-      },
-    });
-
-    if (error) {
-      console.error("Wix form submission proxy error:", error);
-      return { success: false, error: error.message };
-    }
-
-    // Wix returns error details in the response body
-    if (data?.message || data?.details) {
-      console.error("Wix form submission API error:", data);
-      return { success: false, error: data.message || JSON.stringify(data.details) };
-    }
-
-    console.log("Wix form submission success:", data);
+    const result = await wixClient.submissions.createSubmission(submission);
+    console.log("Wix form submission success:", result);
     return { success: true };
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unknown error";
-    console.error("Wix form submission error:", msg);
+    console.error("Wix form submission error:", msg, e);
     return { success: false, error: msg };
   }
 }
