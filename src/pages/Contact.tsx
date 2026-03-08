@@ -479,12 +479,14 @@ const Contact = () => {
 
                   <div className="pt-1">
                     <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: submitting ? 1 : 1.02 }}
+                      whileTap={{ scale: submitting ? 1 : 0.98 }}
                       type="submit"
-                      className="w-full md:w-auto px-10 py-3 bg-primary text-primary-foreground rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 text-sm"
+                      disabled={submitting}
+                      className="w-full md:w-auto px-10 py-3 bg-primary text-primary-foreground rounded-xl font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-60"
                     >
-                      {t.common.send}
+                      {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
+                      {submitting ? 'Sending...' : t.common.send}
                     </motion.button>
                   </div>
                 </form>
