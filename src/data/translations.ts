@@ -191,7 +191,7 @@ const ur = {
     noResults: 'آپ کی تلاش سے متعلق کوئی تعلیم نہیں ملی۔',
     backToList: 'تعلیمات کی فہرست پر واپس',
   },
-  gallery: { title: 'گیلری', photos: 'تصاویر' },
+  gallery: { title: 'گیلری', photos: 'تصاویر', videos: 'ویڈیوز', allFolders: 'سب', backToAlbums: 'البمز پر واپس', noMedia: 'کوئی میڈیا نہیں ملا' },
   contact: {
     title: 'ہم سے رابطہ کریں',
     address: 'خانقاہ شریف، محفوظ باغ، تھلا، چکھلی، گجرات 396521، انڈیا',
