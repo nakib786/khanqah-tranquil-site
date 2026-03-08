@@ -72,7 +72,7 @@ const en = {
     noResults: 'No teachings found matching your search.',
     backToList: 'Back to Teachings',
   },
-  gallery: { title: 'Gallery', photos: 'photos' },
+  gallery: { title: 'Gallery', photos: 'photos', videos: 'videos', allFolders: 'All', backToAlbums: 'Back to Albums', noMedia: 'No media found' },
   contact: {
     title: 'Contact Us',
     address: 'Khankah Sharif, Mehfuz Baugh, Thala, Chikhli, Gujarat 396521, India',
@@ -191,7 +191,7 @@ const ur = {
     noResults: 'آپ کی تلاش سے متعلق کوئی تعلیم نہیں ملی۔',
     backToList: 'تعلیمات کی فہرست پر واپس',
   },
-  gallery: { title: 'گیلری', photos: 'تصاویر' },
+  gallery: { title: 'گیلری', photos: 'تصاویر', videos: 'ویڈیوز', allFolders: 'سب', backToAlbums: 'البمز پر واپس', noMedia: 'کوئی میڈیا نہیں ملا' },
   contact: {
     title: 'ہم سے رابطہ کریں',
     address: 'خانقاہ شریف، محفوظ باغ، تھلا، چکھلی، گجرات 396521، انڈیا',
@@ -310,7 +310,7 @@ const ar = {
     noResults: 'لم يتم العثور على تعاليم مطابقة لبحثك.',
     backToList: 'العودة إلى التعاليم',
   },
-  gallery: { title: 'المعرض', photos: 'صور' },
+  gallery: { title: 'المعرض', photos: 'صور', videos: 'فيديوهات', allFolders: 'الكل', backToAlbums: 'العودة إلى الألبومات', noMedia: 'لا توجد وسائط' },
   contact: {
     title: 'اتصل بنا',
     address: 'خانقاہ شريف، محفوظ باغ، ثالا، تشيخلي، غوجارات 396521، الهند',
@@ -429,7 +429,7 @@ const hi = {
     noResults: 'आपकी खोज से मेल खाती कोई शिक्षा नहीं मिली।',
     backToList: 'शिक्षाओं की सूची पर वापस',
   },
-  gallery: { title: 'गैलरी', photos: 'तस्वीरें' },
+  gallery: { title: 'गैलरी', photos: 'तस्वीरें', videos: 'वीडियो', allFolders: 'सभी', backToAlbums: 'एल्बम पर वापस', noMedia: 'कोई मीडिया नहीं मिला' },
   contact: {
     title: 'हमसे संपर्क करें',
     address: 'ख़ानक़ाह शरीफ़, मेहफ़ूज़ बाग़, थला, चिखली, गुजरात 396521, भारत',

@@ -1,17 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import type { GalleryImage } from '@/hooks/gallery/useGallery';
+import type { MediaItem } from './GalleryGrid';
 
 interface GalleryLightboxProps {
-  images: GalleryImage[];
+  items: MediaItem[];
   startIndex: number;
   onClose: () => void;
 }
 
-const GalleryLightbox = ({ images, startIndex, onClose }: GalleryLightboxProps) => {
+const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) => {
   const [current, setCurrent] = useState(startIndex);
 
-  const next = useCallback(() => setCurrent(c => Math.min(images.length - 1, c + 1)), [images.length]);
+  const next = useCallback(() => setCurrent(c => Math.min(items.length - 1, c + 1)), [items.length]);
   const prev = useCallback(() => setCurrent(c => Math.max(0, c - 1)), []);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const GalleryLightbox = ({ images, startIndex, onClose }: GalleryLightboxProps) 
     };
   }, [onClose, next, prev]);
 
-  const image = images[current];
+  const item = items[current];
 
   return (
     <div
@@ -41,22 +41,36 @@ const GalleryLightbox = ({ images, startIndex, onClose }: GalleryLightboxProps) 
         <button onClick={onClose} className="absolute -top-10 end-0 text-primary-foreground/80 hover:text-primary-foreground" aria-label="Close">
           <X className="w-6 h-6" />
         </button>
+
         <div className="aspect-video rounded-lg overflow-hidden bg-muted flex items-center justify-center">
-          <img
-            src={image.imageUrl}
-            alt={image.title || 'Gallery image'}
-            className="max-w-full max-h-full object-contain"
-          />
+          {item.type === 'photo' ? (
+            <img
+              src={item.imageUrl}
+              alt={item.title || 'Gallery image'}
+              className="max-w-full max-h-full object-contain"
+            />
+          ) : (
+            <video
+              src={item.videoUrl}
+              controls
+              autoPlay
+              className="max-w-full max-h-full"
+              poster={item.thumbnailUrl}
+            >
+              Your browser does not support video playback.
+            </video>
+          )}
         </div>
-        {image.title && (
-          <p className="text-center text-primary-foreground/80 text-sm mt-2">{image.title}</p>
+
+        {item.title && (
+          <p className="text-center text-primary-foreground/80 text-sm mt-2">{item.title}</p>
         )}
         <div className="flex justify-between items-center mt-4">
           <button onClick={prev} disabled={current === 0} className="text-primary-foreground/80 disabled:opacity-30 hover:text-primary-foreground" aria-label="Previous">
             <ChevronLeft className="w-8 h-8" />
           </button>
-          <span className="text-primary-foreground/70 text-sm">{current + 1} / {images.length}</span>
-          <button onClick={next} disabled={current === images.length - 1} className="text-primary-foreground/80 disabled:opacity-30 hover:text-primary-foreground" aria-label="Next">
+          <span className="text-primary-foreground/70 text-sm">{current + 1} / {items.length}</span>
+          <button onClick={next} disabled={current === items.length - 1} className="text-primary-foreground/80 disabled:opacity-30 hover:text-primary-foreground" aria-label="Next">
             <ChevronRight className="w-8 h-8" />
           </button>
         </div>
