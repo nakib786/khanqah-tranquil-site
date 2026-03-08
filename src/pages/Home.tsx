@@ -1,12 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { translations } from '@/data/translations';
-import { teachings } from '@/data/content';
 import { getLang } from '@/lib/i18n';
 import { getLocalizedSchedule, getNextPrayer, getIslamicDate, getIslamicDateArabic, getIslamicDateFromAladhan, DEFAULT_ISLAMIC_OFFSET } from '@/lib/prayer-times';
 import Layout from '@/components/Layout';
 import HeroSection from '@/components/HeroSection';
-import TeachingCard from '@/components/TeachingCard';
+import PostCard from '@/components/blog/PostCard';
+import { useBlogPosts } from '@/hooks/blog/useBlogPosts';
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
 import { Clock, MapPin, Timer } from 'lucide-react';
@@ -14,6 +14,7 @@ import { TasbihIcon, DuaIcon, MosqueIcon } from '@/components/PurposeIcons';
 import abrarImg from '@/assets/abrar.webp';
 import nakibImg from '@/assets/nakibBawa.jpg';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Skeleton } from '@/components/ui/skeleton';
 import type { ScheduleItem } from '@/lib/prayer-times';
 
 const formatCountdown = (diff: number) => {
@@ -234,7 +235,8 @@ const Home = () => {
   const lang = getLang(langParam);
   const t = translations[lang];
   const scheduleItems = getLocalizedSchedule(lang);
-  const latestTeachings = teachings[lang].slice(0, 3);
+  const { data: postsData, isLoading } = useBlogPosts({ limit: 3 });
+  const latestPosts = postsData?.posts ?? [];
 
   const purposeIcons = [TasbihIcon, DuaIcon, MosqueIcon];
 
@@ -290,9 +292,24 @@ const Home = () => {
             </Link>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {latestTeachings.map(teaching => (
-              <TeachingCard key={teaching.slug} teaching={teaching} lang={lang} />
-            ))}
+            {isLoading ? (
+              Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="bg-card border rounded-lg overflow-hidden">
+                  <Skeleton className="aspect-video w-full" />
+                  <div className="p-5 space-y-3">
+                    <Skeleton className="h-5 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-3 w-1/2" />
+                  </div>
+                </div>
+              ))
+            ) : latestPosts.length > 0 ? (
+              latestPosts.map((post: any) => (
+                <PostCard key={post._id || post.slug} post={post} lang={lang} />
+              ))
+            ) : (
+              <p className="text-muted-foreground col-span-3 text-center py-8">No teachings available.</p>
+            )}
           </div>
         </div>
       </section>
