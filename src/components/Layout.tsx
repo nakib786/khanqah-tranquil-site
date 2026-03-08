@@ -34,7 +34,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
   const navLinks = [
     { to: `/${lang}`, label: t.nav.home },
     { to: `/${lang}/about`, label: t.nav.about },
-    { to: `/${lang}/activities`, label: t.nav.activities },
+    // { to: `/${lang}/activities`, label: t.nav.activities }, // Hidden from prod
     { to: `/${lang}/teachings`, label: t.nav.teachings },
     { to: `/${lang}/iraadat`, label: t.nav.iraadat },
     { to: `/${lang}/gallery`, label: t.nav.gallery },
