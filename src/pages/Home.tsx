@@ -167,7 +167,7 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
   return (
     <div
       ref={cardRef}
-      className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer h-full flex flex-col justify-center"
+      className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer h-full flex flex-col justify-center border-glow-travel">
       onMouseEnter={() => !isMobile && setShowImage(true)}
       onMouseLeave={() => !isMobile && setShowImage(false)}
       onClick={handleTap}
