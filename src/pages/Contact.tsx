@@ -214,7 +214,7 @@ const Contact = () => {
       });
 
       if (result.success) {
-        toast({ title: t.contact.successTitle, description: t.contact.successMessage });
+        setSubmitted(true);
         setForm({
           name: '',
           email: '',
@@ -225,6 +225,10 @@ const Contact = () => {
           message: ''
         });
         setTouched({ email: false });
+        // Scroll to top of form to show success message
+        setTimeout(() => {
+          formTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
       } else {
         console.error("Wix form error:", result.error);
         toast({
