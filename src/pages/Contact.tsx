@@ -3,10 +3,11 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { translations } from '@/data/translations';
 import { getLang } from '@/lib/i18n';
 import Layout from '@/components/Layout';
-import { MapPin, Phone, Mail, Clock, ChevronDown, CheckCircle2, AlertCircle, Search, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ChevronDown, CheckCircle2, AlertCircle, Search, MessageSquare, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
+import { submitContactForm } from '@/lib/wixForms';
 
 interface Country {
   code: string;
