@@ -233,8 +233,13 @@ const Layout = ({ lang, children }: LayoutProps) => {
             </div>
           </div>
         </div>
-        <div className="border-t border-primary-foreground/10 py-4 text-center text-xs text-primary-foreground/50">
-          © {new Date().getFullYear()} Al Mehfuz Khanqah ae Qadriyaa. All rights reserved.
+        <div className="border-t border-primary-foreground/10 py-4 flex items-center justify-center gap-4 text-xs text-primary-foreground/50">
+          <span>© {new Date().getFullYear()} Al Mehfuz Khanqah ae Qadriyaa. All rights reserved.</span>
+          <div className="flex items-center gap-2">
+            <Sun className="w-3.5 h-3.5 text-primary-foreground/60" />
+            <Switch checked={isDark} onCheckedChange={toggleTheme} />
+            <Moon className="w-3.5 h-3.5 text-primary-foreground/60" />
+          </div>
         </div>
       </footer>
 
