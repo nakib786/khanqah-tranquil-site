@@ -217,7 +217,7 @@ const Contact = () => {
           name: '',
           email: '',
           phone: '',
-          countryCode: '+91',
+          countryCode: '+880',
           subject: '',
           inquiryType: t.common.inquiryTypes[0],
           message: ''
