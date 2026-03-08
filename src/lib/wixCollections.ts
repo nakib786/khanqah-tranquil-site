@@ -65,6 +65,16 @@ export async function createCollection(def: CollectionDef): Promise<{ success: b
 
 export const COLLECTIONS: CollectionDef[] = [
   {
+    _id: "Announcements",
+    displayName: "Announcements",
+    fields: [
+      { key: "message", type: "TEXT", displayName: "Message" },
+      { key: "link", type: "TEXT", displayName: "Link (optional)" },
+      { key: "active", type: "BOOLEAN", displayName: "Active" },
+      { key: "order", type: "NUMBER", displayName: "Order" },
+    ],
+  },
+  {
     _id: "Gallery",
     displayName: "Gallery",
     fields: [
