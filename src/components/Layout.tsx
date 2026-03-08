@@ -20,6 +20,7 @@ const Layout = ({ lang, children }: LayoutProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { isDark, toggle: toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => {
