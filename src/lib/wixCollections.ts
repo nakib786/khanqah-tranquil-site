@@ -1,14 +1,13 @@
+import { supabase } from "@/integrations/supabase/client";
+
 const WIX_API_BASE = "https://www.wixapis.com/wix-data/v2/collections";
 
-function getHeaders() {
-  const apiKey = import.meta.env.VITE_WIX_API_TOKEN;
-  const siteId = import.meta.env.VITE_WIX_SITE_ID;
-  if (!apiKey || !siteId) throw new Error("Missing Wix credentials in .env");
-  return {
-    Authorization: apiKey,
-    "wix-site-id": siteId,
-    "Content-Type": "application/json",
-  };
+async function wixProxy(url: string, method = "GET", payload?: unknown) {
+  const { data, error } = await supabase.functions.invoke("wix-proxy", {
+    body: { url, method, payload },
+  });
+  if (error) throw new Error(error.message || "Proxy call failed");
+  return data;
 }
 
 export interface CollectionField {
@@ -25,10 +24,8 @@ export interface CollectionDef {
 
 export async function checkCollectionExists(collectionId: string): Promise<boolean> {
   try {
-    const res = await fetch(`${WIX_API_BASE}/${collectionId}`, {
-      headers: getHeaders(),
-    });
-    return res.ok;
+    const data = await wixProxy(`${WIX_API_BASE}/${collectionId}`);
+    return !!data?.collection;
   } catch {
     return false;
   }
@@ -36,7 +33,7 @@ export async function checkCollectionExists(collectionId: string): Promise<boole
 
 export async function createCollection(def: CollectionDef): Promise<{ success: boolean; error?: string }> {
   try {
-    const body = {
+    const payload = {
       collection: {
         _id: def._id,
         displayName: def.displayName,
@@ -54,15 +51,10 @@ export async function createCollection(def: CollectionDef): Promise<{ success: b
       },
     };
 
-    const res = await fetch(WIX_API_BASE, {
-      method: "POST",
-      headers: getHeaders(),
-      body: JSON.stringify(body),
-    });
+    const data = await wixProxy(WIX_API_BASE, "POST", payload);
 
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      return { success: false, error: err.message || `HTTP ${res.status}` };
+    if (data?.message || data?.details) {
+      return { success: false, error: data.message || JSON.stringify(data.details) };
     }
 
     return { success: true };
@@ -71,7 +63,6 @@ export async function createCollection(def: CollectionDef): Promise<{ success: b
   }
 }
 
-/** Pre-defined collection schemas */
 export const COLLECTIONS: CollectionDef[] = [
   {
     _id: "Gallery",
