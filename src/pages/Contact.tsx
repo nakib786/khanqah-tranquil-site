@@ -402,7 +402,7 @@ const Contact = () => {
                                         key={`${c.code}-${c.country}-${idx}`}
                                         type="button"
                                         onClick={() => {
-                                          setForm({ ...form, countryCode: c.code });
+                                          setForm(prev => ({ ...prev, countryCode: c.code }));
                                           setShowCountrySelector(false);
                                           setSearchQuery('');
                                         }}
