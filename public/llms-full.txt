@@ -1,0 +1,87 @@
+# Al Mehfuz - Khanqah-e-Qadriya Shattariyah (Full Context)
+
+> Al Mehfuz Astana e Aliya Silsila e Quadria Shattaria is a sanctuary of peace, remembrance (Dhikr), and spiritual learning rooted in the blessed Qadriya Shattariyah tradition. Established in Chikhli, Gujarat, India, it serves as a center for spiritual cultivation and the transmission of sacred knowledge.
+
+## Website
+- URL: https://almehfuz.org
+- Languages: English, Urdu (اردو), Arabic (العربية), Hindi (हिन्दी)
+- Each page is available in all four languages at /{lang}/page-name
+
+## Leadership
+- **Sajjada Nashin:** Hazrat Syed Abrar Ahmed — Blessed Sajjada Nashin continuing the noble path of spiritual guidance.
+- **Naib Sajjada Nashin:** Hazrat Syed Nakib Muzafar Ali — Prominent seat of authority, serving the community with devotion.
+
+## About
+Al Mehfuz Astana e Aliya Silsila e Quadria Shattaria was established as a center for spiritual cultivation, learning, and the transmission of sacred knowledge within the noble Qadri and Shattari traditions. Under the guidance of our Sajjada Nashin Hazrat Syed Abrar Ahmed and Naib Sajjada Nashin Hazrat Syed Nakib Muzafar Ali, the khanqah welcomes sincere seekers from all walks of life who wish to draw closer to the Divine through prayer, remembrance, and search for spiritual truth.
+
+### Mission & Values
+- To provide a nurturing space where the heart may be purified and the soul may find peace in Allah's remembrance
+- Sincerity (Ikhlas) in all actions and worship
+- Respect & Adab — proper etiquette toward the Divine, teachers, and fellow seekers
+- Love for the Prophet ﷺ at the heart of all spiritual practice
+- Service to all people regardless of background
+- Preservation of authentic tradition through an unbroken chain of spiritual masters
+
+## Purpose
+1. **Spiritual Guidance**: Nurturing the soul through traditional spiritual mentorship and guidance on the path of divine nearness.
+2. **Remembrance (Dhikr)**: Engaging hearts in the remembrance of the Divine, finding peace and tranquility in sacred gatherings.
+3. **Learning & Community**: Building a community rooted in sacred knowledge, mutual respect, and service to humanity.
+
+## Activities
+### Daily Schedule
+- Fajr, Dhuhr, Asr, Maghrib, Isha — calculated prayer times shown on the website
+
+### Weekly Gatherings
+- Thursday Evening: Dhikr Gathering (8 PM)
+- Friday: Post-Jumu'ah Lecture (2 PM)
+- Saturday Morning: Study Circle (9 AM)
+
+### Visitor Etiquette
+- Maintain respectful and quiet demeanor within the Khanqah premises
+- Remove shoes before entering prayer and gathering areas
+- Silence mobile phones during prayers and spiritual sessions
+- Dress modestly and appropriately
+- Greet fellow visitors with peace and kindness
+- Follow guidance of Khanqah staff and elders
+
+## Iraadat (Spiritual Devotion)
+The concept of Iraadat (spiritual devotion to a guide) has been a cornerstone of Islamic spirituality for centuries. Through the blessed Qadriya Shattariyah Silsila, seekers receive a structured path toward divine closeness.
+
+### Benefits of Joining the Silsila
+1. **Spiritual Guidance**: Receive personal guidance from a Sheikh or Murshid
+2. **Inner Peace & Calmness**: Regular spiritual practices and dhikr help reduce stress
+3. **Connection with Divine Energy**: Closer connection to Allah and spiritual elevation
+4. **Moral & Ethical Development**: Develop virtues such as honesty, patience, humility, and generosity
+5. **Structured Spiritual Practices**: Clear path of daily dhikr, meditation, and prayers
+6. **Protection from Spiritual Negativity**: Regular guidance and prayers for protection
+7. **Community & Brotherhood**: Sense of belonging with spiritually-minded companions
+8. **Blessings of Barakah**: Divine blessings in daily life
+9. **Personal Transformation**: Self-improvement and purification of the heart
+10. **Legacy of Spiritual Knowledge**: Access to centuries-old teachings and wisdom
+
+## Teachings
+The website features a blog with spiritual teachings from the Qadri and Shattari traditions, including articles on Islamic spirituality, Sufi practices, and guidance for seekers.
+
+## Gallery
+Photos and videos from gatherings, events, and the Khanqah premises.
+
+## Contact Information
+- **Address:** Khankah Sharif, Mehfuz Baugh, Thala, Chikhli, Gujarat 396521, India
+- **Email:** info@almehfuz.org
+- **Phone:** +91 81289 27862
+- **Timings:** Open daily from Fajr to Isha
+
+### Visiting Hours
+- Mon–Sun: After Fajr – After Isha
+- Thu Evening: Dhikr Gathering (8 PM)
+- Fri: Post-Jumu'ah Lecture (2 PM)
+- Sat Morning: Study Circle (9 AM)
+
+## Social
+- Facebook: https://facebook.com/almehfuz
+- Instagram: https://instagram.com/almehfuz
+
+## Technical
+- Multi-language SPA (React) with routes: /{lang}, /{lang}/about, /{lang}/activities, /{lang}/teachings, /{lang}/gallery, /{lang}/contact, /{lang}/iraadat
+- Supported languages: en, ur, ar, hi
+- RTL support for Urdu and Arabic
