@@ -1,6 +1,7 @@
-import { wixClient } from "@/lib/wixClient";
+import { supabase } from "@/integrations/supabase/client";
 
 const WIX_FORM_ID = "ca7faeb4-1689-4856-b1a2-5d7af85a6ca7";
+const WIX_SUBMISSION_URL = "https://www.wixapis.com/form-submission-service/v4/submissions";
 
 interface ContactFormData {
   name: string;
@@ -15,12 +16,9 @@ interface ContactFormData {
 export async function submitContactForm(formData: ContactFormData): Promise<{ success: boolean; error?: string }> {
   try {
     // Build E.164 phone: +<countrycode><subscriber number>
-    // Strip everything except digits from both parts
     const codeDigits = formData.countryCode.replace(/\D/g, '');
-    const phoneDigits = formData.phone.replace(/\D/g, '').replace(/^0+/, ''); // strip leading zeros
+    const phoneDigits = formData.phone.replace(/\D/g, '').replace(/^0+/, '');
     const fullPhone = phoneDigits ? `+${codeDigits}${phoneDigits}` : "";
-
-    console.log("Submitting to Wix with phone:", fullPhone, "country code:", formData.countryCode, "raw phone:", formData.phone);
 
     const submission = {
       formId: WIX_FORM_ID,
@@ -34,8 +32,25 @@ export async function submitContactForm(formData: ContactFormData): Promise<{ su
       },
     };
 
-    const result = await wixClient.submissions.createSubmission(submission);
-    console.log("Wix form submission success:", result);
+    const { data, error } = await supabase.functions.invoke("wix-proxy", {
+      body: {
+        url: WIX_SUBMISSION_URL,
+        method: "POST",
+        payload: { submission },
+      },
+    });
+
+    if (error) {
+      throw new Error(error.message || "Proxy call failed");
+    }
+
+    if (data?.message || data?.details?.validationError) {
+      const apiError = data?.message || "Wix validation failed";
+      console.error("Wix form submission API error:", data);
+      return { success: false, error: apiError };
+    }
+
+    console.log("Wix form submission success:", data);
     return { success: true };
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Unknown error";
@@ -43,3 +58,4 @@ export async function submitContactForm(formData: ContactFormData): Promise<{ su
     return { success: false, error: msg };
   }
 }
+
