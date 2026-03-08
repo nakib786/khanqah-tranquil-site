@@ -1,13 +1,33 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Clock, Timer } from 'lucide-react';
+import { getLocalizedSchedule, getNextPrayer } from '@/lib/prayer-times';
+
+const formatCountdown = (diff: number) => {
+  const totalSec = Math.floor(diff / 1000);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+};
 
 const WelcomeLightbox = () => {
   const [visible, setVisible] = useState(true);
+  const [now, setNow] = useState(Date.now());
+  const schedule = getLocalizedSchedule('en');
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 3000);
+    const timer = setTimeout(() => setVisible(false), 5000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [visible]);
+
+  const nextPrayer = schedule.find(item => item.prayerDate.getTime() > now);
 
   return (
     <AnimatePresence>
@@ -57,6 +77,29 @@ const WelcomeLightbox = () => {
                 "Whoever believes in Allah and the Last Day, let him speak good or remain silent."
               </p>
               <p className="text-gold/40 text-[10px] mt-1 tracking-wider">— Sahih al-Bukhari</p>
+
+              {/* Next Prayer Box */}
+              {nextPrayer && (
+                <motion.div
+                  className="mt-5 bg-gold/10 border border-gold/20 rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <p className="text-gold/60 text-[10px] uppercase tracking-[0.15em] mb-1.5">Next Prayer</p>
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-gold font-bold text-lg font-serif">{nextPrayer.name}</span>
+                    <span className="text-primary-foreground/40">|</span>
+                    <span className="text-primary-foreground/70 text-sm flex items-center gap-1">
+                      <Clock className="w-3 h-3" />{nextPrayer.time}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 flex items-center justify-center gap-1 text-gold font-mono text-sm tabular-nums">
+                    <Timer className="w-3 h-3" />
+                    {formatCountdown(nextPrayer.prayerDate.getTime() - now)}
+                  </div>
+                </motion.div>
+              )}
 
               <p className="text-gold/30 mt-4">☪</p>
             </div>
