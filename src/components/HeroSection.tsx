@@ -55,7 +55,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
           </div>
         </motion.div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2 leading-tight hero-title-fancy">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(42,30%,96%)] mb-2 leading-tight hero-title-fancy">
           {t.hero.title}
         </h1>
         <p className="text-lg md:text-2xl text-gold font-semibold mb-3 tracking-wide">
@@ -64,7 +64,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
             MEHFUZ BAUGH
           </span>
         </p>
-        <p className="text-base md:text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-[hsl(42,30%,96%)]/80 mb-8 max-w-2xl mx-auto">
           {t.hero.subtitle}
         </p>
         <div className="flex flex-row gap-3 items-center justify-center">
