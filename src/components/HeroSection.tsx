@@ -8,7 +8,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
   const t = translations[lang];
 
   return (
-    <section className="relative min-h-[75vh] flex items-start md:items-center justify-center overflow-hidden pt-28 md:pt-0">
+    <section className="relative min-h-[75vh] flex items-start md:items-center justify-center overflow-hidden pt-28 md:pt-32">
       <div className="absolute inset-0">
         <video
           autoPlay
