@@ -165,13 +165,23 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
   }, []);
 
   return (
-    <div
-      ref={cardRef}
-      className="text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm relative group overflow-hidden cursor-pointer h-full flex flex-col justify-center"
-      onMouseEnter={() => !isMobile && setShowImage(true)}
-      onMouseLeave={() => !isMobile && setShowImage(false)}
-      onClick={handleTap}
-    >
+    <div className="relative rounded-2xl h-full">
+      {/* Rotating golden glow border */}
+      <div className="absolute -inset-[2px] rounded-2xl overflow-hidden">
+        <div
+          className="w-full h-full animate-[border-glow-spin_3s_linear_infinite]"
+          style={{
+            background: `conic-gradient(from 0deg, transparent 0%, hsl(var(--gold)) 15%, hsl(var(--gold) / 0.6) 25%, transparent 40%, transparent 60%, hsl(var(--gold) / 0.4) 75%, hsl(var(--gold)) 85%, transparent 100%)`,
+          }}
+        />
+      </div>
+      <div
+        ref={cardRef}
+        className="relative text-center p-8 rounded-2xl bg-background border border-gold/10 shadow-sm group overflow-hidden cursor-pointer h-full flex flex-col justify-center z-[1]"
+        onMouseEnter={() => !isMobile && setShowImage(true)}
+        onMouseLeave={() => !isMobile && setShowImage(false)}
+        onClick={handleTap}
+      >
       <div className="absolute inset-0 bg-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
       {/* Image overlay */}
       <motion.div
@@ -192,6 +202,7 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
       <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary leading-tight drop-shadow-sm font-serif">{title}</h2>
       <div className="w-12 h-px bg-gold/30 mx-auto my-4" />
       <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      </div>
     </div>
   );
 };
