@@ -76,7 +76,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
           </Link>
           <Link
             to={`/${lang}/teachings`}
-            className="inline-flex items-center justify-center px-4 py-2 text-sm border-2 border-gold/50 text-primary-foreground rounded-lg font-medium hover:bg-gold/20 transition-colors">
+            className="inline-flex items-center justify-center px-4 py-2 text-sm border-2 border-gold/50 text-[hsl(42,30%,96%)] rounded-lg font-medium hover:bg-gold/20 transition-colors">
 
             {t.hero.cta2}
           </Link>
