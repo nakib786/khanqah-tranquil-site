@@ -72,7 +72,7 @@ const en = {
     noResults: 'No teachings found matching your search.',
     backToList: 'Back to Teachings',
   },
-  gallery: { title: 'Gallery', photos: 'photos' },
+  gallery: { title: 'Gallery', photos: 'photos', videos: 'videos', allFolders: 'All', backToAlbums: 'Back to Albums', noMedia: 'No media found' },
   contact: {
     title: 'Contact Us',
     address: 'Khankah Sharif, Mehfuz Baugh, Thala, Chikhli, Gujarat 396521, India',
