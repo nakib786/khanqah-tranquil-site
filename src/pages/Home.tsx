@@ -169,9 +169,9 @@ const SajjadaNashinCard = ({ title, subtitle, description, image }: { title: str
       {/* Rotating golden glow border */}
       <div className="absolute -inset-[2px] rounded-2xl overflow-hidden">
         <div
-          className="w-full h-full animate-[border-glow-spin_3s_linear_infinite]"
+          className="w-full h-full animate-[border-glow-spin_8s_linear_infinite]"
           style={{
-            background: `conic-gradient(from 0deg, transparent 0%, hsl(var(--gold)) 15%, hsl(var(--gold) / 0.6) 25%, transparent 40%, transparent 60%, hsl(var(--gold) / 0.4) 75%, hsl(var(--gold)) 85%, transparent 100%)`,
+            background: `conic-gradient(from 0deg, transparent 0%, hsl(var(--gold)) 10%, transparent 20%, transparent 100%)`,
           }}
         />
       </div>
