@@ -8,6 +8,18 @@ interface GalleryLightboxProps {
   onClose: () => void;
 }
 
+function getEmbedUrl(url: string): { type: 'iframe' | 'video'; src: string } {
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveMatch) {
+    return { type: 'iframe', src: `https://drive.google.com/file/d/${driveMatch[1]}/preview` };
+  }
+  const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([^&]+)/);
+  if (ytMatch) {
+    return { type: 'iframe', src: `https://www.youtube.com/embed/${ytMatch[1]}` };
+  }
+  return { type: 'video', src: url };
+}
+
 const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) => {
   const [current, setCurrent] = useState(startIndex);
 
@@ -29,6 +41,7 @@ const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) =
   }, [onClose, next, prev]);
 
   const item = items[current];
+  const embed = item.type === 'video' ? getEmbedUrl(item.videoUrl || '') : null;
 
   return (
     <div
@@ -49,9 +62,17 @@ const GalleryLightbox = ({ items, startIndex, onClose }: GalleryLightboxProps) =
               alt={item.title || 'Gallery image'}
               className="max-w-full max-h-full object-contain"
             />
+          ) : embed?.type === 'iframe' ? (
+            <iframe
+              src={embed.src}
+              className="w-full h-full"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              title={item.title || 'Video'}
+            />
           ) : (
             <video
-              src={item.videoUrl}
+              src={embed?.src}
               controls
               autoPlay
               className="max-w-full max-h-full"
