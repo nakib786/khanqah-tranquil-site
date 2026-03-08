@@ -14,10 +14,19 @@ interface ContactFormData {
 
 export async function submitContactForm(formData: ContactFormData): Promise<{ success: boolean; error?: string }> {
   try {
-    // Wix requires E.164 phone format: +<countrycode><number> with no spaces
-    const digits = formData.phone.replace(/\D/g, '');
-    const codeDigits = formData.countryCode.replace(/[^+\d]/g, '');
-    const fullPhone = digits ? `${codeDigits}${digits}` : "";
+    // Wix requires E.164 phone format: +<countrycode><number>
+    const rawPhone = formData.phone.trim();
+    const phoneDigits = rawPhone.replace(/\D/g, '');
+    const countryDigits = formData.countryCode.replace(/\D/g, '');
+    const normalizedCountryCode = countryDigits ? `+${countryDigits}` : '+91';
+
+    const normalizedPhoneDigits = rawPhone.startsWith('+')
+      ? phoneDigits
+      : phoneDigits.replace(/^0+/, '');
+
+    const fullPhone = normalizedPhoneDigits
+      ? (rawPhone.startsWith('+') ? `+${normalizedPhoneDigits}` : `${normalizedCountryCode}${normalizedPhoneDigits}`)
+      : "";
 
     const submission = {
       formId: WIX_FORM_ID,
