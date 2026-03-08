@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, Pause, Play, Maximize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play as PlayIcon, Maximize2 } from 'lucide-react';
 import type { MediaItem } from './GalleryGrid';
 
 interface GallerySlideshowProps {
@@ -18,6 +18,16 @@ function getOrientation(item: MediaItem): 'portrait' | 'landscape' {
     }
   }
   return 'landscape';
+}
+
+/** Convert Google Drive share links to a direct thumbnail URL */
+function resolveThumbUrl(url: string | undefined): string {
+  if (!url) return '';
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveMatch) {
+    return `https://drive.google.com/thumbnail?id=${driveMatch[1]}&sz=w800`;
+  }
+  return url;
 }
 
 const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
@@ -51,13 +61,13 @@ const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
         {isVideo ? (
           <div className="w-full h-full flex items-center justify-center">
             <img
-              src={item.thumbnailUrl || ''}
+              src={resolveThumbUrl(item.thumbnailUrl)}
               alt={item.title || 'Video'}
               className="max-w-full max-h-full object-contain"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-16 h-16 rounded-full bg-foreground/60 flex items-center justify-center">
-                <Play className="w-8 h-8 text-background fill-background" />
+                <PlayIcon className="w-8 h-8 text-background fill-background" />
               </div>
             </div>
           </div>
@@ -90,7 +100,7 @@ const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
           className="p-2 rounded-full hover:bg-muted transition-colors"
           aria-label={playing ? 'Pause' : 'Play'}
         >
-          {playing ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+          {playing ? <Pause className="w-5 h-5" /> : <PlayIcon className="w-5 h-5" />}
         </button>
         <span className="text-sm text-muted-foreground min-w-[4rem] text-center">
           {current + 1} / {items.length}
@@ -111,7 +121,7 @@ const GallerySlideshow = ({ items, onOpenLightbox }: GallerySlideshowProps) => {
             }`}
           >
             <img
-              src={it.type === 'photo' ? it.imageUrl : (it.thumbnailUrl || '')}
+              src={it.type === 'photo' ? it.imageUrl : resolveThumbUrl(it.thumbnailUrl)}
               alt={it.title || ''}
               className="w-full h-full object-cover"
               loading="lazy"

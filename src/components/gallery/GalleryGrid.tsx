@@ -11,6 +11,16 @@ interface GalleryGridProps {
   onItemClick: (index: number) => void;
 }
 
+/** Convert Google Drive share links to a direct thumbnail URL */
+function resolveThumbUrl(url: string | undefined): string {
+  if (!url) return '';
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveMatch) {
+    return `https://drive.google.com/thumbnail?id=${driveMatch[1]}&sz=w400`;
+  }
+  return url;
+}
+
 const GalleryGrid = ({ items = [], onItemClick }: GalleryGridProps) => {
   if (!items || items.length === 0) return null;
   return (
@@ -22,7 +32,7 @@ const GalleryGrid = ({ items = [], onItemClick }: GalleryGridProps) => {
           className="group relative aspect-square rounded-lg overflow-hidden bg-muted"
         >
           <img
-            src={item.type === 'photo' ? item.imageUrl : item.thumbnailUrl}
+            src={item.type === 'photo' ? item.imageUrl : resolveThumbUrl(item.thumbnailUrl)}
             alt={item.title || 'Gallery item'}
             loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
