@@ -358,7 +358,7 @@ const Contact = () => {
                               className={`px-2.5 bg-muted/30 hover:bg-muted/50 transition-colors flex items-center gap-1 ${isRtl ? 'border-l' : 'border-r'} border-muted-foreground/10`}
                             >
                               <span className="text-lg">
-                                {countries.find(c => c.code === form.countryCode)?.flag || (form.countryCode === '+91' ? '🇮🇳' : '🌍')}
+                                {countries.find(c => c.code === form.countryCode)?.flag || (form.countryCode === '+880' ? '🇧🇩' : '🌍')}
                               </span>
                               <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0" />
                             </button>
