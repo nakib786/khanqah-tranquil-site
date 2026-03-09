@@ -11,7 +11,7 @@ export const languageConfig: Record<Language, { name: string; nativeName: string
 const en = {
   nav: { home: 'Home', about: 'About', activities: 'Activities', teachings: 'Teachings', gallery: 'Gallery', contact: 'Contact', iraadat: 'Iraadat' },
   hero: {
-    title: 'Al Mehfuz',
+    title: 'AL\' MEHFUZ',
     fullTitle: 'Khanqah-e-Qadriya Shattariyah',
     subtitle: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.',
     cta1: 'Iraadat',
