@@ -11,7 +11,7 @@ export const languageConfig: Record<Language, { name: string; nativeName: string
 const en = {
   nav: { home: 'Home', about: 'About', activities: 'Activities', teachings: 'Teachings', gallery: 'Gallery', contact: 'Contact', iraadat: 'Iraadat' },
   hero: {
-    title: 'Al Mehfuz',
+    title: 'AL\' MEHFUZ',
     fullTitle: 'Khanqah-e-Qadriya Shattariyah',
     subtitle: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.',
     cta1: 'Iraadat',
@@ -145,7 +145,7 @@ const en = {
 
 const ur = {
   nav: { home: 'ہوم', about: 'ہمارے بارے میں', activities: 'سرگرمیاں', teachings: 'تعلیمات', gallery: 'گیلری', contact: 'رابطہ', iraadat: 'ارادت' },
-  hero: { title: 'المحفوظ', fullTitle: 'خانقاہِ قادریہ شطاریہ', subtitle: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادر روایت میں جڑا ہوا', cta1: 'ارادت', cta2: 'تعلیمات پڑھیں', sajjadaNashin: 'سجادہ نشین', sajjadaNashinName: 'حضرت سید ابرار احمد', sajjadaNashin2: 'نائب سجادہ نشین', sajjadaNashinName2: 'حضرت سید نقیب مظفر علی', sajjadaNashinDesc: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادری روایت میں جڑا ہوا۔', sajjadaNashinDesc1: 'روحانی رہنمائی کی مبارک روایت کو جاری رکھنے والے سجادہ نشین۔', sajjadaNashinDesc2: 'نمایاں روحانی مقام، جو پوری عقیدت کے ساتھ برادری کی خدمت کر رہے ہیں۔', locationName: 'محفوظ باغ' },
+   hero: { title: 'المحفوظ', fullTitle: 'خانقاہِ قادریہ شطاریہ', subtitle: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادر روایت میں جڑا ہوا', cta1: 'ارادت', cta2: 'تعلیمات پڑھیں', sajjadaNashin: 'سجادہ نشین', sajjadaNashinName: 'حضرت سید ابرار احمد', sajjadaNashin2: 'نائب سجادہ نشین', sajjadaNashinName2: 'حضرت سید نقیب مظفر علی', sajjadaNashinDesc: 'امن، ذکر اور روحانی تعلیم کا مرکز — مبارک قادری روایت میں جڑا ہوا۔', sajjadaNashinDesc1: 'روحانی رہنمائی کی مبارک روایت کو جاری رکھنے والے سجادہ نشین۔', sajjadaNashinDesc2: 'نمایاں روحانی مقام، جو پوری عقیدت کے ساتھ برادری کی خدمت کر رہے ہیں۔', locationName: 'محفوظ باغ' },
   purpose: {
     title: 'ہمارا مقصد', cards: [
       { title: 'روحانی رہنمائی', description: 'روایتی روحانی تربیت اور قربِ الٰہی کے راستے پر رہنمائی کے ذریعے روح کی پرورش۔' },
@@ -264,7 +264,7 @@ const ur = {
 
 const ar = {
   nav: { home: 'الرئيسية', about: 'عن الخانقاه', activities: 'الأنشطة', teachings: 'التعاليم', gallery: 'المعرض', contact: 'اتصل بنا', iraadat: 'الإرادة' },
-  hero: { title: 'المحفوظ', fullTitle: 'خانقاه القادرية الشطّارية', subtitle: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك', cta1: 'الإرادة', cta2: 'اقرأ التعاليم', sajjadaNashin: 'السجادة نشين', sajjadaNashinName: 'حضرة سيد أبرار أحمد', sajjadaNashin2: 'نائب السجادة', sajjadaNashinName2: 'حضرة سيد نقيب مظفر علي', sajjadaNashinDesc: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك.', sajjadaNashinDesc1: 'السجادة نشين المبارك الذي يواصل الطريق النبيل للإرشاد الروحاني.', sajjadaNashinDesc2: 'مقعد بارز للسلطة الروحية، يخدم المجتمع بتفانٍ وإخلاص.', locationName: 'محفوظ باغ' },
+   hero: { title: 'المحفوظ', fullTitle: 'خانقاه القادرية الشطّارية', subtitle: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك', cta1: 'الإرادة', cta2: 'اقرأ التعاليم', sajjadaNashin: 'السجادة نشين', sajjadaNashinName: 'حضرة سيد أبرار أحمد', sajjadaNashin2: 'نائب السجادة', sajjadaNashinName2: 'حضرة سيد نقيب مظفر علي', sajjadaNashinDesc: 'ملاذ للسلام والذكر والتعلم الروحاني — متجذر في التقليد القادري المبارك.', sajjadaNashinDesc1: 'السجادة نشين المبارك الذي يواصل الطريق النبيل للإرشاد الروحاني.', sajjadaNashinDesc2: 'مقعد بارز للسلطة الروحية، يخدم المجتمع بتفانٍ وإخلاص.', locationName: 'محفوظ باغ' },
   purpose: {
     title: 'هدفنا', cards: [
       { title: 'الإرشاد الروحاني', description: 'تنمية الروح من خلال التوجيه الروحاني التقليدي والإرشاد على طريق القرب الإلهي.' },
@@ -383,7 +383,7 @@ const ar = {
 
 const hi = {
   nav: { home: 'होम', about: 'हमारे बारे में', activities: 'गतिविधियाँ', teachings: 'शिक्षाएँ', gallery: 'गैलरी', contact: 'संपर्क', iraadat: 'इरादत' },
-  hero: { title: 'अल मेहफ़ूज़', fullTitle: 'ख़ानक़ाह-ए-क़ादरिया शट्टारिया', subtitle: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित', cta1: 'इरादत', cta2: 'शिक्षाएँ पढ़ें', sajjadaNashin: 'सज्जादा नशीन', sajjadaNashinName: 'हज़रत सैयद अबरार अहमद', sajjadaNashin2: 'नायब सज्जादा नशीन', sajjadaNashinName2: 'हज़रत सैयद नक़ीब मुज़फ़्फ़र अली', sajjadaNashinDesc: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित।', sajjadaNashinDesc1: 'आध्यात्मिक मार्गदर्शन के नेक रास्ते को जारी रखने वाले धन्य सज्जादा नशीन।', sajjadaNashinDesc2: 'अधिकार की प्रमुख सीट, भक्ति के साथ समुदाय की सेवा करना।', locationName: 'मेहफ़ूज़ बाग़' },
+  hero: { title: 'अल\' मेहफ़ूज़', fullTitle: 'ख़ानक़ाह-ए-क़ादरिया शट्टारिया', subtitle: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित', cta1: 'इरादत', cta2: 'शिक्षाएँ पढ़ें', sajjadaNashin: 'सज्जादा नशीन', sajjadaNashinName: 'हज़रत सैयद अबरार अहमद', sajjadaNashin2: 'नायब सज्जादा नशीन', sajjadaNashinName2: 'हज़रत सैयद नक़ीब मुज़फ़्फ़र अली', sajjadaNashinDesc: 'शांति, ज़िक्र और आध्यात्मिक शिक्षा का केंद्र — मुबारक क़ादरी परंपरा में निहित।', sajjadaNashinDesc1: 'आध्यात्मिक मार्गदर्शन के नेक रास्ते को जारी रखने वाले धन्य सज्जादा नशीन।', sajjadaNashinDesc2: 'अधिकार की प्रमुख सीट, भक्ति के साथ समुदाय की सेवा करना।', locationName: 'मेहफ़ूज़ बाग़' },
   purpose: {
     title: 'हमारा उद्देश्य', cards: [
       { title: 'आध्यात्मिक मार्गदर्शन', description: 'पारंपरिक आध्यात्मिक मार्गदर्शन और ईश्वरीय निकटता के मार्ग पर मार्गदर्शन के माध्यम से आत्मा का पोषण।' },
