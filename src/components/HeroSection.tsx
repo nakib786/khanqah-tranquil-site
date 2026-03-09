@@ -61,7 +61,7 @@ const HeroSection = ({ lang }: { lang: Language; }) => {
         <p className="text-lg md:text-2xl text-gold font-semibold mb-3 tracking-wide">
           {t.hero.fullTitle}{' '}
           <span className="hero-title-fancy text-white font-extrabold drop-shadow-[0_0_10px_hsl(var(--gold))] tracking-widest">
-            MEHFUZ BAUGH
+            {t.hero.locationName}
           </span>
         </p>
         <p className="text-base md:text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
