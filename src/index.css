@@ -124,7 +124,8 @@
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
   .hero-title-fancy {
-    font-family: 'Sketsa Ramadhan Alternates', 'Scheherazade New', 'Amiri', serif;
+    font-family: 'Amiri', 'Scheherazade New', serif;
+    font-weight: 700;
     letter-spacing: 0.08em;
   }
   .text-gold {
