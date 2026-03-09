@@ -22,7 +22,8 @@ const en = {
     sajjadaNashinName2: 'Hazrat Syed Nakib Muzafar Ali',
     sajjadaNashinDesc: 'A sanctuary of peace, remembrance, and spiritual learning — rooted in the blessed Qadri tradition.',
     sajjadaNashinDesc1: 'Blessed Sajjada Nashin continuing the noble path of spiritual guidance.',
-    sajjadaNashinDesc2: 'Prominent seat of authority, serving the community with devotion.'
+    sajjadaNashinDesc2: 'Prominent seat of authority, serving the community with devotion.',
+    locationName: 'MEHFUZ BAUGH',
   },
   purpose: {
     title: 'Our Purpose', cards: [
